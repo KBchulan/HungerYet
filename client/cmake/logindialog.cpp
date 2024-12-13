@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QtMath>
 #include <QPainter>
+#include <QPainterPath>
 #include <QParallelAnimationGroup>
 #include <QGraphicsDropShadowEffect>
 

@@ -1,6 +1,7 @@
 #include "particleeffect.h"
 
 #include <QtMath>
+#include <QPainterPath>
 
 ParticleEffect::ParticleEffect(QWidget *parent)
     : QWidget(parent), m_timer(new QTimer(this)), m_isActive(false)
