@@ -1,0 +1,19 @@
+{
+  "name": "varify-server",
+  "version": "1.0.0",
+  "description": "VarifyServer",
+  "main": "server.js",
+  "scripts": {
+    "serve": "node server.js"
+  },
+  "author": "WhxChat",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.2",
+    "@grpc/proto-loader": "^0.7.13",
+    "ioredis": "^5.4.1",
+    "nodemailer": "^6.9.16",
+    "redis": "4.7.0",
+    "uuid": "11.0.3"
+  }
+}

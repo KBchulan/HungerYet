@@ -1,0 +1,69 @@
+LoginDialog, RegisterDialog, ResetDialog
+{
+    background-color: rgb(255, 255, 255);
+}
+
+#user_label, #pass_label
+{
+    color: rgb(0, 0, 0);
+}
+
+#err_tip[state = 'normal']
+{
+    color : rgb(85, 196, 85);
+}
+
+#err_tip[state = 'err']
+{
+    color : rgb(136, 21, 21);
+}
+
+#pass_visible[state = 'unvisible']
+{
+    border-image: url(:resources/button/unvisible.png);
+}
+
+#pass_visible[state = 'unvisible_hover']
+{
+    border-image: url(:resources/button/unvisible_hover.png);
+}
+
+#pass_visible[state = 'visible']
+{
+    border-image: url(:resources/button/visible.png);
+}
+
+#pass_visible[state = 'visible_hover']
+{
+    border-image: url(:resources/button/visible_hover.png);
+}
+
+#confirm_visible[state = 'unvisible']
+{
+    border-image: url(:resources/button/unvisible.png);
+}
+
+#confirm_visible[state = 'unvisible_hover']
+{
+    border-image: url(:resources/button/unvisible_hover.png);
+}
+
+#confirm_visible[state = 'visible']
+{
+    border-image: url(:resources/button/visible.png);
+}
+
+#confirm_visible[state = 'visible_hover']
+{
+    border-image: url(:resources/button/visible_hover.png);
+}
+
+#forget_label[state = 'normal'], #forget_label[state = 'selected']
+{
+    color: rgb(0, 0, 0);
+}
+
+#forget_label[state = 'hover'], #forget_label[state = 'selected_hover']
+{
+    color: rgb(66, 124, 248);
+}

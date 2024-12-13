@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/icos/MainWindow.ico</file>
+        <file>style/stylesheet.qss</file>
+        <file>resources/config.ini</file>
+        <file>resources/button/unvisible.png</file>
+        <file>resources/button/unvisible_hover.png</file>
+        <file>resources/button/visible.png</file>
+        <file>resources/button/visible_hover.png</file>
+        <file>resources/Login/1.jpg</file>
+        <file>resources/Login/2.jpg</file>
+        <file>resources/Login/3.jpg</file>
+        <file>resources/Login/4.jpg</file>
+        <file>resources/Login/5.jpg</file>
+        <file>resources/Login/6.jpg</file>
+        <file>resources/Login/7.jpg</file>
+        <file>resources/Login/8.jpg</file>
+        <file>resources/Login/head.jpg</file>
+    </qresource>
+</RCC>
