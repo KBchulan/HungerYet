@@ -14,6 +14,22 @@ MainDialog::MainDialog(QWidget *parent)
     currentSelectedButton = ui->order_tool;
     ui->order_tool->installEventFilter(this);
     ui->chat_tool->installEventFilter(this);
+
+    stackedWidget = new QStackedWidget(this);
+    
+    // 创建两个页面
+    QWidget *orderPage = new QWidget();
+    QWidget *chatPage = new QWidget();
+    
+    // 将页面添加到堆叠部件
+    stackedWidget->addWidget(orderPage);  // index 0
+    stackedWidget->addWidget(chatPage);   // index 1
+    
+    // 将堆叠部件添加到布局中
+    ui->contentLayout->addWidget(stackedWidget);  // 假设你有一个名为contentLayout的布局
+    
+    // 显示初始页面
+    stackedWidget->setCurrentIndex(0);  // 显示订单页面
 }
 
 MainDialog::~MainDialog()
