@@ -2,7 +2,7 @@
 
 ![esu](client/resources/icos/esu.png)
 
-### CSU class designer, 中南饿了么
+### C++课设, 中南饿了么
 
 
 
