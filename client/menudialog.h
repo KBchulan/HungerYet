@@ -12,6 +12,9 @@
 
 #include <QDialog>
 
+using MenuPrices = std::unordered_map<QString, double>;
+using MerchantInfo = std::tuple<QString, QString, MenuPrices>;
+
 namespace Ui
 {
     class MenuDialog;
@@ -24,7 +27,9 @@ class MenuDialog : public QDialog
 public:
     explicit MenuDialog(QWidget *parent = nullptr);
     ~MenuDialog();
-
+private:
+    void loadMerchants();  // 加载商家列表
+    QWidget* createMerchantWidget(int merchantId, const MerchantInfo& info);  // 创建商家项目
 private:
     Ui::MenuDialog *ui;
 };
