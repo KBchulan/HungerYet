@@ -33,7 +33,6 @@ int main()
     // 二项分布
     boost::random::binomial_distribution<int> binomial(10, 0.5);
 
-
     boost::uuids::random_generator gen3;
     boost::uuids::uuid uuid = gen3();
     std::cout << uuid << std::endl;

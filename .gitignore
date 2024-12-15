@@ -3,3 +3,4 @@ node_modules
 cmake-build
 logs
 *.pro.user
+CMakeLists.txt.user
