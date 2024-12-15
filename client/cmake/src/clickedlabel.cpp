@@ -1,4 +1,4 @@
-#include "clickedlabel.h"
+#include <clickedlabel.h>
 
 #include <QMouseEvent>
 

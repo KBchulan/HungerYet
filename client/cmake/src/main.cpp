@@ -1,5 +1,5 @@
-#include "global.h"
-#include "mainwindow.h"
+#include <global.h>
+#include <mainwindow.h>
 
 #include <QFile>
 #include <QApplication> 

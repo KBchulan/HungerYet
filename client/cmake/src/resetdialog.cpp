@@ -1,7 +1,7 @@
-#include "global.h"
-#include "resetdialog.h"
-#include "httpmanager.h"
-#include "ui_resetdialog.h"
+#include <global.h>
+#include <resetdialog.h>
+#include <httpmanager.h>
+#include <ui_resetdialog.h>
 
 #include <QDebug>
 #include <QtMath>

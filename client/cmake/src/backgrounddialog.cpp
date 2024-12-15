@@ -1,4 +1,4 @@
-#include "backgrounddialog.h"
+#include <backgrounddialog.h>
 
 BackgroundDialog::BackgroundDialog(QWidget *parent)
     : QDialog(parent)

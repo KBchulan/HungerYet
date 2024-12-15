@@ -1,5 +1,5 @@
-#include "global.h"
-#include "clickedbtn.h"
+#include <global.h>
+#include <clickedbtn.h>
 
 #include <QVariant>
 #include <QKeyEvent>

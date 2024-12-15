@@ -1,6 +1,6 @@
-#include "tcpmanager.h"
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include <tcpmanager.h>
+#include <mainwindow.h>
+#include <ui_mainwindow.h>
 
 #include <QTimer>
 #include <QPropertyAnimation>
@@ -27,6 +27,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     // reset password从
     connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+
+    // 从login到mainDialog
+    connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchMain);
+    
+    emit TcpManager::GetInstance()->sig_switch_chatdialog();
 }
 
 MainWindow::~MainWindow()
@@ -94,6 +99,17 @@ void MainWindow::SlotSwitchReset()
     _reset_dlg->show();
 
     connect(_reset_dlg, &ResetDialog::switchLogin, this, &MainWindow::SlotSwitchLogin2);
+}
+
+void MainWindow::SlotSwitchMain()
+{
+    _main_dlg = new MainDialog(this);
+    _main_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+
+    setCentralWidget(_main_dlg);
+
+    _login_dlg->hide();
+    _main_dlg->show();
 }
 
 void MainWindow::setupEntranceAnimation(QWidget* widget, int duration)

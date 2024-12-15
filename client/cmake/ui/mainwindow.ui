@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>HungerYet</string>
+   <string>WhxChat</string>
   </property>
   <widget class="QWidget" name="centralwidget"/>
  </widget>
