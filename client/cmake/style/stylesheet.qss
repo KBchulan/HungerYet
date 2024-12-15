@@ -68,38 +68,87 @@ LoginDialog, RegisterDialog, ResetDialog
     color: rgb(66, 124, 248);
 }
 
-#circle_button[state='normal']
+#chat_tool[state='normal']
 {
-    background-color: rgb(66, 124, 248);
+    background-color: rgb(200, 200, 200);
     color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 40px;  /* 设置为宽高的一半实现圆形效果 */
-    min-width: 40px;      /* 设置最小宽度 */
-    max-width: 40px;      /* 设置最大宽度 */
-    min-height: 40px;     /* 设置最小高度 */
-    max-height: 40px;     /* 设置最大高度 */
-}
-
-#circle_button[state='hover']
-{
-    background-color: rgb(86, 144, 268);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 40px;
+    border: 3px solid rgb(100, 100, 100);
+    border-radius: 20px;
     min-width: 40px;
     max-width: 40px;
     min-height: 40px;
     max-height: 40px;
+    qproperty-icon: url(:resources/button/chat.svg);  /* 使用icon属性 */
+    qproperty-iconSize: 24px 24px;
 }
 
-#circle_button[state='pressed']
+#chat_tool[state='hover']
 {
-    background-color: rgb(46, 104, 228);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 40px;
+    background-color: rgb(200, 200, 200);
+    color: rgb(100, 100, 100);
+    border: 3px solid rgb(0,0,0);
+    border-radius: 20px;
     min-width: 40px;
     max-width: 40px;
     min-height: 40px;
     max-height: 40px;
+    qproperty-icon: url(:resources/button/chat.svg);  /* 使用icon属性 */
+    qproperty-iconSize: 24px 24px;
+}
+
+#chat_tool[state='selected'], #order_tool[state='selected']
+{
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(0,0,0);
+    border-radius: 20px;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    qproperty-icon: url(:resources/button/chat.svg);  /* 使用icon属性 */
+    qproperty-iconSize: 24px 24px;
+}
+
+#order_tool[state='normal']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(100, 100, 100);
+    border-radius: 20px;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    qproperty-icon: url(:resources/button/food.svg);  /* 使用icon属性 */
+    qproperty-iconSize: 24px 24px;
+}
+
+#order_tool[state='hover']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(100, 100, 100);
+    border: 3px solid rgb(0,0,0);
+    border-radius: 20px;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    qproperty-icon: url(:resources/button/food.svg);  /* 使用icon属性 */
+    qproperty-iconSize: 24px 24px;
+}
+
+#order_tool[state='selected'], #order_tool[state='selected']
+{
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(0,0,0);
+    border-radius: 20px;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    qproperty-icon: url(:resources/button/food.svg);  /* 使用icon属性 */
+    qproperty-iconSize: 24px 24px;
+    border: 3px solid rgb(0, 0, 0);  /* 加粗边框表示选中状态 */
 }
