@@ -13,6 +13,7 @@
 #include "resetdialog.h"
 #include "logindialog.h"
 #include "registerdialog.h"
+#include "applicationdialog.h"
 
 #include <QMainWindow>
 
@@ -44,14 +45,18 @@ public slots:
     // from resetDialog
     void SlotSwitchLogin2();
 
-    // handel reset
+    // handle reset
     void SlotSwitchReset();
+
+    // handle app
+    void SlotSwitchApp();
 
 private:
     Ui::MainWindow *ui = nullptr;
     LoginDialog *_login_dlg = nullptr;
     ResetDialog *_reset_dlg = nullptr;
     RegisterDialog *_reg_dlg = nullptr;
+    ApplicationDialog *_app_dlg = nullptr;
 };
 
 #endif // MAINWINDOW_H

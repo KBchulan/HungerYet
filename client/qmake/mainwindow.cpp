@@ -25,8 +25,11 @@ MainWindow::MainWindow(QWidget *parent)
     // create and register message link
     connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
 
-    // reset password从
+    // reset password
     connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+
+    // change to applicationDialog
+    connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
 }
 
 MainWindow::~MainWindow()
@@ -94,6 +97,20 @@ void MainWindow::SlotSwitchReset()
     _reset_dlg->show();
 
     connect(_reset_dlg, &ResetDialog::switchLogin, this, &MainWindow::SlotSwitchLogin2);
+}
+
+void MainWindow::SlotSwitchApp()
+{
+    _app_dlg = new ApplicationDialog(this);
+    _app_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+
+    setCentralWidget(_app_dlg);
+
+    _login_dlg->hide();
+    _app_dlg->show();
+
+    this->setMinimumSize(_app_dlg->size());
+    this->setMaximumSize(_app_dlg->size());
 }
 
 void MainWindow::setupEntranceAnimation(QWidget* widget, int duration)
