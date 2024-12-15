@@ -115,3 +115,95 @@ LoginDialog, RegisterDialog, ResetDialog
 }
 
 
+#chat_btn[state='normal']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(100, 100, 100);
+    border-radius: 20px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/chat.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#chat_btn[state='hover']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(100, 100, 100);
+    border: 3px solid rgb(0,0,0);
+    border-radius: 20px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/chat.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#chat_btn[state='selected']
+{
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(0,0,0);
+    border-radius: 20px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/chat.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+#home_btn[state='normal']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(100, 100, 100);
+    border-radius: 20px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/home.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#home_btn[state='hover']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(100, 100, 100);
+    border: 3px solid rgb(0,0,0);
+    border-radius: 20px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/home.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#home_btn[state='selected']
+{
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(0,0,0);
+    border-radius: 20px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/home.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgb(0, 0, 0);
+}
+

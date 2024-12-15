@@ -22,9 +22,11 @@ find_package(Qt5 REQUIRED COMPONENTS
     Widgets
     Network
 )
+find_package(jsoncpp REQUIRED)
+find_package(CURL REQUIRED)
 
 # 源文件
-file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
 
 # 头文件
@@ -52,7 +54,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt5::Gui
     Qt5::Widgets
     Qt5::Network
+    jsoncpp_lib
+    CURL::libcurl
 )
+
 
 # 包含目录
 target_include_directories(${PROJECT_NAME} PRIVATE
