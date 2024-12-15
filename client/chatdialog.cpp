@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QScrollBar>
+#include <QDebug>
 
 ChatDialog::ChatDialog(QWidget *parent) :
     QDialog(parent),
@@ -14,15 +15,6 @@ ChatDialog::ChatDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // 加载样式表
-//    QFile qss(":/style/chat.qss");
-//    if(qss.open(QFile::ReadOnly))
-//    {
-//        setStyleSheet(qss.readAll());
-//        qss.close();
-//    }
-
-    // 设置滚动区域属性
     ui->scrollArea->setWidgetResizable(true);
     ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -53,6 +45,7 @@ void ChatDialog::onSendClicked()
     if(message.isEmpty()) return;
 
     // 显示用户消息
+    qDebug() << "user message:" << message;
     addMessage(message, true);
     ui->inputEdit->clear();
 
