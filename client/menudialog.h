@@ -13,7 +13,7 @@
 #include <QDialog>
 
 using MenuPrices = std::unordered_map<QString, double>;
-using MerchantInfo = std::tuple<QString, QString, MenuPrices>;
+using MerchantInfo = std::tuple<QString, QString, QString, MenuPrices>;
 
 namespace Ui
 {

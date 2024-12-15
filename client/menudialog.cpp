@@ -53,11 +53,12 @@ QWidget* MenuDialog::createMerchantWidget(int merchantId, const MerchantInfo& in
     QHBoxLayout* layout = new QHBoxLayout(widget);
     
     // 创建商家图片
+    const auto& image_path = std::get<2>(info);
+    QPixmap image(image_path);
     QLabel* imageLabel = new QLabel;
     imageLabel->setFixedSize(80, 80);
     imageLabel->setScaledContents(true);
-    QPixmap defaultImage(":/resources/Login/head.jpg");  // 使用默认图片
-    imageLabel->setPixmap(defaultImage);
+    imageLabel->setPixmap(image);
     
     // 创建商家信息容器
     QWidget* infoWidget = new QWidget;
@@ -76,7 +77,7 @@ QWidget* MenuDialog::createMerchantWidget(int merchantId, const MerchantInfo& in
     
     // 添加菜品预览
     QString menuPreview;
-    const auto& menu = std::get<2>(info);
+    const auto& menu = std::get<3>(info);
     int count = 0;
     for(const auto& item : menu)
     {

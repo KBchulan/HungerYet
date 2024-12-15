@@ -20,7 +20,7 @@
 // 菜单
 using MenuPrices = std::unordered_map<QString, double>;
 // 名称, 位置, 菜单
-using MerchantInfo = std::tuple<QString, QString, MenuPrices>;
+using MerchantInfo = std::tuple<QString, QString, QString, MenuPrices>;
 
 class MerchantManager final : public Singleton<MerchantManager>, public std::enable_shared_from_this<MerchantManager>
 {
@@ -31,8 +31,8 @@ public:
 
     MerchantInfo GetMerchantInfo(int merchant_id);
 
-    void AddMerchant(int merchant_id, const QString& name, const QString& location, const MenuPrices& menu);
-
+    void AddMerchant(int merchant_id, const QString& name, const QString& location, const QString& image, const MenuPrices& menu);
+    
     void RemoveMerchant(int merchant_id);
 
     void Clear();

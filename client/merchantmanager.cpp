@@ -9,7 +9,7 @@ MerchantManager::MerchantManager()
         {"宫保鸡丁", 36.0},
         {"水煮鱼", 68.0}
     };
-    AddMerchant(1, "老四川", "文化路127号", menu1);
+    AddMerchant(1, "老四川", "文化路127号", "../resources/Application/merchant/1.jpg", menu1);
 
     MenuPrices menu2 = 
     {
@@ -18,7 +18,7 @@ MerchantManager::MerchantManager()
         {"肠粉", 18.0},
         {"烧鹅饭", 38.0}
     };
-    AddMerchant(2, "港味轩", "建设大道56号", menu2);
+    AddMerchant(2, "港味轩", "建设大道56号", "../resources/Application/merchant/2.jpg", menu2);
 
     MenuPrices menu3 = 
     {
@@ -27,7 +27,7 @@ MerchantManager::MerchantManager()
         {"披萨", 68.0},
         {"沙拉", 28.0}
     };
-    AddMerchant(3, "米兰西餐厅", "和平广场12号", menu3);
+    AddMerchant(3, "米兰西餐厅", "和平广场12号", "../resources/Application/merchant/3.jpg", menu3);
 }
 
 MerchantManager::~MerchantManager()
@@ -41,12 +41,13 @@ MerchantInfo MerchantManager::GetMerchantInfo(int merchant_id)
     {
         return _merchants.at(merchant_id);
     }
-    return std::make_tuple(QString(), QString(), MenuPrices());
+    return std::make_tuple(QString(), QString(), QString(), MenuPrices());
 }
 
-void MerchantManager::AddMerchant(int merchant_id, const QString &name, const QString &location, const MenuPrices &menu)
+void MerchantManager::AddMerchant(int merchant_id, const QString &name, const QString &location, const QString &image, const MenuPrices &menu)
 {
-    _merchants[merchant_id] = std::make_tuple(name, location, menu);
+    
+    _merchants[merchant_id] = std::make_tuple(name, location, image, menu);
 }
 
 void MerchantManager::RemoveMerchant(int merchant_id)

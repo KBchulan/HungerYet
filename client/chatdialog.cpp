@@ -158,7 +158,7 @@ void ChatDialog::showTypingIndicator()
     avatarLabel->setScaledContents(true);
     avatarLabel->setProperty("avatarLabel", true);
     
-    QLabel *textLabel = new QLabel("AI正在思考中...");
+    QLabel *textLabel = new QLabel("阿罗娜正在思考中...");
     textLabel->setProperty("isTypingLabel", true);
     
     QPixmap avatar(":/resources/Application/head/ai.jpg");
