@@ -1,3 +1,12 @@
+/******************************************************************************
+ *
+ * @file       applicationdialog.h
+ * @brief      最后的应用界面主框架
+ *
+ * @author     KBchulan
+ * @date       2024/12/15
+ * @history
+ *****************************************************************************/
 #ifndef APPLICATIONDIALOG_H
 #define APPLICATIONDIALOG_H
 

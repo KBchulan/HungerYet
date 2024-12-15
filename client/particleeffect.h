@@ -19,7 +19,8 @@
 #include <algorithm>
 
 // 单个粒子的属性结构体
-struct Particle {
+struct Particle
+{
     QPointF pos;         // 位置
     QPointF velocity;    // 速度
     qreal angle;         // 旋转角度
