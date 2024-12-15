@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QScrollBar>
 #include <QTimer>
+#include <QKeyEvent>
 
 ChatDialog::ChatDialog(QWidget *parent) 
     : QDialog(parent),
@@ -25,7 +26,7 @@ ChatDialog::ChatDialog(QWidget *parent)
     ui->chatLayout->addStretch(1);  // 初始添加一个stretch
 
     // 连接信号槽
-    connect(ui->sendButton, &QPushButton::clicked, this, &ChatDialog::onSendClicked);
+    connect(ui->sendButton, &QPushButton::clicked, this, &ChatDialog::sendMessage);
     connect(ui->inputEdit, &QTextEdit::textChanged, [this]()
     {
         // 限制输入框高度
@@ -35,6 +36,9 @@ ChatDialog::ChatDialog(QWidget *parent)
             ui->inputEdit->setMaximumHeight(100);
         }
     });
+
+    // 为输入框安装事件过滤器
+    ui->inputEdit->installEventFilter(this);
 
     // 启动工作线程
     workThread->start();
@@ -47,7 +51,7 @@ ChatDialog::~ChatDialog()
     delete ui;
 }
 
-void ChatDialog::onSendClicked()
+void ChatDialog::sendMessage()
 {
     QString message = ui->inputEdit->toPlainText().trimmed();
     if (message.isEmpty())
@@ -210,4 +214,19 @@ void ChatDialog::onMessageReceived(const QString &message)
 {
     removeTypingIndicator();
     addMessage(message, false);
+}
+
+bool ChatDialog::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == ui->inputEdit && event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->modifiers() == Qt::ControlModifier && 
+            (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter))
+        {
+            sendMessage();
+            return true;
+        }
+    }
+    return QDialog::eventFilter(watched, event);
 }

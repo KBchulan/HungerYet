@@ -3,8 +3,8 @@ if [ -d "../logs" ]; then
     rm -rf ../logs
 fi
 
-if [ -d "../client/qmake/build" ]; then
-    echo "正在删除 ../client/qmake/build ..."
+if [ -d "../client/build" ]; then
+    echo "正在删除 ../client/build ..."
     rm -rf ../client/qmake/build
 fi
 

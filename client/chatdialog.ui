@@ -42,7 +42,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>798</width>
+        <width>739</width>
         <height>678</height>
        </rect>
       </property>
@@ -58,6 +58,9 @@
     <layout class="QHBoxLayout" name="inputLayout">
      <property name="spacing">
       <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>8</number>
      </property>
      <item>
       <spacer name="horizontalSpacer">

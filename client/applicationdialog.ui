@@ -58,6 +58,12 @@
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="topMargin">
+        <number>7</number>
+       </property>
+       <property name="bottomMargin">
+        <number>7</number>
+       </property>
        <item>
         <widget class="QPushButton" name="menu_btn">
          <property name="minimumSize">

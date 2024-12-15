@@ -246,28 +246,38 @@ QLabel[avatarLabel="true"] {
 
 /* 聊天输入框样式 */
 #inputEdit {
-    border: 1px solid rgb(200, 200, 200);
-    border-radius: 10px;
-    padding: 5px;
+    border: 2px solid rgb(220, 220, 220);
+    border-radius: 15px;
+    padding: 10px 15px;
     background-color: white;
+    min-height: 40px;
+    max-height: 100px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* 发送按钮样式 */
 #sendButton {
     background-color: rgb(255, 205, 97);
     border: none;
-    border-radius: 15px;
-    color: white;
-    padding: 5px 15px;
-    min-height: 30px;
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+    padding: 5px 20px;
+    min-width: 80px;
+    min-height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #sendButton:hover {
     background-color: rgb(255, 185, 77);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 #sendButton:pressed {
     background-color: rgb(235, 185, 77);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* 滚动区域样式 */
@@ -313,4 +323,3 @@ QLabel[isTypingLabel="true"] {
     border-radius: 15px;
     margin-left: 5px;
 }
-

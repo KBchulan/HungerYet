@@ -31,7 +31,6 @@ public:
     ~ChatDialog();
 
 private slots:
-    void onSendClicked();
     void onMessageReceived(const QString& message);
 
 private:
@@ -43,6 +42,9 @@ private:
 
     void showTypingIndicator();
     void removeTypingIndicator();
+
+    void sendMessage();
+    bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif // CHATDIALOG_H

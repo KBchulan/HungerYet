@@ -2,5 +2,5 @@ build
 node_modules
 cmake-build
 logs
-*.pro.user
+HungerYet.pro.user
 CMakeLists.txt.user

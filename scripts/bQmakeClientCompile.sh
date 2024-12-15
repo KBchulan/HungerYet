@@ -1,4 +1,4 @@
-BUILD_DIR="../client/qmake/build"
+BUILD_DIR="../client/build"
 
 if [ -d "$BUILD_DIR" ]; then
     echo "检测到build文件夹已存在,正在删除"
@@ -8,7 +8,7 @@ fi
 mkdir "$BUILD_DIR"
 cd "$BUILD_DIR"
 
-qmake ../HungerYet.pro -spec linux-g++ CONFIG+=release
+qmake ..
 make -j$(nproc)
 
 if [ $? -eq 0 ]; then
