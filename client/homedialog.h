@@ -1,16 +1,8 @@
-/******************************************************************************
- *
- * @file       homedialog.h
- * @brief      应用里界面：我的
- *
- * @author     KBchulan
- * @date       2024/12/15
- * @history
- *****************************************************************************/
 #ifndef HOMEDIALOG_H
 #define HOMEDIALOG_H
 
 #include <QDialog>
+#include <QPixmap>
 
 namespace Ui
 {
@@ -25,8 +17,12 @@ public:
     explicit HomeDialog(QWidget *parent = nullptr);
     ~HomeDialog();
 
+    void setUserInfo(const QString &username, const QString &email);
+    void setAvatar(const QPixmap &avatar);
+
 private:
     Ui::HomeDialog *ui;
+    void setupUserInterface();
 };
 
 #endif // HOMEDIALOG_H
