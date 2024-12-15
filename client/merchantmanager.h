@@ -31,7 +31,9 @@ public:
 
     MerchantInfo GetMerchantInfo(int merchant_id);
 
-    void AddMerchant(int merchant_id, const QString& name, const QString& location, const QString& image, const MenuPrices& menu);
+    size_t GetMerchantCount() const; 
+
+    void AddMerchant(const QString& name, const QString& location, const QString& image, const MenuPrices& menu);
     
     void RemoveMerchant(int merchant_id);
 
@@ -40,7 +42,7 @@ public:
 private:
     MerchantManager();
 
-    std::unordered_map<int, MerchantInfo> _merchants;
+    std::vector<MerchantInfo> _merchants;
 };
 
 #endif // MERCHANTMANAGER_H

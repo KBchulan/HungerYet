@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QPixmap>
 #include <QLabel>
+#include <filesystem>
 
 MenuDialog::MenuDialog(QWidget *parent) :
     QDialog(parent),
@@ -32,7 +33,7 @@ void MenuDialog::loadMerchants()
     auto merchantManager = MerchantManager::GetInstance();
     
     // 遍历所有商家
-    for(int id = 1; id <= 3; id++)  // 目前有3个商家
+    for(int id = 0; id < merchantManager->GetMerchantCount(); id++)
     {
         MerchantInfo info = merchantManager->GetMerchantInfo(id);
         if(std::get<0>(info).isEmpty()) continue;  // 跳过无效商家
@@ -51,14 +52,19 @@ QWidget* MenuDialog::createMerchantWidget(int merchantId, const MerchantInfo& in
 {
     QWidget* widget = new QWidget;
     QHBoxLayout* layout = new QHBoxLayout(widget);
-    
+    QLabel* imageLabel = new QLabel;
+
     // 创建商家图片
     const auto& image_path = std::get<2>(info);
-    QPixmap image(image_path);
-    QLabel* imageLabel = new QLabel;
+    if (!std::filesystem::exists(image_path.toStdString())){
+        qDebug() << "MenuDialog::createMerchantWidget: image_path not found";
+        imageLabel->setPixmap(QPixmap("../resources/Application/merchant/default.jpeg"));
+    }else{
+        QPixmap image(image_path);
+        imageLabel->setPixmap(image);
+    }
     imageLabel->setFixedSize(80, 80);
     imageLabel->setScaledContents(true);
-    imageLabel->setPixmap(image);
     
     // 创建商家信息容器
     QWidget* infoWidget = new QWidget;
