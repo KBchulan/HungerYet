@@ -37,7 +37,7 @@ MerchantManager::~MerchantManager()
 
 MerchantInfo MerchantManager::GetMerchantInfo(int merchant_id)
 {
-    if(_merchants.contains(merchant_id))
+    if(_merchants.find(merchant_id) != _merchants.end())
     {
         return _merchants.at(merchant_id);
     }
