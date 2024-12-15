@@ -28,24 +28,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SOURCES)
 
 
 # 头文件
-#aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/include HEADERS)
-set(HEADERS
-    include/clickedbtn.h
-    include/clickedlabel.h
-    include/global.h
-    include/httpmanager.h
-    include/logindialog.h
-    include/mainwindow.h
-    include/particleeffect.h
-    include/registerdialog.h
-    include/resetdialog.h
-    include/singleton.h
-    include/tcpmanager.h
-    include/timerbtn.h
-    include/usermanager.h
-    include/backgrounddialog.h
-    include/maindialog.h
-)
+file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
 
 # UI文件
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/ui FORMS)

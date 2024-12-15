@@ -33,9 +33,9 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="order_tool">
        <property name="text">
-        <string>PushButton</string>
+        <string></string>
        </property>
       </widget>
      </item>
@@ -56,9 +56,9 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="circle_button">
+      <widget class="QPushButton" name="chat_tool">
        <property name="text">
-        <string>PushButton</string>
+        <string></string>
        </property>
       </widget>
      </item>
