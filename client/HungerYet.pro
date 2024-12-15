@@ -28,6 +28,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     menudialog.cpp \
+    merchantmanager.cpp \
     particleeffect.cpp \
     registerdialog.cpp \
     resetdialog.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     logindialog.h \
     mainwindow.h \
     menudialog.h \
+    merchantmanager.h \
     particleeffect.h \
     registerdialog.h \
     resetdialog.h \
