@@ -69,7 +69,7 @@ void ApplicationDialog::handleButtonClick(QPushButton *clickedButton)
 
 bool ApplicationDialog::eventFilter(QObject *watched, QEvent *event)
 {
-    if (watched == ui->chat_btn || watched == ui->menu_btn)
+    if (watched == ui->chat_btn || watched == ui->menu_btn || watched == ui->home_btn)
     {
         QPushButton *button = qobject_cast<QPushButton *>(watched);
         QString currentState = button->property("state").toString();
