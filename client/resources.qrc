@@ -19,5 +19,7 @@
         <file>resources/Application/btn/food.svg</file>
         <file>resources/Application/btn/chat.svg</file>
         <file>resources/Application/btn/home.svg</file>
+        <file>resources/Application/head/ai.jpg</file>
+        <file>resources/Application/head/user.jpg</file>
     </qresource>
 </RCC>

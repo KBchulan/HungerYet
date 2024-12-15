@@ -15,6 +15,7 @@
 #include <QTextEdit>
 #include <QPushButton>
 #include <QThread>
+#include <QTimer>
 
 namespace Ui
 {
@@ -37,10 +38,11 @@ private:
     Ui::ChatDialog *ui;
 
     void addMessage(const QString& message, bool isUser);
-
-    void sendMessageToKimi(const QString& message);
-
+    
     QThread* workThread;
+
+    void showTypingIndicator();
+    void removeTypingIndicator();
 };
 
 #endif // CHATDIALOG_H

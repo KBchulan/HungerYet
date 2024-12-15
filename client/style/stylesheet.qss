@@ -207,3 +207,110 @@ LoginDialog, RegisterDialog, ResetDialog
     border: 3px solid rgb(0, 0, 0);
 }
 
+/* 聊天消息容器 */
+QWidget[isMessageContainer="true"] {
+    background-color: transparent;
+    margin: 2px 10px;
+}
+
+/* 消息文本样式 */
+QLabel[messageLabel="true"] {
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+/* 用户消息样式 */
+QLabel[isUserMessage="true"] {
+    background-color: rgb(255, 205, 97);
+    color: rgb(0, 0, 0);
+    margin-right: 5px;
+    border: 1px solid rgb(245, 195, 87);
+}
+
+/* AI消息样式 */
+QLabel[isUserMessage="false"] {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    margin-left: 5px;
+    border: 1px solid rgb(220, 220, 220);
+}
+
+/* 头像样式 */
+QLabel[avatarLabel="true"] {
+    border-radius: 17px;
+    border: 1px solid rgb(200, 200, 200);
+    background-color: white;
+}
+
+/* 聊天输入框样式 */
+#inputEdit {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 10px;
+    padding: 5px;
+    background-color: white;
+}
+
+/* 发送按钮样式 */
+#sendButton {
+    background-color: rgb(255, 205, 97);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    padding: 5px 15px;
+    min-height: 30px;
+}
+
+#sendButton:hover {
+    background-color: rgb(255, 185, 77);
+}
+
+#sendButton:pressed {
+    background-color: rgb(235, 185, 77);
+}
+
+/* 滚动区域样式 */
+#scrollArea {
+    border: none;
+    background-color: white;
+}
+
+#scrollAreaWidgetContents {
+    background-color: white;
+}
+
+/* 滚动条样式 */
+QScrollBar:vertical {
+    border: none;
+    background: rgb(240, 240, 240);
+    width: 8px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: rgb(200, 200, 200);
+    border-radius: 4px;
+    min-height: 20px;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* 正在输入指示器样式 */
+QWidget[isTypingIndicator="true"] {
+    background-color: transparent;
+    margin: 2px 10px;
+}
+
+QLabel[isTypingLabel="true"] {
+    color: rgb(150, 150, 150);
+    font-size: 13px;
+    padding: 8px 15px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 15px;
+    margin-left: 5px;
+}
+

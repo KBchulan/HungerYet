@@ -31,32 +31,33 @@
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>700</height>
+       <height>680</height>
       </size>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
      <widget class="QWidget" name="chatContent">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>18</width>
-        <height>600</height>
+        <width>798</width>
+        <height>678</height>
        </rect>
       </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <layout class="QVBoxLayout" name="chatLayout"/>
+      <layout class="QVBoxLayout" name="chatLayout">
+       <property name="spacing">
+        <number>5</number>
+       </property>
+      </layout>
      </widget>
     </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="inputLayout">
      <property name="spacing">
-      <number>0</number>
+      <number>10</number>
      </property>
      <item>
       <widget class="QTextEdit" name="inputEdit"/>
