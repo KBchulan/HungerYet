@@ -1,6 +1,12 @@
 # HungerYet
 
-CSU class designer
+![esu](client/resources/icos/esu.png)
+
+### CSU class designer, 中南饿了么
+
+
+
+#### 服务器端口
 
 * GateServer: 50001
 * VerifyServer: 50002
