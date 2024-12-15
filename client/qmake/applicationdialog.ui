@@ -49,27 +49,15 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="MenuDialog" name="menu_wid"/>
+       <widget class="HomeDialog" name="home_wid"/>
        <widget class="ChatDialog" name="chat_wid"/>
       </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item>
         <widget class="QPushButton" name="menu_btn">
          <property name="minimumSize">
@@ -85,22 +73,9 @@
           </size>
          </property>
          <property name="text">
-          <string>菜单</string>
+          <string/>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item>
         <widget class="QPushButton" name="chat_btn">
@@ -117,22 +92,28 @@
           </size>
          </property>
          <property name="text">
-          <string>聊天</string>
+          <string/>
          </property>
         </widget>
        </item>
        <item>
-        <spacer name="horizontalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
+        <widget class="QPushButton" name="home_btn">
+         <property name="minimumSize">
           <size>
-           <width>40</width>
-           <height>20</height>
+           <width>60</width>
+           <height>60</height>
           </size>
          </property>
-        </spacer>
+         <property name="maximumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -151,6 +132,12 @@
    <class>MenuDialog</class>
    <extends>QWidget</extends>
    <header location="global">menudialog.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HomeDialog</class>
+   <extends>QWidget</extends>
+   <header location="global">homedialog.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

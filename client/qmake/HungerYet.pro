@@ -21,6 +21,7 @@ SOURCES += \
     clickedbtn.cpp \
     clickedlabel.cpp \
     global.cpp \
+    homedialog.cpp \
     httpmanager.cpp \
     kimiapi.cpp \
     logindialog.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     clickedbtn.h \
     clickedlabel.h \
     global.h \
+    homedialog.h \
     httpmanager.h \
     kimiapi.h \
     logindialog.h \
@@ -58,6 +60,7 @@ HEADERS += \
 FORMS += \
     applicationdialog.ui \
     chatdialog.ui \
+    homedialog.ui \
     logindialog.ui \
     mainwindow.ui \
     menudialog.ui \

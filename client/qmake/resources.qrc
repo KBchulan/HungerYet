@@ -16,5 +16,8 @@
         <file>resources/Login/7.jpg</file>
         <file>resources/Login/8.jpg</file>
         <file>resources/Login/head.jpg</file>
+        <file>resources/Application/btn/food.svg</file>
+        <file>resources/Application/btn/chat.svg</file>
+        <file>resources/Application/btn/home.svg</file>
     </qresource>
 </RCC>
