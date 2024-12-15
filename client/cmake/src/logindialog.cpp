@@ -1,7 +1,7 @@
-#include "tcpmanager.h"
-#include "logindialog.h"
-#include "httpmanager.h"
-#include "ui_logindialog.h"
+#include <tcpmanager.h>
+#include <logindialog.h>
+#include <httpmanager.h>
+#include <ui_logindialog.h>
 
 #include <QDebug>
 #include <QtMath>

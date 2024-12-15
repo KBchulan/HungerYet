@@ -1,4 +1,4 @@
-#include "particleeffect.h"
+#include <particleeffect.h>
 
 #include <QtMath>
 #include <QPainterPath>

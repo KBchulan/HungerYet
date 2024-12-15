@@ -1,5 +1,5 @@
-#include "tcpmanager.h"
-#include "usermanager.h"
+#include <tcpmanager.h>
+#include <usermanager.h>
 
 #include <QDataStream>
 #include <QAbstractSocket>

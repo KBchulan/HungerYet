@@ -10,6 +10,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "maindialog.h"
 #include "resetdialog.h"
 #include "logindialog.h"
 #include "registerdialog.h"
@@ -44,11 +45,15 @@ public slots:
     // from resetDialog
     void SlotSwitchLogin2();
 
-    // handel reset
+    // handle reset
     void SlotSwitchReset();
+
+    // handle main
+    void SlotSwitchMain();
 
 private:
     Ui::MainWindow *ui = nullptr;
+    MainDialog* _main_dlg = nullptr;
     LoginDialog *_login_dlg = nullptr;
     ResetDialog *_reset_dlg = nullptr;
     RegisterDialog *_reg_dlg = nullptr;

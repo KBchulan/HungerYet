@@ -1,5 +1,5 @@
-#include "httpmanager.h"
-#include "registerdialog.h"
+#include <httpmanager.h>
+#include <registerdialog.h>
 #include "ui_registerdialog.h"
 
 #include <QtMath>

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.2)
 
 project(HungerYet VERSION 1.0 LANGUAGES CXX)
 
@@ -13,6 +13,7 @@ set(CMAKE_AUTOUIC ON)
 # 设置Qt5的路径
 set(Qt5_DIR "/home/whx/qtware/5.14.2/gcc_64/lib/cmake/Qt5")
 set(CMAKE_PREFIX_PATH "/home/whx/qtware/5.14.2/gcc_64")
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/ui)
 
 # 查找Qt5包
 find_package(Qt5 REQUIRED COMPONENTS 
@@ -23,48 +24,31 @@ find_package(Qt5 REQUIRED COMPONENTS
 )
 
 # 源文件
-set(SOURCES
-    main.cpp
-    mainwindow.cpp
-    clickedbtn.cpp
-    clickedlabel.cpp
-    global.cpp
-    httpmanager.cpp
-    logindialog.cpp
-    particleeffect.cpp
-    registerdialog.cpp
-    resetdialog.cpp
-    tcpmanager.cpp
-    timerbtn.cpp
-    usermanager.cpp
-    backgrounddialog.cpp
-)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SOURCES)
+
 
 # 头文件
+#aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/include HEADERS)
 set(HEADERS
-    clickedbtn.h
-    clickedlabel.h
-    global.h
-    httpmanager.h
-    logindialog.h
-    mainwindow.h
-    particleeffect.h
-    registerdialog.h
-    resetdialog.h
-    singleton.h
-    tcpmanager.h
-    timerbtn.h
-    usermanager.h
-    backgrounddialog.h
+    include/clickedbtn.h
+    include/clickedlabel.h
+    include/global.h
+    include/httpmanager.h
+    include/logindialog.h
+    include/mainwindow.h
+    include/particleeffect.h
+    include/registerdialog.h
+    include/resetdialog.h
+    include/singleton.h
+    include/tcpmanager.h
+    include/timerbtn.h
+    include/usermanager.h
+    include/backgrounddialog.h
+    include/maindialog.h
 )
 
 # UI文件
-set(FORMS
-    logindialog.ui
-    mainwindow.ui
-    registerdialog.ui
-    resetdialog.ui
-)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/ui FORMS)
 
 # 资源文件
 set(RESOURCES
@@ -89,5 +73,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 # 包含目录
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
