@@ -78,8 +78,9 @@ LoginDialog, RegisterDialog, ResetDialog
     max-width: 55px;
     min-height: 55px;
     max-height: 55px;
-    qproperty-icon: url(:resources/Application/btn/food.svg);
-    qproperty-iconSize: 24px 24px;
+    background-image: url(:resources/Application/btn/food.svg);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #menu_btn[state='hover']
@@ -92,8 +93,9 @@ LoginDialog, RegisterDialog, ResetDialog
     max-width: 55px;
     min-height: 55px;
     max-height: 55px;
-    qproperty-icon: url(:resources/Application/btn/food.svg);
-    qproperty-iconSize: 24px 24px;
+    background-image: url(:resources/Application/btn/food.svg);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #menu_btn[state='selected']
@@ -106,9 +108,10 @@ LoginDialog, RegisterDialog, ResetDialog
     max-width: 55px;
     min-height: 55px;
     max-height: 55px;
-    qproperty-icon: url(:resources/Application/btn/food.svg);
-    qproperty-iconSize: 24px 24px;
-    border: 3px solid rgb(0, 0, 0);  /* 加粗边框表示选中状态 */
+    background-image: url(:resources/Application/btn/food.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgb(0, 0, 0);
 }
 
 

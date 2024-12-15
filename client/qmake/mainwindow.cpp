@@ -30,8 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // change to applicationDialog
     connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
-
-    emit TcpManager::GetInstance()->sig_switch_chatdialog();
 }
 
 MainWindow::~MainWindow()

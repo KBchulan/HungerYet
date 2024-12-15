@@ -97,6 +97,7 @@ private slots:
 
     // 接到登录回包后的逻辑
     void slot_login_mod_finish(ReqId id, QString res, ErrorCodes err);
+    void on_visitor_btn_clicked();
 };
 
 #endif // LOGINDIALOG_H

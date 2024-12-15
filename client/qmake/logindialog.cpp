@@ -368,3 +368,8 @@ void LoginDialog::slot_login_mod_finish(ReqId id, QString res, ErrorCodes err)
     _handlers[id](jsonDoc.object());
     return;
 }
+
+void LoginDialog::on_visitor_btn_clicked()
+{
+    emit TcpManager::GetInstance()->sig_switch_chatdialog();
+}
