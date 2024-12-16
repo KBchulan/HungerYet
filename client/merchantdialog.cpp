@@ -65,20 +65,51 @@ void MerchantDialog::onMenuItemClicked(QListWidgetItem* item)
 {
     QString itemText = item->text();
     QString dishName = itemText.split(" -").first();
+    double price = menuPrices[dishName];
     
-    if (!cartItems.contains(dishName))
-    {
-        cartItems[dishName] = std::make_tuple(menuPrices[dishName], 1);
-    }
-    else
-    {
-        auto& [price, count] = cartItems[dishName];
-        count++;
-    }
-    updateCartCount();
+    QMessageBox confirmBox(this);
+    confirmBox.setWindowTitle("添加到购物车");
+    confirmBox.setText(QString("是否将 %1 (￥%2) 加入购物车？").arg(dishName).arg(price, 0, 'f', 2));
     
-    QMessageBox::information(this, "添加成功", 
-        QString("已将 %1 加入购物车").arg(dishName));
+    // 创建按钮
+    QPushButton* confirmButton = new QPushButton("确定");
+    QPushButton* cancelButton = new QPushButton("取消");
+    
+    // 设置按钮的默认属性
+    confirmButton->setDefault(true);
+    confirmBox.addButton(confirmButton, QMessageBox::AcceptRole);
+    confirmBox.addButton(cancelButton, QMessageBox::RejectRole);
+    
+    // 创建水平布局
+    QHBoxLayout* buttonLayout = new QHBoxLayout;
+    buttonLayout->addWidget(confirmButton);
+    buttonLayout->addSpacing(20); // 按钮之间的间距
+    buttonLayout->addWidget(cancelButton);
+    
+    // 获取消息框的布局
+    QGridLayout* layout = qobject_cast<QGridLayout*>(confirmBox.layout());
+    if (layout) {
+        // 移除原有的按钮布局
+        layout->takeAt(layout->count() - 1);
+        // 添加新的按钮布局
+        layout->addLayout(buttonLayout, layout->rowCount(), 0, 1, layout->columnCount(), Qt::AlignCenter);
+    }
+    
+    confirmBox.exec();
+    
+    if (confirmBox.clickedButton() == confirmButton)
+    {
+        if (!cartItems.contains(dishName))
+        {
+            cartItems[dishName] = std::make_tuple(menuPrices[dishName], 1);
+        }
+        else
+        {
+            auto& [price, count] = cartItems[dishName];
+            count++;
+        }
+        updateCartCount();
+    }
 }
 
 void MerchantDialog::onCartButtonClicked()
@@ -128,11 +159,13 @@ void MerchantDialog::pay(double totalPrice)
     
     // 添加付款码图片
     QLabel* payImageLabel = new QLabel(&payDialog);
-    QPixmap payPixmap(":/resources/Application/pay/pay.png");
+    int random = totalPrice;
+    QString path = random%2 == 0 ? ":/resources/Application/pay/pay.png" : ":/resources/Application/pay/pay2.jpg";
+    QPixmap payPixmap(path);
     if (!payPixmap.isNull())
     {
         // 设置固定大小并保持比例缩放
-        payPixmap = payPixmap.scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        payPixmap = payPixmap.scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         payImageLabel->setPixmap(payPixmap);
         payImageLabel->setAlignment(Qt::AlignCenter);
     }
@@ -153,7 +186,7 @@ void MerchantDialog::pay(double totalPrice)
     layout->addWidget(tipLabel);
     layout->addWidget(priceLabel);
     
-    // 设置对话框大小策略
+    // ��置对话框大小策略
     payDialog.setFixedSize(400, 400);
     
     payDialog.exec();

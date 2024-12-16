@@ -35,5 +35,6 @@
         <file>resources/Application/btn/left.svg</file>
         <file>resources/Application/btn/shopping.svg</file>
         <file>resources/Application/pay/pay.png</file>
+        <file>resources/Application/pay/pay2.jpg</file>
     </qresource>
 </RCC>

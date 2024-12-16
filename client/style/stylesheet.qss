@@ -518,3 +518,47 @@ QDialog[windowTitle="扫码支付"] QLabel {
     font-size: 14px;
     margin: 10px;
 }
+
+/* 确认对话框样式 */
+QMessageBox {
+    background-color: white;
+}
+
+QMessageBox QLabel {
+    padding: 20px;
+    font-size: 14px;
+}
+
+/* 确认对话框按钮容器样式 */
+QMessageBox QHBoxLayout {
+    margin: 20px;
+}
+
+/* 确认对话框按钮样式 */
+QMessageBox QPushButton[text="确定"] {
+    background-color: rgb(255, 205, 97);
+    border: none;
+    border-radius: 15px;
+    padding: 8px 20px;
+    color: black;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+QMessageBox QPushButton[text="确定"]:hover {
+    background-color: rgb(255, 185, 77);
+}
+
+QMessageBox QPushButton[text="取消"] {
+    background-color: rgb(255, 85, 85);
+    border: none;
+    border-radius: 15px;
+    padding: 8px 20px;
+    color: white;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+QMessageBox QPushButton[text="取消"]:hover {
+    background-color: rgb(255, 65, 65);
+}
