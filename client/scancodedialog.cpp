@@ -80,8 +80,8 @@ void ScanCodeDialog::initCamera()
         } 
         else 
         {
-            // stopScanning();
-            // emit ui->return_menu_btn->clicked();
+            stopScanning();
+            emit ui->return_menu_btn->clicked();
         }
         return;
     }

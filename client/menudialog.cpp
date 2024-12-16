@@ -164,8 +164,8 @@ QWidget* MenuDialog::createMerchantWidget(int merchantId, const MerchantInfo &in
         "    border-radius: 8px;"
         "}");
 
-    widget->setCursor(Qt::PointingHandCursor); // 设置鼠标指针样式
-    widget->installEventFilter(this); // 安装事件过滤器
+    widget->setCursor(Qt::PointingHandCursor);
+    widget->installEventFilter(this);
     widget->setProperty("merchant_id", merchantId);
 
     return widget;
