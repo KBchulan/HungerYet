@@ -12,7 +12,8 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
 
     connect(ui->menu_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
     connect(ui->chat_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchChat);
-    connect(ui->home_btn, &QPushButton::clicked, this, &ApplicationDialog::SLotSwitchHome);
+    connect(ui->home_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchHome);
+    connect(ui->menu_wid->findChild<QPushButton*>("add_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchScan);
 
     ui->stackedWidget->setCurrentWidget(ui->menu_wid);
 
@@ -43,7 +44,12 @@ void ApplicationDialog::SlotSwitchMenu()
     ui->stackedWidget->setCurrentWidget(ui->menu_wid);
 }
 
-void ApplicationDialog::SLotSwitchHome()
+void ApplicationDialog::SlotSwitchScan()
+{
+    ui->stackedWidget->setCurrentWidget(ui->scan_wid);
+}
+
+void ApplicationDialog::SlotSwitchHome()
 {
     ui->stackedWidget->setCurrentWidget(ui->home_wid);
 }

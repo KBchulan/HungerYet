@@ -33,6 +33,7 @@ SOURCES += \
     particleeffect.cpp \
     registerdialog.cpp \
     resetdialog.cpp \
+    scancodedialog.cpp \
     tcpmanager.cpp \
     timerbtn.cpp \
     usermanager.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     particleeffect.h \
     registerdialog.h \
     resetdialog.h \
+    scancodedialog.h \
     singleton.h \
     tcpmanager.h \
     timerbtn.h \
@@ -69,9 +71,21 @@ FORMS += \
     mainwindow.ui \
     menudialog.ui \
     registerdialog.ui \
-    resetdialog.ui
+    resetdialog.ui \
+    scancodedialog.ui
 
 LIBS += -lcurl -ljsoncpp
+
+# OpenCV configuration
+LIBS += -L/usr/local/lib \
+        -lopencv_objdetect \
+        -lopencv_videoio \
+        -lopencv_imgcodecs \
+        -lopencv_imgproc \
+        -lopencv_highgui \
+        -lopencv_core
+
+INCLUDEPATH += /usr/local/include/opencv4
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

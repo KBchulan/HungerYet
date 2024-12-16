@@ -29,15 +29,19 @@ size_t KimiAPI::WriteCallback(void* contents, size_t size, size_t nmemb, std::st
 std::string KimiAPI::sendMessage(const std::string& message)
 {
     memory.push_back(message);
-    for(const auto& msg : memory){
+    for(const auto& msg : memory)
+    {
         std::cout << msg << std::endl;
     }
-    if(!curl) return "Error: CURL not initialized";
+    if(!curl)
+        return "Error: CURL not initialized";
     
     // 构建请求JSON
     Json::Value root;
     root["model"] = "moonshot-v1-8k";
-    for (size_t i = 0; i < memory.size(); ++i) {
+
+    for (size_t i = 0; i < memory.size(); ++i)
+    {
         Json::Value msgObj;
         msgObj["role"] = (i%2 == 0) ? "user" : "assistant";
         msgObj["content"] = memory[i];

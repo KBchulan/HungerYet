@@ -28,9 +28,11 @@ public:
 
 private:
     KimiAPI();
-    
+
+    // 注册写回调给app调度
     static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userp);
-    
+
+private:
     const std::string API_KEY = "sk-mKm0uSCcuNLxcnJV53YB8Qj3LZqYX2SAZi1e1UX1ktsMmUJT";
     const std::string API_URL = "https://api.moonshot.cn/v1/chat/completions";
     

@@ -10,9 +10,9 @@
 #ifndef BACKGROUNDDIALOG_H
 #define BACKGROUNDDIALOG_H
 
+#include <QPixmap>
 #include <QDialog>
 #include <QPainter>
-#include <QPixmap>
 
 class BackgroundDialog : public QDialog
 {

@@ -366,3 +366,13 @@ QLabel[isTypingLabel="true"] {
 {
     border-image: url(:resources/Application/btn/scan-code.svg);
 }
+
+/* 扫码界面样式 */
+#ScanCodeDialog {
+    background-color: black;
+}
+
+#preview_label {
+    border: 2px solid rgb(255, 205, 97);
+    border-radius: 10px;
+}

@@ -2,22 +2,23 @@
 #include "ui_menudialog.h"
 #include "merchantmanager.h"
 
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QPixmap>
+#include <QDebug>
 #include <QLabel>
 #include <QAction>
+#include <QPixmap>
 #include <filesystem>
-#include <QDebug>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 
-MenuDialog::MenuDialog(QWidget *parent) : QDialog(parent),
-                                          ui(new Ui::MenuDialog)
+MenuDialog::MenuDialog(QWidget *parent)
+    : QDialog(parent),
+      ui(new Ui::MenuDialog)
 {
     ui->setupUi(this);
     setWindowTitle("商家列表");
 
     // 设置列表widget的样式
-    ui->listWidget->setSpacing(10); // 设置项目间距
+    ui->listWidget->setSpacing(10);
     ui->listWidget->setViewMode(QListWidget::ListMode);
     ui->listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -26,7 +27,7 @@ MenuDialog::MenuDialog(QWidget *parent) : QDialog(parent),
 
     // 初始化所有ui
     ui->add_btn->SetState("normal", "hover", "press");
-    ui->search_edit->setMaxLength(15);
+    ui->search_edit->setMaxLength(20);
 
     // search_edit
     QAction *searchAction = new QAction(ui->search_edit);
@@ -66,7 +67,8 @@ MenuDialog::~MenuDialog()
 // 后续会做搜索界面
 void MenuDialog::ShowSearch(bool bSearch)
 {
-
+    if(bSearch)
+        qDebug() << "进入搜索店铺的界面";
 }
 
 void MenuDialog::loadMerchants()
@@ -75,7 +77,7 @@ void MenuDialog::loadMerchants()
     auto merchantManager = MerchantManager::GetInstance();
 
     // 遍历所有商家
-    for (int id = 0; id < merchantManager->GetMerchantCount(); id++)
+    for (int id = 0; id < static_cast<int>(merchantManager->GetMerchantCount()); id++)
     {
         MerchantInfo info = merchantManager->GetMerchantInfo(id);
         if (std::get<0>(info).isEmpty())
@@ -134,12 +136,12 @@ QWidget *MenuDialog::createMerchantWidget(int merchantId, const MerchantInfo &in
     for (const auto &item : menu)
     {
         if (count++ > 2)
-            break; // 只显示前三个菜品
+            break;
         menuPreview += item.first + "、";
     }
     if (!menuPreview.isEmpty())
     {
-        menuPreview.chop(1); // 删除最后的顿号
+        menuPreview.chop(1);
     }
     QLabel *menuLabel = new QLabel(menuPreview);
     menuLabel->setStyleSheet("color: gray;");

@@ -29,6 +29,7 @@ protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
 
 private:
+    // 低下三个按钮的回调
     void handleButtonClick(QPushButton* button);
 
 private:
@@ -40,7 +41,9 @@ private slots:
 
     void SlotSwitchMenu();
 
-    void SLotSwitchHome();
+    void SlotSwitchHome();
+
+    void SlotSwitchScan();
 };
 
 #endif // APPLICATIONDIALOG_H

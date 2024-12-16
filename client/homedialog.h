@@ -26,7 +26,10 @@ public:
     explicit HomeDialog(QWidget *parent = nullptr);
     ~HomeDialog();
 
+    // 设置用户信息
     void setUserInfo(const QString &username, const QString &email, const int &uid);
+
+    // 设置头像
     void setAvatar(const QPixmap &avatar);
 
 private:

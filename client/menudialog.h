@@ -27,10 +27,17 @@ class MenuDialog : public QDialog
 public:
     explicit MenuDialog(QWidget *parent = nullptr);
     ~MenuDialog();
+
 private:
-    void loadMerchants();  // 加载商家列表
-    QWidget* createMerchantWidget(int merchantId, const MerchantInfo& info);  // 创建商家项目
+    // 加载商家列表
+    void loadMerchants();
+
+    // 创建商家项目
+    QWidget* createMerchantWidget(int merchantId, const MerchantInfo& info);
+
+    // 后续可能会做的搜索页面
     void ShowSearch(bool bSearch);
+
 private:
     Ui::MenuDialog *ui;
 };

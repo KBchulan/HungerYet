@@ -2,13 +2,14 @@
 #include "ui_chatdialog.h"
 #include "kimiapi.h"
 
-#include <QDebug>
+
 #include <QFile>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QScrollBar>
 #include <QTimer>
+#include <QLabel>
+#include <QDebug>
 #include <QKeyEvent>
+#include <QScrollBar>
+#include <QVBoxLayout>
 
 ChatDialog::ChatDialog(QWidget *parent) 
     : QDialog(parent),

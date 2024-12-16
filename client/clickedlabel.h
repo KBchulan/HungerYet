@@ -10,9 +10,9 @@
 #ifndef CLICKEDLABEL_H
 #define CLICKEDLABEL_H
 
-#include <QLabel>
-
 #include "global.h"
+
+#include <QLabel>
 
 class ClickedLabel final : public QLabel
 {

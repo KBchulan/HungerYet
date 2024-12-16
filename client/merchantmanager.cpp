@@ -51,7 +51,7 @@ MerchantManager::~MerchantManager()
 
 MerchantInfo MerchantManager::GetMerchantInfo(int merchant_id)
 {
-    if(merchant_id >= _merchants.size())
+    if(merchant_id >= static_cast<int>(_merchants.size()))
     {
         qDebug() << "MerchantManager::GetMerchantInfo: merchant_id is out of range";
         return std::make_tuple(QString(), QString(), QString(), MenuPrices());

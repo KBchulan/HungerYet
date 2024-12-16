@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/whx/qtware/5.14.2/gcc_64/include/**"
+                "/home/whx/qtware/5.14.2/gcc_64/include/**",
+                "/usr/local/include/opencv4"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

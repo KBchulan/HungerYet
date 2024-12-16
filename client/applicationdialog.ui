@@ -49,10 +49,11 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="MenuDialog" name="menu_wid"/>
        <widget class="HomeDialog" name="home_wid"/>
+       <widget class="ScanCodeDialog" name="scan_wid"/>
        <widget class="ChatDialog" name="chat_wid"/>
       </widget>
      </item>
@@ -144,6 +145,12 @@
    <class>HomeDialog</class>
    <extends>QWidget</extends>
    <header location="global">homedialog.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ScanCodeDialog</class>
+   <extends>QWidget</extends>
+   <header location="global">scancodedialog.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
