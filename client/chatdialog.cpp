@@ -2,7 +2,6 @@
 #include "ui_chatdialog.h"
 #include "kimiapi.h"
 
-
 #include <QFile>
 #include <QTimer>
 #include <QLabel>

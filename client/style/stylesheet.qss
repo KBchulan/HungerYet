@@ -368,11 +368,13 @@ QLabel[isTypingLabel="true"] {
 }
 
 /* 扫码界面样式 */
-#ScanCodeDialog {
+#ScanCodeDialog
+{
     background-color: black;
 }
 
-#preview_label {
+#preview_label 
+{
     border: 2px solid rgb(255, 205, 97);
     border-radius: 10px;
 }

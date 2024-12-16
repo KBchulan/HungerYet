@@ -1,3 +1,4 @@
+#include "scancodedialog.h"
 #include "applicationdialog.h"
 #include "ui_applicationdialog.h"
 
@@ -14,6 +15,7 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
     connect(ui->chat_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchChat);
     connect(ui->home_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchHome);
     connect(ui->menu_wid->findChild<QPushButton*>("add_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchScan);
+    connect(ui->scan_wid->findChild<QPushButton*>("return_menu_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
 
     ui->stackedWidget->setCurrentWidget(ui->menu_wid);
 

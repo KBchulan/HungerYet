@@ -3,8 +3,10 @@
 
 #include <QDebug>
 #include <QTimer>
+#include <QBoxLayout>
 #include <QShowEvent>
 #include <QHideEvent>
+#include <QMessageBox>
 
 ScanCodeDialog::ScanCodeDialog(QWidget *parent) :
     QDialog(parent),
@@ -54,13 +56,32 @@ void ScanCodeDialog::initCamera()
 {
     if (!cap.open(0))
     {
-        qDebug() << "无法打开摄像头";
+        // 下面前两行禁用了能进入界面看看
+        QMessageBox::critical(this, "错误", "无法打开摄像头，请检查设备是否正确连接。");
+        emit ui->return_menu_btn->clicked();
         return;
     }
     
-    // 设置摄像头分辨率
-    cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
-    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+    // 获取摄像头支持的最大分辨率
+    double maxWidth = cap.get(cv::CAP_PROP_FRAME_WIDTH);
+    double maxHeight = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
+    
+    int targetWidth = ui->preview_label->width();
+    int targetHeight = ui->preview_label->height();
+    
+    double aspectRatio = static_cast<double>(targetWidth) / targetHeight;
+    int width = std::min(static_cast<int>(maxWidth), targetWidth);
+    int height = static_cast<int>(width / aspectRatio);
+    
+    if (height > maxHeight)
+    {
+        height = static_cast<int>(maxHeight);
+        width = static_cast<int>(height * aspectRatio);
+    }
+    
+    // 设置分辨率
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, width);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, height);
 }
 
 void ScanCodeDialog::startScanning()
@@ -138,7 +159,7 @@ void ScanCodeDialog::initScanAnimation()
 {
     scanAnimation = new QPropertyAnimation(ui->scan_line, "geometry", this);
     scanAnimation->setDuration(2000);
-    scanAnimation->setStartValue(QRect(48, 0, 400, 2));
-    scanAnimation->setEndValue(QRect(48, 691, 400, 2));
+    scanAnimation->setStartValue(QRect(15, 60, 400, 2));
+    scanAnimation->setEndValue(QRect(15, 691, 400, 2));
     scanAnimation->setLoopCount(-1);
 }
