@@ -395,3 +395,80 @@ QLabel[isTypingLabel="true"] {
     background-repeat: no-repeat;
     border: 3px solid rgb(0, 0, 0);
 }
+
+/* 商家信息对话框样式 */
+#MerchantDialog {
+    background-color: rgb(255, 255, 255);
+}
+
+/* 商家图片容器样式 */
+#imageContainer {
+    background-color: rgb(245, 248, 250);
+    border-radius: 15px;
+    border: 2px solid rgb(230, 236, 240);
+    margin: 0 auto;
+}
+
+#imageLabel {
+    margin: 10px;
+}
+
+/* 商家信息标签样式 */
+#nameLabel, #locationLabel, #menuTitleLabel {
+    color: rgb(100, 100, 100);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#nameValueLabel, #locationValueLabel {
+    color: rgb(50, 50, 50);
+    font-size: 16px;
+}
+
+/* 菜单列表样式 */
+#menuListWidget {
+    border: 2px solid rgb(230, 236, 240);
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+#menuListWidget::item {
+    padding: 15px;
+    border-bottom: 1px solid rgb(230, 236, 240);
+    color: rgb(50, 50, 50);
+    font-size: 15px;
+}
+
+#menuListWidget::item:hover {
+    background-color: rgb(245, 248, 250);
+}
+
+#menuListWidget::item:selected {
+    background-color: rgb(255, 205, 97);
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+}
+
+/* 购物车按钮样式 */
+#cartButton {
+    background-color: rgb(255, 205, 97);
+    border: none;
+    border-radius: 30px;
+    background-image: url(:resources/Application/btn/cart.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#cartButton:hover {
+    background-color: rgb(255, 185, 77);
+}
+
+/* 购物车数量标签样式 */
+#cartCountLabel {
+    background-color: rgb(255, 0, 0);
+    color: white;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
