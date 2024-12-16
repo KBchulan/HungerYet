@@ -403,9 +403,7 @@ QLabel[isTypingLabel="true"] {
 
 /* 商家图片容器样式 */
 #imageContainer {
-    background-color: rgb(245, 248, 250);
     border-radius: 15px;
-    border: 2px solid rgb(230, 236, 240);
     margin: 0 auto;
 }
 

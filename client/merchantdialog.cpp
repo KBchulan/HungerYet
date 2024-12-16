@@ -1,5 +1,6 @@
 #include "merchantdialog.h"
 #include "ui_merchantdialog.h"
+
 #include <QPixmap>
 #include <QMessageBox>
 
