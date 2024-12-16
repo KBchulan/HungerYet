@@ -33,7 +33,8 @@ std::string KimiAPI::sendMessageWithMemory(const std::string& message)
     // 构建请求JSON
     Json::Value root;
     root["model"] = "moonshot-v1-8k";
-    for (size_t i = 0; i < memory.size(); ++i) {
+    for (size_t i = 0; i < memory.size(); ++i)
+    {
         Json::Value msgObj;
         msgObj["role"] = (i%2 == 0) ? "user" : "assistant";
         msgObj["content"] = memory[i];
