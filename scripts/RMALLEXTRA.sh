@@ -5,7 +5,7 @@ fi
 
 if [ -d "../client/build" ]; then
     echo "正在删除 ../client/build ..."
-    rm -rf ../client/qmake/build
+    rm -rf ../client/build
 fi
 
 if [ -d "../server/PurchaseServer1/build" ]; then
