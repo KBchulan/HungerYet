@@ -448,12 +448,17 @@ QLabel[isTypingLabel="true"] {
     border-radius: 8px;
 }
 
+/* 购物车容器样式 */
+#cartContainer {
+    background: transparent;
+}
+
 /* 购物车按钮样式 */
 #cartButton {
     background-color: rgb(255, 205, 97);
     border: none;
     border-radius: 30px;
-    background-image: url(:resources/Application/btn/cart.svg);
+    background-image: url(:resources/Application/btn/shopping.svg);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -466,7 +471,10 @@ QLabel[isTypingLabel="true"] {
 #cartCountLabel {
     background-color: rgb(255, 0, 0);
     color: white;
-    border-radius: 12px;
+    border-radius: 15px;
     font-size: 12px;
     font-weight: bold;
+    padding: 4px;
+    min-width: 24px;
+    min-height: 24px;
 }
