@@ -23,7 +23,7 @@ ChatDialog::ChatDialog(QWidget *parent)
     // 设置聊天内容区域的属性
     ui->chatContent->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     ui->chatLayout->setAlignment(Qt::AlignTop);
-    ui->chatLayout->addStretch(1);  // 初始添加一个stretch
+    ui->chatLayout->addStretch(1);
 
     // 连接信号槽
     connect(ui->sendButton, &QPushButton::clicked, this, &ChatDialog::sendMessage);
@@ -97,7 +97,7 @@ void ChatDialog::addMessage(const QString &message, bool isUser)
 
     QLabel *textLabel = new QLabel(message);
     textLabel->setWordWrap(true);
-    textLabel->setMaximumWidth(400);
+    textLabel->setMaximumWidth(540);
     textLabel->setProperty("isUserMessage", isUser);
     textLabel->setProperty("messageLabel", true);
 

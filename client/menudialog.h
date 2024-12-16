@@ -30,6 +30,7 @@ public:
 private:
     void loadMerchants();  // 加载商家列表
     QWidget* createMerchantWidget(int merchantId, const MerchantInfo& info);  // 创建商家项目
+    void ShowSearch(bool bSearch);
 private:
     Ui::MenuDialog *ui;
 };

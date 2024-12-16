@@ -16,6 +16,9 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="topMargin">
+      <number>20</number>
+     </property>
      <item alignment="Qt::AlignHCenter">
       <widget class="QLabel" name="avatarLabel">
        <property name="minimumSize">
@@ -43,6 +46,7 @@
        <property name="font">
         <font>
          <pointsize>14</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
