@@ -255,7 +255,6 @@ QLabel[avatarLabel="true"] {
     min-height: 40px;
     max-height: 100px;
     font-size: 14px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* 发送按钮样式 */
@@ -269,17 +268,14 @@ QLabel[avatarLabel="true"] {
     min-height: 35px;
     font-size: 14px;
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #sendButton:hover {
     background-color: rgb(255, 185, 77);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 #sendButton:pressed {
     background-color: rgb(235, 185, 77);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* 滚动区域样式 */
@@ -324,4 +320,49 @@ QLabel[isTypingLabel="true"] {
     border: 1px solid rgb(220, 220, 220);
     border-radius: 15px;
     margin-left: 5px;
+}
+
+/*搜索widget*/
+#search_widget
+{
+    background-color: rgb(245, 248, 250);
+    border-radius: 20px;
+    padding: 8px;
+    border: 1px solid rgb(230, 236, 240);
+}
+
+/*搜索输入框*/
+#search_edit
+{
+    border: none;
+    background-color: transparent;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: rgb(50, 50, 50);
+    border-radius: 15px;
+}
+
+#search_edit:focus
+{
+    background-color: rgb(255, 255, 255);
+}
+
+#search_edit::placeholder
+{
+    color: rgb(150, 150, 150);
+}
+
+#add_btn[state = 'normal']
+{
+    border-image: url(:resources/Application/btn/scan-code.svg);
+}
+
+#add_btn[state = 'hover']
+{
+    border-image: url(:resources/Application/btn/scan-code.svg);
+}
+
+#add_btn[state = 'press']
+{
+    border-image: url(:resources/Application/btn/scan-code.svg);
 }

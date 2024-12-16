@@ -21,5 +21,16 @@
         <file>resources/Application/btn/home.svg</file>
         <file>resources/Application/head/ai.jpg</file>
         <file>resources/Application/head/user.jpg</file>
+        <file>resources/Application/head/anonymous.png</file>
+        <file>resources/Application/merchant/1.jpg</file>
+        <file>resources/Application/merchant/2.jpg</file>
+        <file>resources/Application/merchant/3.jpg</file>
+        <file>resources/Application/merchant/4.jpg</file>
+        <file>resources/Application/merchant/default.jpeg</file>
+        <file>resources/Application/merchant/shop.png</file>
+        <file>resources/Application/btn/search.png</file>
+        <file>resources/Application/btn/close_transparent.png</file>
+        <file>resources/Application/btn/close_search.png</file>
+        <file>resources/Application/btn/scan-code.svg</file>
     </qresource>
 </RCC>

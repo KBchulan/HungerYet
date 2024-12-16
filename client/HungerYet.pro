@@ -20,6 +20,7 @@ SOURCES += \
     chatdialog.cpp \
     clickedbtn.cpp \
     clickedlabel.cpp \
+    customizeedit.cpp \
     global.cpp \
     homedialog.cpp \
     httpmanager.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     chatdialog.h \
     clickedbtn.h \
     clickedlabel.h \
+    customizeedit.h \
     global.h \
     homedialog.h \
     httpmanager.h \

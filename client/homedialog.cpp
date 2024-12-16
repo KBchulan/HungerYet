@@ -3,6 +3,7 @@
 #include <QPixmap>
 #include <QPainter>
 #include <QBitmap>
+#include <QDebug>
 
 HomeDialog::HomeDialog(QWidget *parent) : QDialog(parent),
                                           ui(new Ui::HomeDialog)
@@ -13,6 +14,7 @@ HomeDialog::HomeDialog(QWidget *parent) : QDialog(parent),
 
 HomeDialog::~HomeDialog()
 {
+    qDebug() << "HomeDialog destroyed";
     delete ui;
 }
 

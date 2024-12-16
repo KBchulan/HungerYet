@@ -1,11 +1,14 @@
 #include "menudialog.h"
 #include "ui_menudialog.h"
 #include "merchantmanager.h"
+
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPixmap>
 #include <QLabel>
+#include <QAction>
 #include <filesystem>
+#include <QDebug>
 
 MenuDialog::MenuDialog(QWidget *parent) : QDialog(parent),
                                           ui(new Ui::MenuDialog)
@@ -20,12 +23,52 @@ MenuDialog::MenuDialog(QWidget *parent) : QDialog(parent),
 
     // 加载商家列表
     loadMerchants();
+
+    // 初始化所有ui
+    ui->add_btn->SetState("normal", "hover", "press");
+    ui->search_edit->setMaxLength(15);
+
+    // search_edit
+    QAction *searchAction = new QAction(ui->search_edit);
+    searchAction->setIcon(QIcon(":/resources/Application/btn/search.png"));
+    ui->search_edit->addAction(searchAction, QLineEdit::LeadingPosition);
+    ui->search_edit->setPlaceholderText(QStringLiteral("搜索"));
+
+    // 清除动作和图标
+    QAction *clearAction = new QAction(ui->search_edit);
+    clearAction->setIcon(QIcon(":/resources/Application/btn/close_transparent.png"));
+    ui->search_edit->addAction(clearAction, QLineEdit::TrailingPosition);
+
+    connect(ui->search_edit, &QLineEdit::textChanged, [clearAction](const QString &text) ->void
+    {
+        if(!text.isEmpty())
+            clearAction->setIcon(QIcon(":/resources/Application/btn/close_search.png"));
+        else
+            clearAction->setIcon(QIcon(":/resources/Application/btn/close_transparent.png"));
+    });
+
+    // 清除搜索框内容，同时关闭搜索界面
+    connect(clearAction, &QAction::triggered, [this, clearAction]() -> void
+    {
+        ui->search_edit->clear();
+        clearAction->setIcon(QIcon(":/resources/Application/btn/close_transparent.png"));
+        ui->search_edit->clearFocus();
+        ShowSearch(false);
+    });
 }
 
 MenuDialog::~MenuDialog()
 {
+    qDebug() << "MenuDialog destroyed";
     delete ui;
 }
+
+// 后续会做搜索界面
+void MenuDialog::ShowSearch(bool bSearch)
+{
+
+}
+
 void MenuDialog::loadMerchants()
 {
     // 获取商家管理器实例
@@ -36,7 +79,7 @@ void MenuDialog::loadMerchants()
     {
         MerchantInfo info = merchantManager->GetMerchantInfo(id);
         if (std::get<0>(info).isEmpty())
-            continue; // 跳过无效商家
+            continue;
 
         // 创建列表项
         QListWidgetItem *item = new QListWidgetItem(ui->listWidget);
