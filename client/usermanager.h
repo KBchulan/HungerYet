@@ -30,10 +30,16 @@ public:
 
     void SetToken(QString token);
 
+    void SetHead(QString head);
+
+    void SetEmail(QString email);
+
 private:
     UserManager();
 
     int _uid;
+    QString _head;
+    QString _email;
     QString _name;
     QString _token;
 };

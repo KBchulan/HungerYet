@@ -34,7 +34,7 @@ LoginDialog::LoginDialog(QWidget *parent)
     // 初始化httphandler
     initHttpHandlers();
 
-    // 设置密码是否可见
+    // 设置密码是否可见client/logindialog.cpp
     ui->pass_edit->setEchoMode(QLineEdit::Password);
     ui->pass_visible->SetState("unvisible", "unvisible_hover", "unvisible_hover", "visible", "visible_hover", "visible_hover");
 
@@ -156,7 +156,8 @@ void LoginDialog::addRandomParticle()
 
 void LoginDialog::initHead()
 {
-    QPixmap pixmap(":/resources/Login/3.jpg");
+    _headPath = ":/resources/Login/3.jpg";
+    QPixmap pixmap(_headPath);
 
     pixmap = pixmap.scaled(ui->head_label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
@@ -310,11 +311,13 @@ void LoginDialog::slot_tcp_con_finished(bool success)
         QJsonObject jsonObj;
         jsonObj["uid"] = _uid;
         jsonObj["token"] = _token;
+        jsonObj["email"] = ui->email_edit->text();
+        jsonObj["head"] = _headPath;
 
         QJsonDocument doc(jsonObj);
         QString jsonString = doc.toJson(QJsonDocument::Indented);
 
-        // 发给ChatServer
+        // 发给PurchaseServer
         emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_CHAT_LOGIN, jsonString);
     }
     else

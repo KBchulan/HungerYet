@@ -134,6 +134,8 @@ void TcpManager::initHandlers()
         UserManager::GetInstance()->SetUid(jsonObj["uid"].toInt());
         UserManager::GetInstance()->SetName(jsonObj["name"].toString());
         UserManager::GetInstance()->SetToken(jsonObj["token"].toString());
+        UserManager::GetInstance()->SetHead(jsonObj["head"].toString());
+        UserManager::GetInstance()->SetEmail(jsonObj["email"].toString());
 
         emit sig_switch_chatdialog();
     });

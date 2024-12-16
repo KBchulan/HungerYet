@@ -134,4 +134,6 @@ void LogicSystem::LoginHandler(std::shared_ptr<CSession> session, const short &i
     rtvalue["uid"] = uid;
     rtvalue["token"] = rsp.token();
     rtvalue["name"] = user_info->_name;
+    rtvalue["head"] = root["head"].asString();
+    rtvalue["email"] = user_info->_email;
 }

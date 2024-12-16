@@ -24,3 +24,13 @@ UserManager::UserManager()
 {
 
 }
+
+void UserManager::SetHead(QString head)
+{
+    _head = head;
+}
+
+void UserManager::SetEmail(QString email)
+{
+    _email = email;
+}

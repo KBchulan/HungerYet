@@ -66,6 +66,7 @@ private:
     // 后续统一管理
     int _uid;
     QString _token;
+    QString _headPath;
 
     // 动画元素
     QTimer *m_particleTimer = nullptr;
