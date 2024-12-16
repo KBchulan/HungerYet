@@ -12,3 +12,7 @@ MerchantDialog::~MerchantDialog()
 {
     delete ui;
 }
+
+void MerchantDialog::init(int merchant_id)
+{
+}
