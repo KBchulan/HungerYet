@@ -37,9 +37,14 @@ private:
 
     // 后续可能会做的搜索页面
     void ShowSearch(bool bSearch);
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
     Ui::MenuDialog *ui;
+
+signals:
+    void SigMerchantSelected(int merchant_id);
 };
 
 #endif // MENUDIALOG_H
