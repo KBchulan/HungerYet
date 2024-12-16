@@ -93,7 +93,7 @@ void MenuDialog::loadMerchants()
     }
 }
 
-QWidget *MenuDialog::createMerchantWidget(int merchantId, const MerchantInfo &info)
+QWidget* MenuDialog::createMerchantWidget(int merchantId, const MerchantInfo &info)
 {
     QWidget *widget = new QWidget;
     QHBoxLayout *layout = new QHBoxLayout(widget);
@@ -164,5 +164,22 @@ QWidget *MenuDialog::createMerchantWidget(int merchantId, const MerchantInfo &in
         "    border-radius: 8px;"
         "}");
 
+    widget->setCursor(Qt::PointingHandCursor); // 设置鼠标指针样式
+    widget->installEventFilter(this); // 安装事件过滤器
+    widget->setProperty("merchant_id", merchantId);
+
     return widget;
+}
+
+bool MenuDialog::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::MouseButtonPress)
+    {
+        // 获取存储的商家ID
+        int merchantId = obj->property("merchant_id").toInt();
+        // 发送信号
+        emit SigMerchantSelected(merchantId);
+        return true;
+    }
+    return QDialog::eventFilter(obj, event);
 }
