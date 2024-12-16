@@ -26,7 +26,7 @@ public:
     explicit HomeDialog(QWidget *parent = nullptr);
     ~HomeDialog();
 
-    void setUserInfo(const QString &username, const QString &email);
+    void setUserInfo(const QString &username, const QString &email, const int &uid);
     void setAvatar(const QPixmap &avatar);
 
 private:

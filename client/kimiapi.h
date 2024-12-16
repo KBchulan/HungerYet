@@ -35,6 +35,7 @@ private:
     const std::string API_URL = "https://api.moonshot.cn/v1/chat/completions";
     
     CURL* curl;
+    std::vector<std::string> memory;
 };
 
 #endif // KIMIAPI_H 

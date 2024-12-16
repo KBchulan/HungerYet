@@ -68,6 +68,7 @@ LoginDialog, RegisterDialog, ResetDialog
     color: rgb(66, 124, 248);
 }
 
+/* 工具栏-菜单 */
 #menu_btn[state='normal']
 {
     background-color: rgb(200, 200, 200);
@@ -114,7 +115,7 @@ LoginDialog, RegisterDialog, ResetDialog
     border: 3px solid rgb(0, 0, 0);
 }
 
-
+/* 工具栏-聊天 */
 #chat_btn[state='normal']
 {
     background-color: rgb(200, 200, 200);
@@ -161,6 +162,7 @@ LoginDialog, RegisterDialog, ResetDialog
     border: 3px solid rgb(0, 0, 0);
 }
 
+/* 工具栏-home */
 #home_btn[state='normal']
 {
     background-color: rgb(200, 200, 200);
@@ -258,12 +260,12 @@ QLabel[avatarLabel="true"] {
 /* 发送按钮样式 */
 #sendButton {
     background-color: rgb(255, 205, 97);
-    border: none;
+    border: 4px solid rgb(225, 170, 67);
     border-radius: 20px;
     color: rgb(0, 0, 0);
     padding: 5px 20px;
-    min-width: 80px;
-    min-height: 40px;
+    min-width: 75px;
+    min-height: 35px;
     font-size: 14px;
     font-weight: bold;
 }

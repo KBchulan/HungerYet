@@ -21,15 +21,15 @@ void HomeDialog::setupUserInterface()
     // 设置默认头像
     QPixmap defaultAvatar("../resources/Application/head/anonymous.png");
     setAvatar(defaultAvatar);
-
     // 设置默认用户信息
-    setUserInfo("未登录", "未设置邮箱");
+    setUserInfo("游客先生", "", 355);
 }
 
-void HomeDialog::setUserInfo(const QString &username, const QString &email)
+void HomeDialog::setUserInfo(const QString &username, const QString &email, const int &uid)
 {
-    ui->usernameLabel->setText(username);
-    ui->emailLabel->setText(email);
+    ui->usernameLabel->setText(username+", 您好!");
+    ui->emailLabel->setText("email: "+email);
+    ui->uidLabel->setText("UID: "+QString::number(uid));
 }
 
 void HomeDialog::setAvatar(const QPixmap &avatar)

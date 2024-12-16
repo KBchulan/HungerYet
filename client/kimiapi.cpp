@@ -22,18 +22,27 @@ size_t KimiAPI::WriteCallback(void* contents, size_t size, size_t nmemb, std::st
 {
     size_t totalSize = size * nmemb;
     userp->append((char*)contents, totalSize);
+
     return totalSize;
 }
 
 std::string KimiAPI::sendMessage(const std::string& message)
 {
+    memory.push_back(message);
+    for(const auto& msg : memory){
+        std::cout << msg << std::endl;
+    }
     if(!curl) return "Error: CURL not initialized";
     
     // 构建请求JSON
     Json::Value root;
     root["model"] = "moonshot-v1-8k";
-    root["messages"][0]["role"] = "user";
-    root["messages"][0]["content"] = message;
+    for (size_t i = 0; i < memory.size(); ++i) {
+        Json::Value msgObj;
+        msgObj["role"] = (i%2 == 0) ? "user" : "assistant";
+        msgObj["content"] = memory[i];
+        root["messages"].append(msgObj);
+    }
     
     Json::StreamWriterBuilder writer;
     std::string jsonBody = Json::writeString(writer, root);
@@ -65,7 +74,9 @@ std::string KimiAPI::sendMessage(const std::string& message)
     
     try
     {
-        return responseRoot["choices"][0]["message"]["content"].asString();
+        std::string content = responseRoot["choices"][0]["message"]["content"].asString();
+        memory.push_back(content);
+        return content;
     }
     catch(...)
     {
