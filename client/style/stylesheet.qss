@@ -378,3 +378,20 @@ QLabel[isTypingLabel="true"] {
     border: 2px solid rgb(255, 205, 97);
     border-radius: 10px;
 }
+
+/*取消扫描按钮*/
+#return_menu_btn
+{
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(0,0,0);
+    border-radius: 15px;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
+    background-image: url(:resources/Application/btn/left.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgb(0, 0, 0);
+}
