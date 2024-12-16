@@ -7,6 +7,8 @@
 #include <QShowEvent>
 #include <QHideEvent>
 #include <QMessageBox>
+#include <QFileDialog>
+#include <QPushButton>
 
 ScanCodeDialog::ScanCodeDialog(QWidget *parent) :
     QDialog(parent),
@@ -23,6 +25,7 @@ ScanCodeDialog::ScanCodeDialog(QWidget *parent) :
     initScanAnimation();
     
     // 设置扫描线样式
+    
     ui->scan_line->setStyleSheet(
         "QLabel "
         "{"
@@ -42,6 +45,7 @@ ScanCodeDialog::~ScanCodeDialog()
 
 void ScanCodeDialog::showEvent(QShowEvent *event)
 {
+    isScanning = false;
     QDialog::showEvent(event);
     startScanning();
 }
@@ -49,16 +53,34 @@ void ScanCodeDialog::showEvent(QShowEvent *event)
 void ScanCodeDialog::hideEvent(QHideEvent *event)
 {
     stopScanning();
+    isScanning = false;
     QDialog::hideEvent(event);
 }
 
 void ScanCodeDialog::initCamera()
 {
+    qDebug() << "initCamera";
     if (!cap.open(0))
     {
         // 下面前两行禁用了能进入界面看看
-        QMessageBox::critical(this, "错误", "无法打开摄像头，请检查设备是否正确连接。");
-        emit ui->return_menu_btn->clicked();
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText("无法打开摄像头，请检查设备是否正确连接");
+        msgBox.setInformativeText("您可以选择上传本地二维码图片或取消扫码");
+        
+        // 添加两个按钮：上传图片 和 返回
+        QPushButton *uploadButton = msgBox.addButton("上传本地图片", QMessageBox::ActionRole);
+        QPushButton *cancelButton = msgBox.addButton("取消扫码", QMessageBox::RejectRole);
+        
+        msgBox.exec();
+        
+        // 根据用户选择执行相应操作
+        if (msgBox.clickedButton() == uploadButton) {
+            handleLocalImage();
+        } else {
+            stopScanning();
+            emit ui->return_menu_btn->clicked();
+        }
         return;
     }
     
@@ -114,14 +136,17 @@ void ScanCodeDialog::updateFrame()
         return;
 
     // 处理二维码
-    processQrCode(frame);
     
-    // 转换并显示图像
-    QImage image = cvMatToQImage(frame);
-    ui->preview_label->setPixmap(QPixmap::fromImage(image));
+    if (processQrCode(frame)){
+        // 转换并显示图像
+        QImage image = cvMatToQImage(frame);
+        ui->preview_label->setPixmap(QPixmap::fromImage(image));
+        stopScanning();
+        emit ui->return_menu_btn->clicked();
+    }
 }
 
-void ScanCodeDialog::processQrCode(const cv::Mat& frame)
+bool ScanCodeDialog::processQrCode(const cv::Mat& frame)
 {
     cv::QRCodeDetector qrDecoder;
     std::string decodedText;
@@ -134,8 +159,9 @@ void ScanCodeDialog::processQrCode(const cv::Mat& frame)
     {
         qDebug() << "扫描到二维码:" << QString::fromStdString(decodedText);
         // TODO: 处理扫描结果
-        stopScanning();
-        accept();
+        return true;
+    }else{
+        return false;
     }
 }
 
@@ -162,4 +188,37 @@ void ScanCodeDialog::initScanAnimation()
     scanAnimation->setStartValue(QRect(15, 60, 400, 2));
     scanAnimation->setEndValue(QRect(15, 691, 400, 2));
     scanAnimation->setLoopCount(-1);
+}
+
+void ScanCodeDialog::handleLocalImage()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+        tr("选择图片"),
+        "",
+        tr("图片文件 (*.png *.jpg *.jpeg *.bmp)"));
+        
+    if (fileName.isEmpty()) {
+        // 如果用户取消选择，则返回主菜单
+        stopScanning();
+        emit ui->return_menu_btn->clicked();
+        return;
+    }
+        
+    // 读取图片
+    cv::Mat image = cv::imread(fileName.toStdString());
+    if (image.empty()) {
+        QMessageBox::warning(this, "错误", "无法读取所选图片");
+        stopScanning();
+        emit ui->return_menu_btn->clicked();
+        return;
+    }
+    qDebug() << "handleLocalImage success";
+    // 处理二维码
+    if (processQrCode(image)){
+        qDebug() << "processQrCode success";
+    }else{
+        QMessageBox::warning(this, "错误", "无法读取所选图片");
+    }
+    stopScanning();
+    emit ui->return_menu_btn->clicked();
 }

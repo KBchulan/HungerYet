@@ -32,5 +32,6 @@
         <file>resources/Application/btn/close_transparent.png</file>
         <file>resources/Application/btn/close_search.png</file>
         <file>resources/Application/btn/scan-code.svg</file>
+        <file>resources/Application/btn/left.svg</file>
     </qresource>
 </RCC>

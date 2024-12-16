@@ -34,7 +34,7 @@ protected:
 
 private slots:
     void updateFrame();
-    void processQrCode(const cv::Mat& frame);
+    bool processQrCode(const cv::Mat& frame);
 
 private:
     void initCamera();
@@ -42,6 +42,7 @@ private:
     void stopScanning();
     QImage cvMatToQImage(const cv::Mat& mat);
     void initScanAnimation();
+    void handleLocalImage();
 
 private:
     bool isScanning;
