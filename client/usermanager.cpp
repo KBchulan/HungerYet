@@ -34,3 +34,28 @@ void UserManager::SetEmail(QString email)
 {
     _email = email;
 }
+
+int UserManager::GetUid()
+{
+    return _uid;
+}
+
+QString UserManager::GetHead()
+{
+    return _head;
+}
+
+QString UserManager::GetEmail()
+{
+    return _email;
+}
+
+QString UserManager::GetName()
+{
+    return _name;
+}
+
+QString UserManager::GetToken()
+{
+    return _token;
+}

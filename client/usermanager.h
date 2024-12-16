@@ -34,9 +34,20 @@ public:
 
     void SetEmail(QString email);
 
+    int GetUid();
+
+    QString GetHead();
+
+    QString GetEmail();
+
+    QString GetName();
+
+    QString GetToken();
+
 private:
     UserManager();
 
+private:
     int _uid;
     QString _head;
     QString _email;

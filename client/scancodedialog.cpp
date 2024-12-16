@@ -25,7 +25,6 @@ ScanCodeDialog::ScanCodeDialog(QWidget *parent) :
     initScanAnimation();
     
     // 设置扫描线样式
-    
     ui->scan_line->setStyleSheet(
         "QLabel "
         "{"
@@ -75,11 +74,14 @@ void ScanCodeDialog::initCamera()
         msgBox.exec();
         
         // 根据用户选择执行相应操作
-        if (msgBox.clickedButton() == uploadButton) {
+        if (msgBox.clickedButton() == uploadButton) 
+        {
             handleLocalImage();
-        } else {
-            stopScanning();
-            emit ui->return_menu_btn->clicked();
+        } 
+        else 
+        {
+            // stopScanning();
+            // emit ui->return_menu_btn->clicked();
         }
         return;
     }

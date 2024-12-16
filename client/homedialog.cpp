@@ -1,5 +1,7 @@
 #include "homedialog.h"
+#include "usermanager.h"
 #include "ui_homedialog.h"
+
 #include <QPixmap>
 #include <QPainter>
 #include <QBitmap>
@@ -20,11 +22,20 @@ HomeDialog::~HomeDialog()
 
 void HomeDialog::setupUserInterface()
 {
-    // 设置默认头像
-    QPixmap defaultAvatar("../resources/Application/head/anonymous.png");
-    setAvatar(defaultAvatar);
-    // 设置默认用户信息
-    setUserInfo("游客先生", "", 355);
+    if (UserManager::GetInstance()->GetHead().isEmpty())
+    { 
+        // 设置默认头像
+        QPixmap defaultAvatar("../resources/Application/head/anonymous.png");
+        setAvatar(defaultAvatar);
+        // 设置默认用户信息
+        setUserInfo("游客先生", "", 355);
+    }
+    else
+    {
+        QPixmap defaultAvatar(UserManager::GetInstance()->GetHead());
+        setAvatar(defaultAvatar);
+        setUserInfo(UserManager::GetInstance()->GetName(), UserManager::GetInstance()->GetEmail(), UserManager::GetInstance()->GetUid());
+    }
 }
 
 void HomeDialog::setUserInfo(const QString &username, const QString &email, const int &uid)
