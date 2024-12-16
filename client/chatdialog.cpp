@@ -2,6 +2,7 @@
 #include "ui_chatdialog.h"
 #include "kimiapi.h"
 
+#include <QDebug>
 #include <QFile>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -49,6 +50,7 @@ ChatDialog::~ChatDialog()
     workThread->quit();
     workThread->wait();
     delete ui;
+    qDebug() << "ChatDialog destroyed";
 }
 
 void ChatDialog::sendMessage()

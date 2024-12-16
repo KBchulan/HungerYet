@@ -1,12 +1,14 @@
 #include "menudialog.h"
 #include "ui_menudialog.h"
 #include "merchantmanager.h"
+
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPixmap>
 #include <QLabel>
 #include <QAction>
 #include <filesystem>
+#include <QDebug>
 
 MenuDialog::MenuDialog(QWidget *parent) : QDialog(parent),
                                           ui(new Ui::MenuDialog)
@@ -57,6 +59,7 @@ MenuDialog::MenuDialog(QWidget *parent) : QDialog(parent),
 
 MenuDialog::~MenuDialog()
 {
+    qDebug() << "MenuDialog destroyed";
     delete ui;
 }
 
