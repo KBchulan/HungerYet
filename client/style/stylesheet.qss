@@ -478,3 +478,43 @@ QLabel[isTypingLabel="true"] {
     min-width: 24px;
     min-height: 24px;
 }
+
+/* 购物车对话框按钮样式 */
+QMessageBox QPushButton[text="付款"] {
+    background-color: rgb(255, 205, 97);
+    border: none;
+    border-radius: 15px;
+    padding: 8px 20px;
+    color: black;
+    font-weight: bold;
+    min-width: 80px;
+}
+
+QMessageBox QPushButton[text="付款"]:hover {
+    background-color: rgb(255, 185, 77);
+}
+
+QMessageBox QPushButton[text="关闭"] {
+    background-color: rgb(255, 85, 85);
+    border: none;
+    border-radius: 15px;
+    padding: 8px 20px;
+    color: white;
+    font-weight: bold;
+    min-width: 80px;
+}
+
+QMessageBox QPushButton[text="关闭"]:hover {
+    background-color: rgb(255, 65, 65);
+}
+
+/* 付款对话框样式 */
+QDialog[windowTitle="扫码支付"] {
+    background-color: white;
+}
+
+QDialog[windowTitle="扫码支付"] QLabel {
+    color: rgb(50, 50, 50);
+    font-size: 14px;
+    margin: 10px;
+}

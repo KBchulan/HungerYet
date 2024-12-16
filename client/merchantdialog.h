@@ -16,6 +16,8 @@ class MerchantDialog : public QDialog
 {
     Q_OBJECT
 
+using DishInfo = std::tuple<double, int>;
+
 public:
     explicit MerchantDialog(QWidget *parent = nullptr);
     ~MerchantDialog();
@@ -30,10 +32,11 @@ private:
     void updateMenuList(const MenuPrices& menu);
     void loadMerchantImage(const QString& imagePath);
     void updateCartCount();
+    void pay(double totalPrice);
 
 private:
     Ui::MerchantDialog *ui;
-    QMap<QString, int> cartItems; // 购物车中的物品及其数量
+    QMap<QString, DishInfo> cartItems; // 购物车中的物品及其数量
     MenuPrices menuPrices; // 存储菜单价格
 };
 

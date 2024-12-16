@@ -3,6 +3,7 @@
 
 #include <QPixmap>
 #include <QMessageBox>
+#include <tuple>
 
 MerchantDialog::MerchantDialog(QWidget *parent) :
     QDialog(parent),
@@ -65,7 +66,15 @@ void MerchantDialog::onMenuItemClicked(QListWidgetItem* item)
     QString itemText = item->text();
     QString dishName = itemText.split(" -").first();
     
-    cartItems[dishName]++;
+    if (!cartItems.contains(dishName))
+    {
+        cartItems[dishName] = std::make_tuple(menuPrices[dishName], 1);
+    }
+    else
+    {
+        auto& [price, count] = cartItems[dishName];
+        count++;
+    }
     updateCartCount();
     
     QMessageBox::information(this, "添加成功", 
@@ -79,13 +88,13 @@ void MerchantDialog::onCartButtonClicked()
     
     for(auto it = cartItems.begin(); it != cartItems.end(); ++it)
     {
-        if(it.value() > 0)
+        const auto& [price, count] = it.value();
+        if(count > 0)
         {
-            double price = menuPrices[it.key()];
-            double itemTotal = price * it.value();
+            double itemTotal = price * count;
             cartContent += QString("%1 x%2 ￥%3\n")
                 .arg(it.key())
-                .arg(it.value())
+                .arg(count)
                 .arg(itemTotal, 0, 'f', 2);
             totalPrice += itemTotal;
         }
@@ -93,15 +102,69 @@ void MerchantDialog::onCartButtonClicked()
     
     cartContent += QString("\n总计: ￥%1").arg(totalPrice, 0, 'f', 2);
     
-    QMessageBox::information(this, "购物车", cartContent);
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle("购物车");
+    msgBox.setText(cartContent);
+    
+    // 添加付款和关闭按钮
+    QPushButton* payButton = msgBox.addButton("付款", QMessageBox::AcceptRole);
+    msgBox.addButton("关闭", QMessageBox::RejectRole);
+    
+    msgBox.exec();
+    
+    // 处理付款按钮点击
+    if (msgBox.clickedButton() == payButton)
+    {
+        pay(totalPrice);
+    }
+}
+
+void MerchantDialog::pay(double totalPrice)
+{
+    QDialog payDialog(this);
+    payDialog.setWindowTitle("扫码支付");
+    
+    QVBoxLayout* layout = new QVBoxLayout(&payDialog);
+    
+    // 添加付款码图片
+    QLabel* payImageLabel = new QLabel(&payDialog);
+    QPixmap payPixmap(":/resources/Application/pay/pay.png");
+    if (!payPixmap.isNull())
+    {
+        // 设置固定大小并保持比例缩放
+        payPixmap = payPixmap.scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        payImageLabel->setPixmap(payPixmap);
+        payImageLabel->setAlignment(Qt::AlignCenter);
+    }
+    else
+    {
+        payImageLabel->setText("付款码加载失败");
+    }
+        
+    // 添加提示文本
+    QLabel* tipLabel = new QLabel("请使用支付宝或微信扫码支付", &payDialog);
+    tipLabel->setAlignment(Qt::AlignCenter);
+    
+    // 添加总金额显示
+    QLabel* priceLabel = new QLabel(QString("需支付: ￥%1").arg(totalPrice, 0, 'f', 2), &payDialog);
+    priceLabel->setAlignment(Qt::AlignCenter);
+    
+    layout->addWidget(payImageLabel);
+    layout->addWidget(tipLabel);
+    layout->addWidget(priceLabel);
+    
+    // 设置对话框大小策略
+    payDialog.setFixedSize(400, 400);
+    
+    payDialog.exec();
 }
 
 void MerchantDialog::updateCartCount()
 {
     int count = 0;
-    for(const auto& value : cartItems.values())
+    for(const auto& [price, itemCount] : cartItems)
     {
-        count += value;
+        count += itemCount;
     }
     
     ui->cartCountLabel->setText(QString::number(count));
