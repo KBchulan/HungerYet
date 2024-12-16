@@ -1,3 +1,4 @@
+#include "menudialog.h"
 #include "scancodedialog.h"
 #include "applicationdialog.h"
 #include "ui_applicationdialog.h"
@@ -16,6 +17,7 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
     connect(ui->home_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchHome);
     connect(ui->menu_wid->findChild<QPushButton*>("add_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchScan);
     connect(ui->scan_wid->findChild<QPushButton*>("return_menu_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
+    connect(ui->menu_wid, &MenuDialog::SigMerchantSelected, this, &ApplicationDialog::SlotSwitchMerchant);
 
     ui->stackedWidget->setCurrentWidget(ui->menu_wid);
 
@@ -49,6 +51,12 @@ void ApplicationDialog::SlotSwitchMenu()
 void ApplicationDialog::SlotSwitchScan()
 {
     ui->stackedWidget->setCurrentWidget(ui->scan_wid);
+}
+
+void ApplicationDialog::SlotSwitchMerchant(int merchant_id)
+{
+    ui->merchant_wid->init(merchant_id);
+    ui->stackedWidget->setCurrentWidget(ui->merchant_wid);
 }
 
 void ApplicationDialog::SlotSwitchHome()

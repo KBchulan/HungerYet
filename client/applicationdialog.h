@@ -44,6 +44,8 @@ private slots:
     void SlotSwitchHome();
 
     void SlotSwitchScan();
+
+    void SlotSwitchMerchant(int merchant_id);
 };
 
 #endif // APPLICATIONDIALOG_H
