@@ -71,7 +71,7 @@ void ChatDialog::sendMessage()
     QString messageCopy = message;
     QMetaObject::invokeMethod(workThread, [this, messageCopy]()
     {
-        std::string response = KimiAPI::GetInstance()->sendMessage(messageCopy.toStdString());
+        std::string response = KimiAPI::GetInstance()->sendMessageWithMemory(messageCopy.toStdString());
         
         // 在主线程中更新UI
         QMetaObject::invokeMethod(this, "onMessageReceived",

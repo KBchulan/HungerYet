@@ -22,16 +22,12 @@ size_t KimiAPI::WriteCallback(void* contents, size_t size, size_t nmemb, std::st
 {
     size_t totalSize = size * nmemb;
     userp->append((char*)contents, totalSize);
-
     return totalSize;
 }
 
-std::string KimiAPI::sendMessage(const std::string& message)
+std::string KimiAPI::sendMessageWithMemory(const std::string& message)
 {
     memory.push_back(message);
-    for(const auto& msg : memory){
-        std::cout << msg << std::endl;
-    }
     if(!curl) return "Error: CURL not initialized";
     
     // 构建请求JSON
@@ -44,6 +40,25 @@ std::string KimiAPI::sendMessage(const std::string& message)
         root["messages"].append(msgObj);
     }
     
+    std::string content = sendMessage(root);
+    memory.push_back(content);
+    return content;
+} 
+
+std::string KimiAPI::sendMessage(const std::string& message)
+{
+    // 构建请求JSON
+    Json::Value root;
+    root["model"] = "moonshot-v1-8k";
+    root["messages"][0]["role"] = "user";
+    root["messages"][0]["content"] = message;
+    return sendMessage(root);  
+} 
+
+std::string KimiAPI::sendMessage(const Json::Value& root)
+{
+    if(!curl) return "Error: CURL not initialized";
+
     Json::StreamWriterBuilder writer;
     std::string jsonBody = Json::writeString(writer, root);
     
@@ -74,12 +89,10 @@ std::string KimiAPI::sendMessage(const std::string& message)
     
     try
     {
-        std::string content = responseRoot["choices"][0]["message"]["content"].asString();
-        memory.push_back(content);
-        return content;
+        return responseRoot["choices"][0]["message"]["content"].asString();
     }
     catch(...)
     {
         return "Error parsing response";
     }
-} 
+}

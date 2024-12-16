@@ -24,7 +24,9 @@ class KimiAPI final : public Singleton<KimiAPI>, public std::enable_shared_from_
 public:
     ~KimiAPI();
     
+    std::string sendMessageWithMemory(const std::string& message);
     std::string sendMessage(const std::string& message);
+    std::string sendMessage(const Json::Value& root);
 
 private:
     KimiAPI();
@@ -34,6 +36,7 @@ private:
     const std::string API_KEY = "sk-mKm0uSCcuNLxcnJV53YB8Qj3LZqYX2SAZi1e1UX1ktsMmUJT";
     const std::string API_URL = "https://api.moonshot.cn/v1/chat/completions";
     
+    void summarizeMemory();
     CURL* curl;
     std::vector<std::string> memory;
 };
