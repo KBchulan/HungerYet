@@ -21,6 +21,7 @@ SOURCES += \
     clickedbtn.cpp \
     clickedlabel.cpp \
     customizeedit.cpp \
+    editinfodialog.cpp \
     global.cpp \
     homedialog.cpp \
     httpmanager.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
     registerdialog.cpp \
     resetdialog.cpp \
     scancodedialog.cpp \
+    settingdialog.cpp \
     tcpmanager.cpp \
     timerbtn.cpp \
     usermanager.cpp \
@@ -46,6 +48,7 @@ HEADERS += \
     clickedbtn.h \
     clickedlabel.h \
     customizeedit.h \
+    editinfodialog.h \
     global.h \
     homedialog.h \
     httpmanager.h \
@@ -59,6 +62,7 @@ HEADERS += \
     registerdialog.h \
     resetdialog.h \
     scancodedialog.h \
+    settingdialog.h \
     singleton.h \
     tcpmanager.h \
     timerbtn.h \
@@ -68,6 +72,7 @@ HEADERS += \
 FORMS += \
     applicationdialog.ui \
     chatdialog.ui \
+    editinfodialog.ui \
     homedialog.ui \
     logindialog.ui \
     mainwindow.ui \
@@ -75,7 +80,8 @@ FORMS += \
     merchantdialog.ui \
     registerdialog.ui \
     resetdialog.ui \
-    scancodedialog.ui
+    scancodedialog.ui \
+    settingdialog.ui
 
 LIBS += -lcurl -ljsoncpp
 

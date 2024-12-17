@@ -1,3 +1,4 @@
+#include "homedialog.h"
 #include "menudialog.h"
 #include "scancodedialog.h"
 #include "applicationdialog.h"
@@ -5,6 +6,7 @@
 
 #include <QDebug>
 #include <QStyle>
+#include <QMessageBox>
 
 ApplicationDialog::ApplicationDialog(QWidget *parent) :
     QDialog(parent),
@@ -18,6 +20,11 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
     connect(ui->menu_wid->findChild<QPushButton*>("add_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchScan);
     connect(ui->scan_wid->findChild<QPushButton*>("return_menu_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
     connect(ui->menu_wid, &MenuDialog::SigMerchantSelected, this, &ApplicationDialog::SlotSwitchMerchant);
+    connect(ui->merchant_wid->findChild<QPushButton*>("return_menu_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
+    connect(ui->home_wid->findChild<QPushButton*>("logoutBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchLogin);
+    connect(ui->home_wid->findChild<QPushButton*>("editProfileBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchEdit);
+    connect(ui->home_wid->findChild<QPushButton*>("settingsBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchSetting);
+    connect(ui->edit_wid->findChild<QPushButton*>("saveBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchHome);
 
     ui->stackedWidget->setCurrentWidget(ui->menu_wid);
 
@@ -59,8 +66,39 @@ void ApplicationDialog::SlotSwitchMerchant(int merchant_id)
     ui->stackedWidget->setCurrentWidget(ui->merchant_wid);
 }
 
+void ApplicationDialog::SlotSwitchLogin()
+{
+    QMessageBox::StandardButton reply = QMessageBox::question(
+        this, 
+        "退出确认", 
+        "确认要退出登录吗？",
+        QMessageBox::Yes | QMessageBox::No
+    );
+
+    if (reply == QMessageBox::Yes) 
+    {
+        emit SigSwitchLogin();
+    }
+}
+
+void ApplicationDialog::SlotSwitchEdit()
+{
+    ui->stackedWidget->setCurrentWidget(ui->edit_wid);
+}
+
+void ApplicationDialog::SlotSwitchSetting()
+{
+    ui->stackedWidget->setCurrentWidget(ui->setting_wid);
+}
+
 void ApplicationDialog::SlotSwitchHome()
 {
+    HomeDialog* homeDialog = qobject_cast<HomeDialog*>(ui->home_wid);
+
+    if (homeDialog)
+    {
+        homeDialog->setupUserInterface();
+    }
     ui->stackedWidget->setCurrentWidget(ui->home_wid);
 }
 

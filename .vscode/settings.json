@@ -73,6 +73,7 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "cfenv": "cpp"
+        "cfenv": "cpp",
+        "qlabel": "cpp"
     }
 }

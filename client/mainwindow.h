@@ -45,6 +45,9 @@ public slots:
     // from resetDialog
     void SlotSwitchLogin2();
 
+    // from Application
+    void SlotSwitchLogin3();
+
     // handle reset
     void SlotSwitchReset();
 

@@ -83,7 +83,7 @@ void MerchantDialog::onMenuItemClicked(QListWidgetItem* item)
     // 创建水平布局
     QHBoxLayout* buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(confirmButton);
-    buttonLayout->addSpacing(20); // 按钮之间的间距
+    buttonLayout->addSpacing(20);
     buttonLayout->addWidget(cancelButton);
     
     // 获取消息框的布局

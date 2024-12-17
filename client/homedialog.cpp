@@ -7,8 +7,9 @@
 #include <QBitmap>
 #include <QDebug>
 
-HomeDialog::HomeDialog(QWidget *parent) : QDialog(parent),
-                                          ui(new Ui::HomeDialog)
+HomeDialog::HomeDialog(QWidget *parent)
+    : QDialog(parent),
+      ui(new Ui::HomeDialog)
 {
     ui->setupUi(this);
     setupUserInterface();
@@ -23,11 +24,9 @@ HomeDialog::~HomeDialog()
 void HomeDialog::setupUserInterface()
 {
     if (UserManager::GetInstance()->GetHead().isEmpty())
-    { 
-        // 设置默认头像
+    {
         QPixmap defaultAvatar("../resources/Application/head/anonymous.png");
         setAvatar(defaultAvatar);
-        // 设置默认用户信息
         setUserInfo("游客先生", "", 355);
     }
     else
@@ -40,9 +39,18 @@ void HomeDialog::setupUserInterface()
 
 void HomeDialog::setUserInfo(const QString &username, const QString &email, const int &uid)
 {
-    ui->usernameLabel->setText(username+", 您好!");
-    ui->emailLabel->setText("email: "+email);
-    ui->uidLabel->setText("UID: "+QString::number(uid));
+    ui->usernameLabel->setText(username);
+
+    if (email.isEmpty())
+    {
+        ui->emailLabel->setText("📧  未绑定邮箱");
+    }
+    else
+    {
+        ui->emailLabel->setText("📧  " + email);
+    }
+
+    ui->uidLabel->setText("🆔  #" + QString::number(uid));
 }
 
 void HomeDialog::setAvatar(const QPixmap &avatar)
@@ -52,17 +60,31 @@ void HomeDialog::setAvatar(const QPixmap &avatar)
         return;
     }
 
-    // 将头像处理成圆形
-    QPixmap rounded = avatar.scaled(240, 240, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-    QPixmap mask(240, 240);
-    mask.fill(Qt::transparent);
+    // 创建一个空的圆形图片
+    QPixmap rounded(200, 200);
+    rounded.fill(Qt::transparent);
 
-    QPainter painter(&mask);
+    // 创建画家
+    QPainter painter(&rounded);
     painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
+
+    // 绘制圆形裁剪路径
+    QPainterPath path;
+    path.addEllipse(rounded.rect());
+    painter.setClipPath(path);
+
+    // 缩放原始图片并居中绘制
+    QPixmap scaled = avatar.scaled(200, 200, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+    int x = (200 - scaled.width()) / 2;
+    int y = (200 - scaled.height()) / 2;
+    painter.drawPixmap(x, y, scaled);
+
+    // 添加白色背景
+    painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
     painter.setBrush(Qt::white);
     painter.setPen(Qt::NoPen);
-    painter.drawEllipse(mask.rect());
+    painter.drawEllipse(rounded.rect());
 
-    rounded.setMask(mask.createMaskFromColor(Qt::transparent));
     ui->avatarLabel->setPixmap(rounded);
 }

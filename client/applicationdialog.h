@@ -36,6 +36,9 @@ private:
     Ui::ApplicationDialog *ui;
     QPushButton* currentSelectedButton = nullptr;
 
+signals:
+    void SigSwitchLogin();
+
 private slots:
     void SlotSwitchChat();
 
@@ -46,6 +49,12 @@ private slots:
     void SlotSwitchScan();
 
     void SlotSwitchMerchant(int merchant_id);
+
+    void SlotSwitchLogin();
+
+    void SlotSwitchEdit();
+
+    void SlotSwitchSetting();
 };
 
 #endif // APPLICATIONDIALOG_H

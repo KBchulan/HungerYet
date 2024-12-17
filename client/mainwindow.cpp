@@ -67,6 +67,7 @@ void MainWindow::SlotSwitchLogin()
     // create and register message link
     connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
     connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+    connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
 }
 
 void MainWindow::SlotSwitchLogin2()
@@ -84,6 +85,28 @@ void MainWindow::SlotSwitchLogin2()
     // create and register message link
     connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
     connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+    connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
+}
+
+void MainWindow::SlotSwitchLogin3()
+{
+    // create LoginDialog
+    _login_dlg = new LoginDialog(this);
+    _login_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+
+    // show current dialog(default widget is _login_dlg)
+    setCentralWidget(_login_dlg);
+
+    _app_dlg->hide();
+    _login_dlg->show();
+
+    this->setMinimumSize(_login_dlg->size());
+    this->setMaximumSize(_login_dlg->size());
+
+    // create and register message link
+    connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
+    connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+    connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
 }
 
 void MainWindow::SlotSwitchReset()
@@ -111,6 +134,8 @@ void MainWindow::SlotSwitchApp()
 
     this->setMinimumSize(_app_dlg->size());
     this->setMaximumSize(_app_dlg->size());
+
+    connect(_app_dlg, &ApplicationDialog::SigSwitchLogin, this, &MainWindow::SlotSwitchLogin3);
 }
 
 void MainWindow::setupEntranceAnimation(QWidget* widget, int duration)

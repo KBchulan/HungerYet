@@ -184,6 +184,7 @@ void LoginDialog::initHead()
     painter.drawRoundedRect(imageRect, radius, radius);
 
     ui->head_label->setPixmap(rounded);
+    _headPath = ":/resources/Application/head/user.jpg";
 }
 
 void LoginDialog::showTip(QString str, bool b_ok)
