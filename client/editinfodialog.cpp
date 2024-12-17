@@ -9,7 +9,7 @@
 #include <QPainter>
 #include <QFileDialog>
 #include <QMessageBox>
-
+#include <QPainterPath>
 
 EditInfoDialog::EditInfoDialog(QWidget *parent)
     : QDialog(parent),

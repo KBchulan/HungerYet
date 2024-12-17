@@ -6,6 +6,7 @@
 #include <QPixmap>
 #include <QBitmap>
 #include <QPainter>
+#include <QPainterPath>
 
 HomeDialog::HomeDialog(QWidget *parent)
     : QDialog(parent),
