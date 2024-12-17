@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>740</width>
-    <height>700</height>
+    <height>956</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,6 +29,22 @@
    <property name="bottomMargin">
     <number>20</number>
    </property>
+   <item>
+    <widget class="QPushButton" name="menu_return_btn">
+     <property name="maximumSize">
+      <size>
+       <width>40</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
    <item>
     <widget class="QWidget" name="imageContainer" native="true">
      <property name="minimumSize">

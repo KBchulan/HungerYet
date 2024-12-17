@@ -562,3 +562,27 @@ QMessageBox QPushButton[text="取消"] {
 QMessageBox QPushButton[text="取消"]:hover {
     background-color: rgb(255, 65, 65);
 }
+
+/* 返回菜单按钮样式 */
+#menu_return_btn {
+    background-color: rgb(255, 205, 97);
+    border: 3px solid rgb(225, 170, 67);
+    border-radius: 17px;
+    background-image: url(:resources/Application/btn/left.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
+}
+
+#menu_return_btn:hover {
+    background-color: rgb(255, 185, 77);
+    border: 3px solid rgb(205, 150, 47);
+}
+
+#menu_return_btn:pressed {
+    background-color: rgb(235, 185, 77);
+    border: 3px solid rgb(185, 130, 27);
+}
