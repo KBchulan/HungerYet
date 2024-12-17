@@ -74,6 +74,8 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "cfenv": "cpp",
-        "qlabel": "cpp"
+        "qlabel": "cpp",
+        "qdebug": "cpp",
+        "qstandardpaths": "cpp"
     }
 }

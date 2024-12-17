@@ -178,15 +178,7 @@ bool MenuDialog::eventFilter(QObject *obj, QEvent *event)
     {
         // 获取存储的商家ID
         int merchantId = obj->property("merchant_id").toInt();
-        
-        // 创建并显示商家对话框
-        MerchantDialog* merchantDialog = new MerchantDialog(this);
-        connect(merchantDialog, &MerchantDialog::backToMenu, this, &MenuDialog::show);
-        merchantDialog->init(merchantId);
-        hide();  // 隐藏菜单对话框
-        merchantDialog->exec();
-        delete merchantDialog;
-        
+        emit SigMerchantSelected(merchantId);
         return true;
     }
     return QDialog::eventFilter(obj, event);

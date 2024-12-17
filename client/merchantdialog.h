@@ -24,13 +24,9 @@ public:
 
     void init(int merchant_id);
 
-signals:
-    void backToMenu();
-
 private slots:
     void onMenuItemClicked(QListWidgetItem* item);
     void onCartButtonClicked();
-    void onBackButtonClicked();
 
 private:
     void updateMenuList(const MenuPrices& menu);

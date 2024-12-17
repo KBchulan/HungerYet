@@ -7,12 +7,355 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>设置</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="topBar" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>50</height>
+      </size>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>20</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="titleLabel">
+        <property name="text">
+         <string>设置</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="settingGroup1" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="appearanceLabel">
+            <property name="text">
+             <string>外观</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="appearanceIcon">
+            <property name="text">
+             <string>🎨</string>
+            </property>
+            <property name="minimumWidth">
+             <number>24</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="themeWidget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="themeLabel">
+               <property name="text">
+                <string>主题</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="themeComboBox">
+               <item>
+                <property name="text">
+                 <string>明亮</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>暗黑</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="fontSizeWidget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="fontSizeLabel">
+               <property name="text">
+                <string>字体大小</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="fontSizeSlider">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="fontPreviewLabel">
+            <property name="text">
+             <string>预览文本 Aa</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="animationWidget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QLabel" name="animationLabel">
+               <property name="text">
+                <string>界面动画</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="animationCheckBox"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line"/>
+       </item>
+       <item>
+        <widget class="QWidget" name="settingGroup2" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="notificationLabel">
+            <property name="text">
+             <string>通知</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="notificationWidget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QLabel" name="enableNotificationLabel">
+               <property name="text">
+                <string>启用通知</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="notificationCheckBox"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="soundWidget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QLabel" name="soundLabel">
+               <property name="text">
+                <string>提示音</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="soundCheckBox"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_2"/>
+       </item>
+       <item>
+        <widget class="QWidget" name="settingGroup3" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QLabel" name="generalLabel">
+            <property name="text">
+             <string>常规</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="autoStartWidget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="autoStartLabel">
+               <property name="text">
+                <string>开机自启</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="autoStartCheckBox"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="clearCacheBtn">
+            <property name="text">
+             <string>清除缓存</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="languageWidget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QLabel" name="languageLabel">
+               <property name="text">
+                <string>语言</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="languageComboBox">
+               <item>
+                <property name="text">
+                 <string>简体中文</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>English</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_3"/>
+       </item>
+       <item>
+        <widget class="QWidget" name="settingGroup4" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QLabel" name="aboutLabel">
+            <property name="text">
+             <string>关于</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="aboutBtn">
+            <property name="text">
+             <string>关于 HungerYet</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="versionWidget" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QLabel" name="versionLabel">
+            <property name="text">
+             <string>当前版本</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="versionValueLabel">
+            <property name="text">
+             <string>v1.0.0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

@@ -756,3 +756,211 @@ QMessageBox QPushButton[text="取消"]:hover {
 #EditInfoDialog #saveBtn:pressed {
     background-color: rgb(235, 185, 77);
 }
+
+/* SettingDialog 样式 */
+#SettingDialog {
+    background-color: white;
+}
+
+#SettingDialog #topBar {
+    background-color: rgb(255, 205, 97);
+}
+
+#SettingDialog #titleLabel {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#SettingDialog QLabel {
+    color: rgb(80, 80, 80);
+    font-size: 15px;
+}
+
+#SettingDialog QLabel[groupTitle="true"] {
+    color: rgb(80, 80, 80);
+    font-size: 18px;
+    font-weight: bold;
+    padding: 25px 20px 15px 20px;
+    border-bottom: 2px solid rgb(245, 245, 245);
+}
+
+#SettingDialog QWidget[settingItem="true"] {
+    background-color: white;
+    min-height: 55px;
+    padding: 5px 20px;
+    margin: 2px 0px;
+    border-radius: 10px;
+    transition: background-color 0.2s;
+}
+
+#SettingDialog QWidget[settingItem="true"]:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+#SettingDialog Line {
+    color: rgb(240, 240, 240);
+}
+
+#SettingDialog QPushButton {
+    border: none;
+    background-color: transparent;
+    color: rgb(80, 80, 80);
+    text-align: left;
+    padding: 12px 20px;
+    border-radius: 6px;
+}
+
+#SettingDialog QPushButton:hover {
+    background-color: rgb(250, 250, 250);
+    color: rgb(255, 205, 97);
+}
+
+#SettingDialog QComboBox {
+    border: 1px solid rgb(230, 236, 240);
+    border-radius: 6px;
+    padding: 6px 12px;
+    min-width: 120px;
+    background-color: white;
+}
+
+#SettingDialog QComboBox:hover {
+    border-color: rgb(255, 205, 97);
+    background-color: rgb(252, 252, 252);
+}
+
+#SettingDialog QComboBox::drop-down {
+    border: none;
+    width: 20px;
+}
+
+#SettingDialog QComboBox::down-arrow {
+    border: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgb(100, 100, 100);
+    width: 0;
+    height: 0;
+    margin-top: 2px;
+}
+
+#SettingDialog QComboBox:hover::down-arrow {
+    border-top-color: rgb(255, 205, 97);
+}
+
+#SettingDialog QSlider::groove:horizontal {
+    border: none;
+    height: 6px;
+    background: rgb(230, 236, 240);
+    margin: 2px 0;
+    border-radius: 3px;
+}
+
+#SettingDialog QSlider::handle:horizontal {
+    background: rgb(255, 205, 97);
+    border: 2px solid white;
+    width: 18px;
+    height: 18px;
+    margin: -6px 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#SettingDialog QSlider::handle:horizontal:hover {
+    background: rgb(255, 185, 77);
+    width: 20px;
+    height: 20px;
+    margin: -7px 0;
+    border-radius: 13px;
+}
+
+#SettingDialog QCheckBox::indicator {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    border: 2px solid rgb(230, 236, 240);
+    background-color: white;
+    transition: all 0.2s;
+}
+
+#SettingDialog QCheckBox::indicator:checked {
+    border-color: rgb(255, 205, 97);
+    background-color: rgb(255, 205, 97);
+    animation: checkmark 0.2s ease-in-out;
+}
+
+#SettingDialog QCheckBox::indicator:hover {
+    border-color: rgb(255, 185, 77);
+}
+
+#SettingDialog QScrollArea {
+    border: none;
+    background-color: white;
+}
+
+#SettingDialog #scrollAreaWidgetContents {
+    background-color: white;
+}
+
+#SettingDialog #clearCacheBtn {
+    color: rgb(255, 85, 85);
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#SettingDialog #clearCacheBtn:hover {
+    background-color: rgb(255, 245, 245);
+    color: rgb(255, 65, 65);
+}
+
+#SettingDialog #aboutBtn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#SettingDialog #aboutBtn:hover {
+    background-color: rgb(250, 250, 250);
+    color: rgb(255, 205, 97);
+}
+
+#SettingDialog QScrollBar:vertical {
+    width: 8px;
+    background: transparent;
+}
+
+#SettingDialog QScrollBar::handle:vertical {
+    background: rgb(230, 236, 240);
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+#SettingDialog QScrollBar::handle:vertical:hover {
+    background: rgb(200, 200, 200);
+}
+
+#SettingDialog QScrollBar::add-line:vertical,
+#SettingDialog QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+#SettingDialog #fontPreviewLabel {
+    color: rgb(80, 80, 80);
+    padding: 10px;
+    margin: 10px 0;
+    background-color: rgb(250, 250, 250);
+    border-radius: 8px;
+    border: 1px solid rgb(230, 236, 240);
+}
+
+#SettingDialog #versionWidget {
+    padding: 15px 20px;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    margin: 10px 20px;
+}
+
+#SettingDialog #versionValueLabel {
+    color: rgb(150, 150, 150);
+}
