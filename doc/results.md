@@ -1,42 +1,42 @@
 # Summary
 
-Date : 2024-12-16 22:04:27
+Date : 2024-12-17 14:26:30
 
 Directory /home/whx/文档/code/github/HungerYet
 
-Total : 202 files,  29684 codes, 2195 comments, 4994 blanks, all 36873 lines
+Total : 209 files,  31481 codes, 2259 comments, 5207 blanks, all 38947 lines
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| C++ | 153 | 25,087 | 2,171 | 4,706 | 31,964 |
-| XML | 10 | 2,108 | 0 | 10 | 2,118 |
+| C++ | 157 | 25,684 | 2,224 | 4,839 | 32,747 |
+| XML | 12 | 2,942 | 0 | 12 | 2,954 |
 | JSON | 3 | 952 | 0 | 4 | 956 |
-| QSS | 1 | 389 | 23 | 61 | 473 |
-| Markdown | 3 | 321 | 0 | 20 | 341 |
+| QSS | 1 | 793 | 34 | 140 | 967 |
 | CMake | 5 | 286 | 0 | 79 | 365 |
+| Markdown | 3 | 279 | 0 | 20 | 299 |
 | JavaScript | 6 | 219 | 1 | 32 | 252 |
 | Shell Script | 8 | 142 | 0 | 43 | 185 |
 | Ini | 5 | 90 | 0 | 24 | 114 |
 | Protocol Buffers | 2 | 48 | 0 | 14 | 62 |
-| Qrc | 1 | 37 | 0 | 1 | 38 |
-| SVG | 5 | 5 | 0 | 0 | 5 |
+| Qrc | 1 | 40 | 0 | 0 | 40 |
+| SVG | 6 | 6 | 0 | 0 | 6 |
 
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 202 | 29,684 | 2,195 | 4,994 | 36,873 |
+| . | 209 | 31,481 | 2,259 | 5,207 | 38,947 |
 | . (Files) | 1 | 9 | 0 | 7 | 16 |
-| client | 65 | 5,893 | 486 | 981 | 7,360 |
-| client (Files) | 58 | 5,496 | 463 | 919 | 6,878 |
-| client/resources | 6 | 8 | 0 | 1 | 9 |
+| client | 72 | 7,732 | 550 | 1,194 | 9,476 |
+| client (Files) | 64 | 6,930 | 516 | 1,053 | 8,499 |
+| client/resources | 7 | 9 | 0 | 1 | 10 |
 | client/resources (Files) | 1 | 3 | 0 | 1 | 4 |
-| client/resources/Application | 5 | 5 | 0 | 0 | 5 |
-| client/resources/Application/btn | 5 | 5 | 0 | 0 | 5 |
-| client/style | 1 | 389 | 23 | 61 | 473 |
-| doc | 2 | 312 | 0 | 13 | 325 |
+| client/resources/Application | 6 | 6 | 0 | 0 | 6 |
+| client/resources/Application/btn | 6 | 6 | 0 | 0 | 6 |
+| client/style | 1 | 793 | 34 | 140 | 967 |
+| doc | 2 | 270 | 0 | 13 | 283 |
 | proto | 1 | 35 | 0 | 10 | 45 |
 | scripts | 8 | 142 | 0 | 43 | 185 |
 | server | 124 | 23,270 | 1,701 | 3,932 | 28,903 |
