@@ -2,10 +2,10 @@
 #include "usermanager.h"
 #include "ui_homedialog.h"
 
-#include <QPixmap>
-#include <QPainter>
-#include <QBitmap>
 #include <QDebug>
+#include <QPixmap>
+#include <QBitmap>
+#include <QPainter>
 
 HomeDialog::HomeDialog(QWidget *parent)
     : QDialog(parent),

@@ -10,12 +10,12 @@
 #ifndef PARTICLEEFFECT_H
 #define PARTICLEEFFECT_H
 
-#include <QWidget>
+#include <QColor>
 #include <QTimer>
+#include <QPointF>
+#include <QWidget>
 #include <QVector>
 #include <QPainter>
-#include <QColor>
-#include <QPointF>
 #include <algorithm>
 
 // 单个粒子的属性结构体

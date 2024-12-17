@@ -1,11 +1,21 @@
+/******************************************************************************
+ *
+ * @file       merchantdialog.h
+ * @brief      购物车界面
+ *
+ * @author     KBchulan
+ * @date       2024/12/17
+ * @history
+ *****************************************************************************/
 #ifndef MERCHANTDIALOG_H
 #define MERCHANTDIALOG_H
 
 #include "merchantmanager.h"
 #include <QListWidgetItem>
+
+#include <QMap>
 #include <QDialog>
 #include <QPixmap>
-#include <QMap>
 
 namespace Ui
 {

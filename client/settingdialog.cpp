@@ -10,9 +10,9 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QApplication>
+#include <QStandardPaths>
 #include <QSystemTrayIcon>
 #include <QDesktopServices>
-#include <QStandardPaths>
 
 SettingDialog::SettingDialog(QWidget *parent)
     : QDialog(parent),
