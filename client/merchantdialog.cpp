@@ -164,7 +164,6 @@ void MerchantDialog::pay(double totalPrice)
     QPixmap payPixmap(path);
     if (!payPixmap.isNull())
     {
-        // 设置固定大小并保持比例缩放
         payPixmap = payPixmap.scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         payImageLabel->setPixmap(payPixmap);
         payImageLabel->setAlignment(Qt::AlignCenter);
@@ -182,11 +181,16 @@ void MerchantDialog::pay(double totalPrice)
     QLabel* priceLabel = new QLabel(QString("需支付: ￥%1").arg(totalPrice, 0, 'f', 2), &payDialog);
     priceLabel->setAlignment(Qt::AlignCenter);
     
+    // 添加演示说明文本
+    QLabel* demoLabel = new QLabel("（注意：这只是演示界面，不会产生实际支付）", &payDialog);
+    demoLabel->setAlignment(Qt::AlignCenter);
+    demoLabel->setStyleSheet("color: red; font-size: 12px;");
+    
     layout->addWidget(payImageLabel);
     layout->addWidget(tipLabel);
     layout->addWidget(priceLabel);
+    layout->addWidget(demoLabel);
     
-    // ��置对话框大小策略
     payDialog.setFixedSize(400, 400);
     
     payDialog.exec();
