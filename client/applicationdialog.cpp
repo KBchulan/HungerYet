@@ -70,7 +70,6 @@ ApplicationDialog::~ApplicationDialog()
     // 在销毁前断开所有信号连接
     if (ui)
     {
-        // 断开所有按钮的连接
         if (ui->menu_btn)
         {
             disconnect(ui->menu_btn, nullptr, this, nullptr);
@@ -87,7 +86,6 @@ ApplicationDialog::~ApplicationDialog()
             ui->home_btn->removeEventFilter(this);
         }
 
-        // 断开所有子窗口的连接
         if (ui->menu_wid)
         {
             disconnect(ui->menu_wid, nullptr, this, nullptr);
@@ -109,7 +107,6 @@ ApplicationDialog::~ApplicationDialog()
             disconnect(ui->edit_wid, nullptr, this, nullptr);
         }
 
-        // 设置当前页面为空，避免在删除过程中访问已删除的对象
         if (ui->stackedWidget)
         {
             ui->stackedWidget->setCurrentWidget(nullptr);
@@ -199,13 +196,13 @@ void ApplicationDialog::SlotSwitchSetting()
 
 void ApplicationDialog::SlotSwitchHome()
 {
+    ui->stackedWidget->setCurrentWidget(ui->home_wid);
     HomeDialog* homeDialog = qobject_cast<HomeDialog*>(ui->home_wid);
 
     if (homeDialog)
     {
         homeDialog->setupUserInterface();
     }
-    ui->stackedWidget->setCurrentWidget(ui->home_wid);
 }
 
 void ApplicationDialog::handleButtonClick(QPushButton *clickedButton)
