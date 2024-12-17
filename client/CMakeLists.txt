@@ -63,3 +63,19 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+# 添加安装规则
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION bin
+)
+
+# 安装依赖的Qt库
+install(CODE "
+    include(BundleUtilities)
+    fixup_bundle(\${CMAKE_INSTALL_PREFIX}/bin/${PROJECT_NAME} \"\" \"\")
+")
+
+# 安装资源文件
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources
+    DESTINATION share/${PROJECT_NAME}
+)
