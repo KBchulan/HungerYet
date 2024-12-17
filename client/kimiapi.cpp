@@ -8,6 +8,7 @@ KimiAPI::KimiAPI()
     {
         throw std::runtime_error("Failed to initialize CURL");
     }
+    memory.push_back("你是一个名为“中南饿了么”的客服系统，你的名字叫阿罗娜。请你你负责回答顾客的问题，你只需要保证客户不生气，不必拿出具体的解决方案。");
 }
 
 KimiAPI::~KimiAPI()
@@ -27,16 +28,17 @@ size_t KimiAPI::WriteCallback(void* contents, size_t size, size_t nmemb, std::st
 
 std::string KimiAPI::sendMessageWithMemory(const std::string& message)
 {
-    memory.push_back(message);
-    if(!curl) return "Error: CURL not initialized";
-    
+    memory.push_back(message);    
     // 构建请求JSON
     Json::Value root;
+    Json::Value msgObj;
     root["model"] = "moonshot-v1-8k";
-    for (size_t i = 0; i < memory.size(); ++i)
+    msgObj["role"] = "system";
+    msgObj["content"] = memory[0];
+    root["messages"].append(msgObj);
+    for (size_t i = 1; i < memory.size(); ++i)
     {
-        Json::Value msgObj;
-        msgObj["role"] = (i%2 == 0) ? "user" : "assistant";
+        msgObj["role"] = (i%2 == 1) ? "user" : "assistant";
         msgObj["content"] = memory[i];
         root["messages"].append(msgObj);
     }
@@ -58,8 +60,6 @@ std::string KimiAPI::sendMessage(const std::string& message)
 
 std::string KimiAPI::sendMessage(const Json::Value& root)
 {
-    if(!curl) return "Error: CURL not initialized";
-
     Json::StreamWriterBuilder writer;
     std::string jsonBody = Json::writeString(writer, root);
     
