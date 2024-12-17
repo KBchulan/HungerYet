@@ -78,7 +78,7 @@ void ScanCodeDialog::initCamera()
         {
             handleLocalImage();
         } 
-        else 
+        else if (msgBox.clickedButton() == cancelButton)
         {
             stopScanning();
             emit ui->return_menu_btn->clicked();

@@ -791,7 +791,6 @@ QMessageBox QPushButton[text="取消"]:hover {
     padding: 5px 20px;
     margin: 2px 0px;
     border-radius: 10px;
-    transition: background-color 0.2s;
 }
 
 #SettingDialog QWidget[settingItem="true"]:hover {
@@ -880,7 +879,6 @@ QMessageBox QPushButton[text="取消"]:hover {
     border-radius: 12px;
     border: 2px solid rgb(230, 236, 240);
     background-color: white;
-    transition: all 0.2s;
 }
 
 #SettingDialog QCheckBox::indicator:checked {
