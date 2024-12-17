@@ -90,6 +90,9 @@ void MainWindow::SlotSwitchLogin2()
 
 void MainWindow::SlotSwitchLogin3()
 {
+    // 退出应用
+    exit(0);
+
     // create LoginDialog
     _login_dlg = new LoginDialog(this);
     _login_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);

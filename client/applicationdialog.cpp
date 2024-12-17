@@ -1,5 +1,8 @@
+#include "chatdialog.h"
 #include "homedialog.h"
 #include "menudialog.h"
+#include "settingdialog.h"
+#include "merchantdialog.h"
 #include "scancodedialog.h"
 #include "editinfodialog.h"
 #include "applicationdialog.h"
@@ -16,39 +19,26 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
     ui->setupUi(this);
     
     if(!ui->chat_wid)
-    {
         ui->chat_wid = new ChatDialog(this);
-    }
 
     if(!ui->menu_wid)
-    {
         ui->menu_wid = new MenuDialog(this);
-    }
 
     if(!ui->scan_wid)
-    {
         ui->scan_wid = new ScanCodeDialog(this);
-    }
+
 
     if(!ui->merchant_wid)
-    {
         ui->merchant_wid = new MerchantDialog(this);
-    }
 
     if(!ui->edit_wid)
-    {
         ui->edit_wid = new EditInfoDialog(this);
-    }
 
     if(!ui->setting_wid)
-    {
         ui->setting_wid = new SettingDialog(this);
-    }
 
     if(!ui->home_wid)
-    {
         ui->home_wid = new HomeDialog(this);
-    }
 
     connect(ui->menu_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
     connect(ui->chat_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchChat);
@@ -160,7 +150,7 @@ void ApplicationDialog::SlotSwitchLogin()
         QMessageBox::Yes | QMessageBox::No
     );
 
-    if (reply == QMessageBox::Yes) 
+    if (reply == QMessageBox::Yes)
     {
         disconnect(ui->menu_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
         disconnect(ui->chat_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchChat);
