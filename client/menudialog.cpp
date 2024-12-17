@@ -1,6 +1,7 @@
 #include "menudialog.h"
 #include "ui_menudialog.h"
 #include "merchantmanager.h"
+#include "merchantdialog.h"
 
 #include <QDebug>
 #include <QLabel>
@@ -177,8 +178,15 @@ bool MenuDialog::eventFilter(QObject *obj, QEvent *event)
     {
         // 获取存储的商家ID
         int merchantId = obj->property("merchant_id").toInt();
-        // 发送信号
-        emit SigMerchantSelected(merchantId);
+        
+        // 创建并显示商家对话框
+        MerchantDialog* merchantDialog = new MerchantDialog(this);
+        connect(merchantDialog, &MerchantDialog::backToMenu, this, &MenuDialog::show);
+        merchantDialog->init(merchantId);
+        hide();  // 隐藏菜单对话框
+        merchantDialog->exec();
+        delete merchantDialog;
+        
         return true;
     }
     return QDialog::eventFilter(obj, event);

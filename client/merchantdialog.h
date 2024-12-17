@@ -24,9 +24,13 @@ public:
 
     void init(int merchant_id);
 
+signals:
+    void backToMenu();
+
 private slots:
     void onMenuItemClicked(QListWidgetItem* item);
     void onCartButtonClicked();
+    void onBackButtonClicked();
 
 private:
     void updateMenuList(const MenuPrices& menu);
@@ -36,8 +40,8 @@ private:
 
 private:
     Ui::MerchantDialog *ui;
-    QMap<QString, DishInfo> cartItems; // 购物车中的物品及其数量
-    MenuPrices menuPrices; // 存储菜单价格
+    QMap<QString, DishInfo> cartItems;
+    MenuPrices menuPrices;
 };
 
 #endif // MERCHANTDIALOG_H

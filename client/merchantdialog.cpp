@@ -14,6 +14,7 @@ MerchantDialog::MerchantDialog(QWidget *parent) :
     // 连接信号槽
     connect(ui->menuListWidget, &QListWidget::itemClicked, this, &MerchantDialog::onMenuItemClicked);
     connect(ui->cartButton, &QPushButton::clicked, this, &MerchantDialog::onCartButtonClicked);
+    connect(ui->menu_return_btn, &QPushButton::clicked, this, &MerchantDialog::onBackButtonClicked);
     
     // 初始化购物车计数
     updateCartCount();
@@ -206,4 +207,10 @@ void MerchantDialog::updateCartCount()
     
     ui->cartCountLabel->setText(QString::number(count));
     ui->cartCountLabel->setVisible(count > 0);
+}
+
+void MerchantDialog::onBackButtonClicked()
+{
+    emit backToMenu();
+    close();
 }
