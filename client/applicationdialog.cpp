@@ -1,6 +1,7 @@
 #include "homedialog.h"
 #include "menudialog.h"
 #include "scancodedialog.h"
+#include "editinfodialog.h"
 #include "applicationdialog.h"
 #include "ui_applicationdialog.h"
 
@@ -13,6 +14,41 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
     ui(new Ui::ApplicationDialog)
 {
     ui->setupUi(this);
+    
+    if(!ui->chat_wid)
+    {
+        ui->chat_wid = new ChatDialog(this);
+    }
+
+    if(!ui->menu_wid)
+    {
+        ui->menu_wid = new MenuDialog(this);
+    }
+
+    if(!ui->scan_wid)
+    {
+        ui->scan_wid = new ScanCodeDialog(this);
+    }
+
+    if(!ui->merchant_wid)
+    {
+        ui->merchant_wid = new MerchantDialog(this);
+    }
+
+    if(!ui->edit_wid)
+    {
+        ui->edit_wid = new EditInfoDialog(this);
+    }
+
+    if(!ui->setting_wid)
+    {
+        ui->setting_wid = new SettingDialog(this);
+    }
+
+    if(!ui->home_wid)
+    {
+        ui->home_wid = new HomeDialog(this);
+    }
 
     connect(ui->menu_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
     connect(ui->chat_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchChat);
@@ -41,6 +77,55 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
 
 ApplicationDialog::~ApplicationDialog()
 {
+    // 在销毁前断开所有信号连接
+    if (ui)
+    {
+        // 断开所有按钮的连接
+        if (ui->menu_btn)
+        {
+            disconnect(ui->menu_btn, nullptr, this, nullptr);
+            ui->menu_btn->removeEventFilter(this);
+        }
+        if (ui->chat_btn)
+        {
+            disconnect(ui->chat_btn, nullptr, this, nullptr);
+            ui->chat_btn->removeEventFilter(this);
+        }
+        if (ui->home_btn)
+        {
+            disconnect(ui->home_btn, nullptr, this, nullptr);
+            ui->home_btn->removeEventFilter(this);
+        }
+
+        // 断开所有子窗口的连接
+        if (ui->menu_wid)
+        {
+            disconnect(ui->menu_wid, nullptr, this, nullptr);
+        }
+        if (ui->scan_wid)
+        {
+            disconnect(ui->scan_wid, nullptr, this, nullptr);
+        }
+        if (ui->merchant_wid)
+        {
+            disconnect(ui->merchant_wid, nullptr, this, nullptr);
+        }
+        if (ui->home_wid)
+        {
+            disconnect(ui->home_wid, nullptr, this, nullptr);
+        }
+        if (ui->edit_wid)
+        {
+            disconnect(ui->edit_wid, nullptr, this, nullptr);
+        }
+
+        // 设置当前页面为空，避免在删除过程中访问已删除的对象
+        if (ui->stackedWidget)
+        {
+            ui->stackedWidget->setCurrentWidget(nullptr);
+        }
+    }
+
     qDebug() << "Application destructed!";
     delete ui;
 }
@@ -51,7 +136,7 @@ void ApplicationDialog::SlotSwitchChat()
 }
 
 void ApplicationDialog::SlotSwitchMenu()
-{
+{ 
     ui->stackedWidget->setCurrentWidget(ui->menu_wid);
 }
 
@@ -77,6 +162,37 @@ void ApplicationDialog::SlotSwitchLogin()
 
     if (reply == QMessageBox::Yes) 
     {
+        disconnect(ui->menu_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
+        disconnect(ui->chat_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchChat);
+        disconnect(ui->home_btn, &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchHome);
+
+        if (ui->menu_wid)
+        {
+            disconnect(ui->menu_wid->findChild<QPushButton *>("add_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchScan);
+        }
+        if (ui->scan_wid)
+        {
+            disconnect(ui->scan_wid->findChild<QPushButton *>("return_menu_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
+        }
+        if (ui->merchant_wid)
+        {
+            disconnect(ui->merchant_wid->findChild<QPushButton *>("return_menu_btn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchMenu);
+        }
+        if (ui->home_wid)
+        {
+            disconnect(ui->home_wid->findChild<QPushButton *>("logoutBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchLogin);
+            disconnect(ui->home_wid->findChild<QPushButton *>("editProfileBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchEdit);
+            disconnect(ui->home_wid->findChild<QPushButton *>("settingsBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchSetting);
+        }
+        if (ui->edit_wid)
+        {
+            disconnect(ui->edit_wid->findChild<QPushButton *>("saveBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchHome);
+        }
+
+        ui->menu_btn->removeEventFilter(this);
+        ui->chat_btn->removeEventFilter(this);
+        ui->home_btn->removeEventFilter(this);
+
         emit SigSwitchLogin();
     }
 }
