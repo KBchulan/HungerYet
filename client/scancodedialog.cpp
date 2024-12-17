@@ -77,7 +77,7 @@ void ScanCodeDialog::initCamera()
         if (msgBox.clickedButton() == uploadButton) 
         {
             handleLocalImage();
-        } 
+        }
         else if (msgBox.clickedButton() == cancelButton)
         {
             stopScanning();
@@ -137,7 +137,7 @@ void ScanCodeDialog::updateFrame()
     if (!cap.read(frame))
         return;
 
-    // 处理二维码
+    // TODO: 处理二维码
     
     if (processQrCode(frame)){
         // 转换并显示图像

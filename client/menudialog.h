@@ -37,6 +37,7 @@ private:
 
     // 后续可能会做的搜索页面
     void ShowSearch(bool bSearch);
+    
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
