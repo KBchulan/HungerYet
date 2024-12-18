@@ -8,7 +8,8 @@ KimiAPI::KimiAPI()
     {
         throw std::runtime_error("Failed to initialize CURL");
     }
-    memory.push_back("你是一个名为“中南饿了么”的客服系统，你的名字叫阿罗娜。请你你负责回答顾客的问题，你只需要保证客户不生气，不必拿出具体的解决方案。");
+    memory.push_back("你是一个名为“中南饿了么”的客服系统，你的名字叫阿罗娜。请你负责回答顾客的问题，你只需要保证客户不生气，不必拿出具体的解决方案。");
+    memory.push_back("你的角色原型是蔚蓝档案里的一个可爱的角色，请同时扮演好这个角色，要认为自己就是阿罗娜本人");
 }
 
 KimiAPI::~KimiAPI()
@@ -90,10 +91,36 @@ std::string KimiAPI::sendMessage(const Json::Value& root)
     
     try
     {
-        return responseRoot["choices"][0]["message"]["content"].asString();
+        // 添加错误检查
+        if (responseRoot.isMember("error")) {
+            return "Error: " + responseRoot["error"]["message"].asString();
+        }
+        
+        // 确保所有必要的字段都存在
+        if (!responseRoot.isMember("choices") || 
+            responseRoot["choices"].empty() ||
+            !responseRoot["choices"][0].isMember("message") ||
+            !responseRoot["choices"][0]["message"].isMember("content")) {
+            return "Error: Invalid response format";
+        }
+        
+        // 获取完整的响应内容并处理开头的标点符号
+        std::string content = responseRoot["choices"][0]["message"]["content"].asString();
+        
+        // 如果内容以逗号、句号、感叹号等标点符号开头，则删除它
+        if (!content.empty() && (content[0] == ',' || content[0] == '.' || content[0] == '!')) 
+        {
+            content = content.substr(1);
+        }
+        
+        return content;
+    }
+    catch(const Json::Exception& e)
+    {
+        return "Error parsing response: " + std::string(e.what());
     }
     catch(...)
     {
-        return "Error parsing response";
+        return "Unknown error while parsing response";
     }
 }

@@ -17,6 +17,9 @@ ChatDialog::ChatDialog(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // 设置输入框的占位文本
+    ui->inputEdit->setPlaceholderText("按下 Ctrl + Enter 快捷发送");
+
     // 设置滚动区域属性
     ui->scrollArea->setWidgetResizable(true);
     ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -214,6 +217,7 @@ void ChatDialog::removeTypingIndicator()
 
 void ChatDialog::onMessageReceived(const QString &message)
 {
+    qDebug() << "Received message:" << message;
     removeTypingIndicator();
     addMessage(message, false);
 }

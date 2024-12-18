@@ -962,3 +962,8 @@ QMessageBox QPushButton[text="取消"]:hover {
 #SettingDialog #versionValueLabel {
     color: rgb(150, 150, 150);
 }
+
+#inputEdit::placeholder
+{
+    color: rgb(150, 150, 150);
+}

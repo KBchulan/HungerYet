@@ -26,6 +26,22 @@ public:
     explicit EditInfoDialog(QWidget *parent = nullptr);
     ~EditInfoDialog();
 
+private:
+    // Initialize and setup the user interface elements
+    void setupUserInterface();
+
+    // Setup signal-slot connections
+    void setupConnections();
+    
+    // Set the avatar image in the UI
+    void setAvatar(const QPixmap &avatar);
+    
+    // Handle events for watched objects
+    bool eventFilter(QObject *watched, QEvent *event) override;
+    
+    // Copy avatar image to temporary directory and return new path
+    QString copyAvatarToTmp(const QString &sourcePath);
+
 private slots:
     void onChangeAvatarClicked();
     void onSaveClicked();
@@ -34,11 +50,7 @@ private:
     Ui::EditInfoDialog *ui;
     QPixmap currentAvatar;
     QString newAvatarPath;
-    void setupUserInterface();
-    void setupConnections();
-    void setAvatar(const QPixmap &avatar);
-    bool eventFilter(QObject *watched, QEvent *event) override;
-    QString copyAvatarToTmp(const QString &sourcePath);
+    
 };
 
 #endif // EDITINFODIALOG_H
