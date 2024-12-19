@@ -217,7 +217,6 @@ void ChatDialog::removeTypingIndicator()
 
 void ChatDialog::onMessageReceived(const QString &message)
 {
-    qDebug() << "Received message:" << message;
     removeTypingIndicator();
     addMessage(message, false);
 }

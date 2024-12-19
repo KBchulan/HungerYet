@@ -8,8 +8,7 @@ KimiAPI::KimiAPI()
     {
         throw std::runtime_error("Failed to initialize CURL");
     }
-    memory.push_back("你是一个名为“中南饿了么”的客服系统，你的名字叫阿罗娜。请你负责回答顾客的问题，你只需要保证客户不生气，不必拿出具体的解决方案。");
-    memory.push_back("你的角色原型是蔚蓝档案里的一个可爱的角色，请同时扮演好这个角色，要认为自己就是阿罗娜本人");
+    memory.push_back("你是一个名为“中南饿了么”的客服系统，名字叫阿罗娜，请你负责回答顾客的问题，你不止需要保证客户不生气，还要拿出最好的解决方案");
 }
 
 KimiAPI::~KimiAPI()
@@ -77,6 +76,8 @@ std::string KimiAPI::sendMessage(const Json::Value& root)
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, jsonBody.c_str());
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+    curl_easy_setopt(curl, CURLOPT_ENCODING, "");
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     
     CURLcode res = curl_easy_perform(curl);
     curl_slist_free_all(headers);
@@ -92,7 +93,8 @@ std::string KimiAPI::sendMessage(const Json::Value& root)
     try
     {
         // 添加错误检查
-        if (responseRoot.isMember("error")) {
+        if (responseRoot.isMember("error")) 
+        {
             return "Error: " + responseRoot["error"]["message"].asString();
         }
         
@@ -106,13 +108,6 @@ std::string KimiAPI::sendMessage(const Json::Value& root)
         
         // 获取完整的响应内容并处理开头的标点符号
         std::string content = responseRoot["choices"][0]["message"]["content"].asString();
-        
-        // 如果内容以逗号、句号、感叹号等标点符号开头，则删除它
-        if (!content.empty() && (content[0] == ',' || content[0] == '.' || content[0] == '!')) 
-        {
-            content = content.substr(1);
-        }
-        
         return content;
     }
     catch(const Json::Exception& e)
