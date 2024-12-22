@@ -6,6 +6,7 @@
 #include "merchantdialog.h"
 #include "scancodedialog.h"
 #include "editinfodialog.h"
+#include "favoritedialog.h"
 #include "applicationdialog.h"
 #include "ui_applicationdialog.h"
 
@@ -53,6 +54,8 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
     connect(ui->home_wid->findChild<QPushButton*>("settingsBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchSetting);
     connect(ui->home_wid->findChild<ClickedLabel*>("orderTextLabel"), &ClickedLabel::sig_clicked, this, &ApplicationDialog::SlotSwitchOrderManager);
     connect(ui->home_wid->findChild<ClickedLabel*>("favoriteTextLabel"), &ClickedLabel::sig_clicked, this, &ApplicationDialog::SlotSwitchFarOrder);
+    connect(ui->favor_wid, &FavoriteDialog::SigMerchantSelected, this, &ApplicationDialog::SlotSwitchMerchant);
+
     connect(ui->edit_wid->findChild<QPushButton*>("saveBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchHome);
 
     ui->stackedWidget->setCurrentWidget(ui->menu_wid);
