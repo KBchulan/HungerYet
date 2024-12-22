@@ -15,6 +15,13 @@
 #include <memory>
 #include <QObject>
 
+enum class UserLevel
+{
+    SIMPLE = 0,
+    VIP,
+    VVIP
+};
+
 class UserManager final : public QObject, public Singleton<UserManager>, public std::enable_shared_from_this<UserManager>
 {
     Q_OBJECT
@@ -34,6 +41,8 @@ public:
 
     void SetEmail(QString email);
 
+    void SetUserLevel(UserLevel level);
+
     int GetUid();
 
     QString GetHead();
@@ -44,6 +53,8 @@ public:
 
     QString GetToken();
 
+    UserLevel GetUserLevel();
+
 private:
     UserManager();
 
@@ -53,6 +64,8 @@ private:
     QString _email;
     QString _name;
     QString _token;
+
+    UserLevel _user_level = UserLevel::SIMPLE;
 };
 
 #endif // USERMANAGER_H

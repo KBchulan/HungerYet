@@ -131,6 +131,7 @@ void TcpManager::initHandlers()
         }
 
         // 存储用户数据
+        UserManager::GetInstance()->SetUserLevel(static_cast<UserLevel>(random() % 3));
         UserManager::GetInstance()->SetUid(jsonObj["uid"].toInt());
         UserManager::GetInstance()->SetName(jsonObj["name"].toString());
         UserManager::GetInstance()->SetToken(jsonObj["token"].toString());

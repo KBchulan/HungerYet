@@ -59,3 +59,13 @@ QString UserManager::GetToken()
 {
     return _token;
 }
+
+UserLevel UserManager::GetUserLevel()
+{
+    return _user_level;
+}
+
+void UserManager::SetUserLevel(UserLevel level)
+{
+    _user_level = level;
+}
