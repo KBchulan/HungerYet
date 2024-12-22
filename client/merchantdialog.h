@@ -39,6 +39,7 @@ private slots:
     void onCartButtonClicked();
 
 private:
+    double calculatePrice(double originalPrice, int memberLevel) const;
     void updateMenuList(const MenuPrices& menu);
     void loadMerchantImage(const QString& imagePath);
     void updateCartCount();
@@ -48,6 +49,7 @@ private:
     Ui::MerchantDialog *ui;
     QMap<QString, DishInfo> cartItems;
     MenuPrices menuPrices;
+    int currentMemberLevel = 0; // 0: 普通用户, 1: VIP, 2: VVIP
 };
 
 #endif // MERCHANTDIALOG_H

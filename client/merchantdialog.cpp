@@ -42,7 +42,21 @@ void MerchantDialog::updateMenuList(const MenuPrices& menu)
     ui->menuListWidget->clear();
     for(const auto& item : menu)
     {
-        QString text = QString("%1 - ￥%2").arg(item.first).arg(item.second, 0, 'f', 2);
+        double finalPrice = calculatePrice(item.second, currentMemberLevel);
+        QString priceText;
+        if (currentMemberLevel == 1) 
+        {
+            priceText = QString("原价：￥%1,VIP价:￥%2").arg(item.second, 0, 'f', 2).arg(finalPrice, 0, 'f', 2);
+        } 
+        else if (currentMemberLevel == 2) 
+        {
+            priceText = QString("原价：￥%1,VVIP价:￥%2").arg(item.second, 0, 'f', 2).arg(finalPrice, 0, 'f', 2);
+        } 
+        else 
+        {
+            priceText = QString("￥%1").arg(finalPrice, 0, 'f', 2);
+        }
+        QString text = QString("%1 - %2").arg(item.first).arg(priceText);
         ui->menuListWidget->addItem(text);
     }
 }
@@ -65,11 +79,20 @@ void MerchantDialog::onMenuItemClicked(QListWidgetItem* item)
 {
     QString itemText = item->text();
     QString dishName = itemText.split(" -").first();
-    double price = menuPrices[dishName];
+    double originalPrice = menuPrices[dishName];
+    double finalPrice = calculatePrice(originalPrice, currentMemberLevel);
     
     QMessageBox confirmBox(this);
     confirmBox.setWindowTitle("添加到购物车");
-    confirmBox.setText(QString("是否将 %1 (￥%2) 加入购物车？").arg(dishName).arg(price, 0, 'f', 2));
+    QString priceInfo;
+    if (currentMemberLevel == 1) {
+        priceInfo = QString("原价：￥%1,VIP价:￥%2").arg(originalPrice, 0, 'f', 2).arg(finalPrice, 0, 'f', 2);
+    } else if (currentMemberLevel == 2) {
+        priceInfo = QString("原价：￥%1,VVIP价:￥%2").arg(originalPrice, 0, 'f', 2).arg(finalPrice, 0, 'f', 2);
+    } else {
+        priceInfo = QString("￥%1").arg(finalPrice, 0, 'f', 2);
+    }
+    confirmBox.setText(QString("是否将 %1 (%2) 加入购物车？").arg(dishName).arg(priceInfo));
     
     // 创建按钮
     QPushButton* confirmButton = new QPushButton("确定");
@@ -101,7 +124,7 @@ void MerchantDialog::onMenuItemClicked(QListWidgetItem* item)
     {
         if (!cartItems.contains(dishName))
         {
-            cartItems[dishName] = std::make_tuple(menuPrices[dishName], 1);
+            cartItems[dishName] = std::make_tuple(finalPrice, 1);
         }
         else
         {
@@ -206,4 +229,17 @@ void MerchantDialog::updateCartCount()
     
     ui->cartCountLabel->setText(QString::number(count));
     ui->cartCountLabel->setVisible(count > 0);
+}
+
+double MerchantDialog::calculatePrice(double originalPrice, int memberLevel) const
+{
+    switch(memberLevel) 
+    {
+        case 1:
+            return originalPrice * 0.8;
+        case 2:
+            return originalPrice * 0.5;
+        default:
+            return originalPrice;
+    }
 }

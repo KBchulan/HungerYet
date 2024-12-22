@@ -43,7 +43,22 @@ void HomeDialog::setupUserInterface()
 
 void HomeDialog::setUserInfo(const QString &username, const QString &email, const int &uid)
 {
-    ui->usernameLabel->setText(username);
+    // 获取用户等级
+    int userLevel = static_cast<int>(UserManager::GetInstance()->GetUserLevel());
+    QString levelInfo;
+    switch(userLevel) {
+        case 2:
+            levelInfo = "VVIP会员(5折优惠)";
+            break;
+        case 1:
+            levelInfo = "VIP会员(8折优惠)";
+            break;
+        default:
+            levelInfo = "普通用户";
+            break;
+    }
+    
+    ui->usernameLabel->setText(QString("%1\n%2").arg(username).arg(levelInfo));
 
     if (email.isEmpty())
     {
