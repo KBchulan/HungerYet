@@ -967,3 +967,23 @@ QMessageBox QPushButton[text="取消"]:hover {
 {
     color: rgb(150, 150, 150);
 }
+
+#orderTextLabel[state = 'normal'], #orderTextLabel[state = 'selected']
+{
+    color: rgb(0, 0, 0);
+}
+
+#orderTextLabel[state = 'hover'], #orderTextLabel[state = 'selected_hover']
+{
+    color: rgb(216, 161, 71);
+}
+
+#favoriteTextLabel[state = 'normal'], #favoriteTextLabel[state = 'selected']
+{
+    color: rgb(0, 0, 0);
+}
+
+#favoriteTextLabel[state = 'hover'], #favoriteTextLabel[state = 'selected_hover']
+{
+    color: rgb(216, 161, 71);
+}

@@ -14,6 +14,9 @@ HomeDialog::HomeDialog(QWidget *parent)
 {
     ui->setupUi(this);
     setupUserInterface();
+
+    ui->orderTextLabel->SetState("normal", "hover", "hover", "selected", "selected_hover", "selected_hover");
+    ui->favoriteTextLabel->SetState("normal", "hover", "hover", "selected", "selected_hover", "selected_hover");
 }
 
 HomeDialog::~HomeDialog()

@@ -55,6 +55,10 @@ private slots:
     void SlotSwitchEdit();
 
     void SlotSwitchSetting();
+
+    void SlotSwitchOrderManager();
+
+    void SlotSwitchFarOrder();
 };
 
 #endif // APPLICATIONDIALOG_H

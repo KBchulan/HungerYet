@@ -23,6 +23,7 @@ SOURCES += \
     clickedlabel.cpp \
     customizeedit.cpp \
     editinfodialog.cpp \
+    favoritedialog.cpp \
     global.cpp \
     homedialog.cpp \
     httpmanager.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
     menudialog.cpp \
     merchantdialog.cpp \
     merchantmanager.cpp \
+    orderdialog.cpp \
     particleeffect.cpp \
     registerdialog.cpp \
     resetdialog.cpp \
@@ -51,6 +53,7 @@ HEADERS += \
     clickedlabel.h \
     customizeedit.h \
     editinfodialog.h \
+    favoritedialog.h \
     global.h \
     homedialog.h \
     httpmanager.h \
@@ -60,6 +63,7 @@ HEADERS += \
     menudialog.h \
     merchantdialog.h \
     merchantmanager.h \
+    orderdialog.h \
     particleeffect.h \
     registerdialog.h \
     resetdialog.h \
@@ -76,11 +80,13 @@ FORMS += \
     applicationdialog.ui \
     chatdialog.ui \
     editinfodialog.ui \
+    favoritedialog.ui \
     homedialog.ui \
     logindialog.ui \
     mainwindow.ui \
     menudialog.ui \
     merchantdialog.ui \
+    orderdialog.ui \
     registerdialog.ui \
     resetdialog.ui \
     scancodedialog.ui \

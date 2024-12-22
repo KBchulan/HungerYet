@@ -438,7 +438,7 @@
   <customwidget>
    <class>ClickedLabel</class>
    <extends>QLabel</extends>
-   <header>clickedlabel.h</header>
+   <header location="global">clickedlabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

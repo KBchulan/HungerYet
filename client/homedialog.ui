@@ -173,7 +173,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="orderTextLabel">
+             <widget class="ClickedLabel" name="orderTextLabel">
               <property name="text">
                <string>订单数</string>
               </property>
@@ -199,7 +199,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="favoriteTextLabel">
+             <widget class="ClickedLabel" name="favoriteTextLabel">
               <property name="text">
                <string>收藏</string>
               </property>
@@ -226,6 +226,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickedLabel</class>
+   <extends>QLabel</extends>
+   <header location="global">clickedlabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

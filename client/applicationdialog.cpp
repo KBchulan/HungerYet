@@ -1,6 +1,7 @@
 #include "chatdialog.h"
 #include "homedialog.h"
 #include "menudialog.h"
+#include "clickedlabel.h"
 #include "settingdialog.h"
 #include "merchantdialog.h"
 #include "scancodedialog.h"
@@ -50,6 +51,8 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
     connect(ui->home_wid->findChild<QPushButton*>("logoutBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchLogin);
     connect(ui->home_wid->findChild<QPushButton*>("editProfileBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchEdit);
     connect(ui->home_wid->findChild<QPushButton*>("settingsBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchSetting);
+    connect(ui->home_wid->findChild<ClickedLabel*>("orderTextLabel"), &ClickedLabel::sig_clicked, this, &ApplicationDialog::SlotSwitchOrderManager);
+    connect(ui->home_wid->findChild<ClickedLabel*>("favoriteTextLabel"), &ClickedLabel::sig_clicked, this, &ApplicationDialog::SlotSwitchFarOrder);
     connect(ui->edit_wid->findChild<QPushButton*>("saveBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchHome);
 
     ui->stackedWidget->setCurrentWidget(ui->menu_wid);
@@ -192,6 +195,16 @@ void ApplicationDialog::SlotSwitchEdit()
 void ApplicationDialog::SlotSwitchSetting()
 {
     ui->stackedWidget->setCurrentWidget(ui->setting_wid);
+}
+
+void ApplicationDialog::SlotSwitchOrderManager()
+{
+    ui->stackedWidget->setCurrentWidget(ui->order_wid);
+}
+
+void ApplicationDialog::SlotSwitchFarOrder()
+{
+    ui->stackedWidget->setCurrentWidget(ui->favor_wid);
 }
 
 void ApplicationDialog::SlotSwitchHome()
