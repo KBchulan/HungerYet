@@ -1,9 +1,19 @@
+/******************************************************************************
+ *
+ * @file       favoritedialog.h
+ * @brief      收藏页面
+ *
+ * @author     KBchulan
+ * @date       2024/12/22
+ * @history
+ *****************************************************************************/
 #ifndef FAVORITEDIALOG_H
 #define FAVORITEDIALOG_H
 
+#include "merchantmanager.h"
+
 #include <QDialog>
 #include <QVector>
-#include "merchantmanager.h"
 
 namespace Ui
 {
@@ -23,7 +33,7 @@ protected:
 
 private:
     Ui::FavoriteDialog *ui;
-    QVector<int> favoriteIds; // 存储收藏的商家ID
+    QVector<int> favoriteIds;
     
     void setupUI();
     void loadFavorites();

@@ -1,12 +1,12 @@
+#include "merchantdialog.h"
 #include "favoritedialog.h"
 #include "ui_favoritedialog.h"
-#include "merchantdialog.h"
 
 #include <QLabel>
-#include <QVBoxLayout>
-#include <QPushButton>
-#include <QAction>
 #include <QDebug>
+#include <QAction>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 FavoriteDialog::FavoriteDialog(QWidget *parent) 
     : QDialog(parent),

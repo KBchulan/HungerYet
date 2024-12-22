@@ -1,11 +1,20 @@
+/******************************************************************************
+ *
+ * @file       orderdialog.h
+ * @brief      商家的管理界面
+ *
+ * @author     KBchulan
+ * @date       2024/12/22
+ * @history
+ *****************************************************************************/
 #ifndef ORDERDIALOG_H
 #define ORDERDIALOG_H
 
-#include <QDialog>
-#include <QDateTime>
+#include <tuple>
 #include <QString>
 #include <QVector>
-#include <tuple>
+#include <QDialog>
+#include <QDateTime>
 
 namespace Ui
 {

@@ -2,14 +2,14 @@
 #include "ui_orderdialog.h"
 #include "merchantmanager.h"
 
+#include <map>
+#include <QDebug>
 #include <QLabel>
+#include <QAction>
+#include <algorithm>
 #include <QVBoxLayout>
 #include <QPushButton>
-#include <QAction>
-#include <QDebug>
 #include <QRandomGenerator>
-#include <algorithm>
-#include <map>
 
 OrderDialog::OrderDialog(QWidget *parent) :
     QDialog(parent),
