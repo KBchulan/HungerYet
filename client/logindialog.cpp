@@ -378,3 +378,8 @@ void LoginDialog::on_visitor_btn_clicked()
 {
     emit TcpManager::GetInstance()->sig_switch_chatdialog();
 }
+
+void LoginDialog::on_admin_btn_clicked()
+{
+    emit switchAdmin();
+}

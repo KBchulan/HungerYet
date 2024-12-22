@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    adminmanagerdialog.cpp \
     applicationdialog.cpp \
     chatdialog.cpp \
     clickedbtn.cpp \
@@ -43,6 +44,7 @@ SOURCES += \
     backgrounddialog.cpp
 
 HEADERS += \
+    adminmanagerdialog.h \
     applicationdialog.h \
     chatdialog.h \
     clickedbtn.h \
@@ -70,6 +72,7 @@ HEADERS += \
     backgrounddialog.h
 
 FORMS += \
+    adminmanagerdialog.ui \
     applicationdialog.ui \
     chatdialog.ui \
     editinfodialog.ui \

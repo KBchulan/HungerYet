@@ -28,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
     // reset password
     connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
 
+    // admin
+    connect(_login_dlg, &LoginDialog::switchAdmin, this, &MainWindow::SlotSwitchAdmin);
+
     // change to applicationDialog
     connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
 }
@@ -139,6 +142,22 @@ void MainWindow::SlotSwitchApp()
     this->setMaximumSize(_app_dlg->size());
 
     connect(_app_dlg, &ApplicationDialog::SigSwitchLogin, this, &MainWindow::SlotSwitchLogin3);
+}
+
+void MainWindow::SlotSwitchAdmin()
+{
+    _admin_dlg = new AdminManagerDialog(this);
+    _admin_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+
+    setCentralWidget(_admin_dlg);
+
+    _login_dlg->hide();
+    _admin_dlg->show();
+
+    this->setMinimumSize(_admin_dlg->size());
+    this->setMaximumSize(_admin_dlg->size());
+
+    // 连接从管理界面回来的槽函数
 }
 
 void MainWindow::setupEntranceAnimation(QWidget* widget, int duration)

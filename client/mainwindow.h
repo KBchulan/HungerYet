@@ -14,6 +14,7 @@
 #include "logindialog.h"
 #include "registerdialog.h"
 #include "applicationdialog.h"
+#include "adminmanagerdialog.h"
 
 #include <QMainWindow>
 
@@ -54,12 +55,16 @@ public slots:
     // handle app
     void SlotSwitchApp();
 
+    // handle admin
+    void SlotSwitchAdmin();
+
 private:
     Ui::MainWindow *ui = nullptr;
     LoginDialog *_login_dlg = nullptr;
     ResetDialog *_reset_dlg = nullptr;
     RegisterDialog *_reg_dlg = nullptr;
     ApplicationDialog *_app_dlg = nullptr;
+    AdminManagerDialog *_admin_dlg = nullptr;
 };
 
 #endif // MAINWINDOW_H
