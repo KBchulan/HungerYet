@@ -58,12 +58,20 @@ HungerYet是一个基于C++和Node.js开发的校园外卖订餐系统,采用分
 
 ### 环境要求
 - GCC 9.4+
-- CMake 3.2+
+- Clang 14.0.0+
+- CMake 3.24+
 - Qt 5.14.2+
-- Node.js 14+
+- Node.js 22.11+
 - OpenCV 4+
-- Redis
-- MySQL
+- Boost 1.82.0+
+- protobuf 3.13+
+- gRPC 1.50.0+
+- hiredis 1.0.3+
+- spdlog 1.10.0+
+- jsoncpp 1.9.5+
+- libcurl 7.80.0+
+- MySQL 8.0.34+
+- Redis 6.0.16+
 
 ### 编译运行
 ```bash
