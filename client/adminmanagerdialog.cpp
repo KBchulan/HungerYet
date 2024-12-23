@@ -1,5 +1,6 @@
 #include "adminmanagerdialog.h"
 #include "ui_adminmanagerdialog.h"
+
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
