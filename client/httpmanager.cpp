@@ -1,8 +1,9 @@
 #include "httpmanager.h"
+#include <QDebug>
 
 HttpManager::~HttpManager()
 {
-    std::cout << R"(HttpManager has been destructed!)" << '\n';
+    qDebug() << QStringLiteral("HttpManager has been destructed!");
 }
 
 void HttpManager::slot_http_finish(ReqId id, QString res, ErrorCodes err, Modules mod)

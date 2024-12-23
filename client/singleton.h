@@ -10,6 +10,7 @@
 #ifndef SINGLETON_H
 #define SINGLETON_H
 
+#include <QDebug>
 #include "global.h"
 
 template <typename T>
@@ -18,7 +19,7 @@ class Singleton
 public:
     ~Singleton()
     {
-        std::cout << R"(Singleton basic has been destructed!)" << '\n';
+        qDebug() << QStringLiteral("(Singleton basic has been destructed!)");
     }
 
     Singleton(const Singleton &) = delete;
@@ -36,7 +37,7 @@ public:
 
     void PrintAddress()
     {
-        std::cout << _instance.get() << '\n';
+        qDebug() << _instance.get();
     }
 
 protected:

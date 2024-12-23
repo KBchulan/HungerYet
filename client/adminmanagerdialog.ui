@@ -13,17 +13,14 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>110</y>
-     <width>80</width>
-     <height>21</height>
+     <x>-5</x>
+     <y>1</y>
+     <width>411</width>
+     <height>301</height>
     </rect>
-   </property>
-   <property name="text">
-    <string>admin</string>
    </property>
   </widget>
  </widget>

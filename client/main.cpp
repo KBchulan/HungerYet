@@ -2,10 +2,47 @@
 #include "mainwindow.h"
 
 #include <QFile>
+#include <QDateTime>
 #include <QApplication> 
+
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    // 获取当前时间
+    QFile logFile("../resources/Application/tmp/log.txt");
+    QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    logFile.open(QIODevice::WriteOnly | QIODevice::Append);
+    QTextStream stream(&logFile);
+    // 根据消息类型设置前缀
+    QString prefix;
+    switch (type) {
+        case QtDebugMsg:
+            prefix = "Debug";
+            break;
+        case QtWarningMsg:
+            prefix = "Warning";
+            break;
+        case QtCriticalMsg:
+            prefix = "Critical";
+            break;
+        case QtFatalMsg:
+            prefix = "Fatal";
+            break;
+        case QtInfoMsg:
+            prefix = "Info";
+            break;
+    }
+    // 写入日志
+    stream << "hello\n";
+    stream << flush;
+    logFile.close();
+}
 
 int main(int argc, char *argv[])
 {
+    QDir temp("../resources/Application/tmp");
+    if(!temp.exists())
+        temp.mkpath(".");
+    qInstallMessageHandler(customMessageHandler);
     QApplication a(argc, argv);
 
     // load and open qss
@@ -21,7 +58,6 @@ int main(int argc, char *argv[])
     {
         qDebug("Open failed!");
     }
-
     // read config
     QString config_path = ":/resources/config.ini";
     QSettings settings(config_path, QSettings::IniFormat);
@@ -31,5 +67,6 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
-    return a.exec();
+    auto ret = a.exec();
+    return ret;
 }
