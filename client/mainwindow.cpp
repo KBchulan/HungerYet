@@ -70,6 +70,7 @@ void MainWindow::SlotSwitchLogin()
     // create and register message link
     connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
     connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+    connect(_login_dlg, &LoginDialog::switchAdmin, this, &MainWindow::SlotSwitchAdmin);
     connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
 }
 
@@ -88,6 +89,7 @@ void MainWindow::SlotSwitchLogin2()
     // create and register message link
     connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
     connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+    connect(_login_dlg, &LoginDialog::switchAdmin, this, &MainWindow::SlotSwitchAdmin);
     connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
 }
 
@@ -112,6 +114,26 @@ void MainWindow::SlotSwitchLogin3()
     // create and register message link
     connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
     connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+    connect(_login_dlg, &LoginDialog::switchAdmin, this, &MainWindow::SlotSwitchAdmin);
+    connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
+}
+
+void MainWindow::SlotSwitchLogin4()
+{
+    // create LoginDialog
+    _login_dlg = new LoginDialog(this);
+    _login_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+
+    // show current dialog(default widget is _login_dlg)
+    setCentralWidget(_login_dlg);
+
+    _admin_dlg->hide();
+    _login_dlg->show();
+
+    // create and register message link
+    connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
+    connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+    connect(_login_dlg, &LoginDialog::switchAdmin, this, &MainWindow::SlotSwitchAdmin);
     connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
 }
 
@@ -158,6 +180,7 @@ void MainWindow::SlotSwitchAdmin()
     this->setMaximumSize(_admin_dlg->size());
 
     // 连接从管理界面回来的槽函数
+    connect(_admin_dlg, &AdminManagerDialog::SigReturnLogin, this, &MainWindow::SlotSwitchLogin4);
 }
 
 void MainWindow::setupEntranceAnimation(QWidget* widget, int duration)

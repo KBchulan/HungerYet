@@ -49,6 +49,9 @@ public slots:
     // from Application
     void SlotSwitchLogin3();
 
+    // from admin
+    void SlotSwitchLogin4();
+
     // handle reset
     void SlotSwitchReset();
 

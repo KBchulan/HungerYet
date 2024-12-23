@@ -67,6 +67,5 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
-    auto ret = a.exec();
-    return ret;
+    return a.exec();
 }

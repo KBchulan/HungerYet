@@ -37,3 +37,8 @@ void AdminManagerDialog::loadLogFile()
 
     file.close();
 }
+
+void AdminManagerDialog::on_return_btn_clicked()
+{
+    emit SigReturnLogin();
+}

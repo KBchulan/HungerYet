@@ -16,6 +16,12 @@ public:
     explicit AdminManagerDialog(QWidget *parent = nullptr);
     ~AdminManagerDialog();
 
+signals:
+    void SigReturnLogin();
+
+private slots:
+    void on_return_btn_clicked();
+
 private:
     void loadLogFile();
     Ui::AdminManagerDialog *ui;
