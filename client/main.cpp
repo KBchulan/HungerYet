@@ -32,7 +32,7 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &context, con
             break;
     }
     // 写入日志
-    stream << "hello\n";
+    stream << time << " " << prefix << " " << msg << "\n";
     stream << flush;
     logFile.close();
 }

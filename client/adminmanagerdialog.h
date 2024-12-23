@@ -17,6 +17,7 @@ public:
     ~AdminManagerDialog();
 
 private:
+    void loadLogFile();
     Ui::AdminManagerDialog *ui;
 };
 

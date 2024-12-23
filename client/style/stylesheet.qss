@@ -1229,3 +1229,56 @@ QMessageBox QPushButton[text="取消"]:hover {
     background-color: rgb(255, 85, 85);
     color: white;
 }
+
+/* AdminManagerDialog 样式 */
+#AdminManagerDialog {
+    background-color: rgb(255, 255, 255);
+}
+
+#AdminManagerDialog #listWidget {
+    border: 2px solid rgb(230, 236, 240);
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin: 20px;
+}
+
+#AdminManagerDialog #listWidget::item {
+    border-bottom: 1px solid rgb(245, 245, 245);
+    color: rgb(80, 80, 80);
+    font-size: 14px;
+}
+
+#AdminManagerDialog #listWidget::item:hover {
+    background-color: rgb(220, 220, 220);
+    border-radius: 8px;
+}
+
+#AdminManagerDialog #listWidget::item:selected {
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+/* AdminManagerDialog 滚动条样式 */
+#AdminManagerDialog QScrollBar:vertical {
+    border: none;
+    background: rgb(245, 245, 245);
+    width: 8px;
+    margin: 0px 0px 0px 0px;
+}
+
+#AdminManagerDialog QScrollBar::handle:vertical {
+    background: rgb(200, 200, 200);
+    border-radius: 4px;
+    min-height: 20px;
+}
+
+#AdminManagerDialog QScrollBar::handle:vertical:hover {
+    background: rgb(180, 180, 180);
+}
+
+#AdminManagerDialog QScrollBar::add-line:vertical,
+#AdminManagerDialog QScrollBar::sub-line:vertical {
+    height: 0px;
+}
