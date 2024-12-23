@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QFont>
 #include <QDebug>
+#include <QThread>
 #include <QScreen>
 #include <QProcess>
 #include <QSettings>
@@ -237,8 +238,9 @@ void SettingDialog::onClearCacheClicked()
         if (cacheDir.exists())
         {
             cacheDir.removeRecursively();
-            QMessageBox::information(this, "提示", "缓存已清除");
         }
+        QThread::sleep(2);
+        QMessageBox::information(this, "提示", "缓存已清除");
     }
 }
 
