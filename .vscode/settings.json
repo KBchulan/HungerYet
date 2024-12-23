@@ -76,6 +76,7 @@
         "cfenv": "cpp",
         "qlabel": "cpp",
         "qdebug": "cpp",
-        "qstandardpaths": "cpp"
+        "qstandardpaths": "cpp",
+        "qvector": "cpp"
     }
 }
