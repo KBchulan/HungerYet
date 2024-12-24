@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     _begin_dlg->show();
 
     connect(_begin_dlg, &BeginDialog::SigSwitchToLogin, this, &MainWindow::SlotSwitchLogin0);
+    connect(_begin_dlg, &BeginDialog::SigSwitchToAdmin, this, &MainWindow::SlotSwitchAdmin);
 }
 
 MainWindow::~MainWindow()
@@ -117,6 +118,7 @@ void MainWindow::SlotSwitchBegin()
     _begin_dlg->show();
 
     connect(_begin_dlg, &BeginDialog::SigSwitchToLogin, this, &MainWindow::SlotSwitchLogin0);
+    connect(_begin_dlg, &BeginDialog::SigSwitchToAdmin, this, &MainWindow::SlotSwitchAdmin);
 }
 
 void MainWindow::SlotSwitchReset()
@@ -155,7 +157,7 @@ void MainWindow::SlotSwitchAdmin()
 
     setCentralWidget(_admin_dlg);
 
-    _login_dlg->hide();
+    _begin_dlg->hide();
     _admin_dlg->show();
 
     this->setMinimumSize(_admin_dlg->size());

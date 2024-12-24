@@ -21,6 +21,8 @@ public:
 signals:
     void SigSwitchToLogin();
 
+    void SigSwitchToAdmin();
+
 private slots:
     void on_admin_btn_clicked();
 

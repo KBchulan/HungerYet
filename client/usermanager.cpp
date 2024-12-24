@@ -69,3 +69,13 @@ void UserManager::SetUserLevel(UserLevel level)
 {
     _user_level = level;
 }
+
+void UserManager::SetUserType(UserType type)
+{
+    _user_type = type;
+}
+
+UserType UserManager::GetUserType()
+{
+    return _user_type;
+}

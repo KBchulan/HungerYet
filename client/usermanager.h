@@ -20,7 +20,7 @@ enum class UserType
     User = 0,
     Merchant,
     Admin,
-    Visttor
+    Visitor
 };
 
 enum class UserLevel
@@ -51,6 +51,8 @@ public:
 
     void SetUserLevel(UserLevel level);
 
+    void SetUserType(UserType type);
+
     int GetUid();
 
     QString GetHead();
@@ -63,6 +65,8 @@ public:
 
     UserLevel GetUserLevel();
 
+    UserType GetUserType();
+
 private:
     UserManager();
 
@@ -74,6 +78,7 @@ private:
     QString _token;
 
     UserLevel _user_level = UserLevel::SIMPLE;
+    UserType _user_type = UserType::Visitor;
 };
 
 #endif // USERMANAGER_H
