@@ -45,18 +45,18 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(customMessageHandler);
     QApplication a(argc, argv);
 
-    // load and open qss
+    // 加载样式表并打印调试信息
     QFile qss(":/style/stylesheet.qss");
     if(qss.open(QFile::ReadOnly))
     {
-        qDebug("Open success!");
+        qDebug() << "Style sheet loaded successfully";
         QString style = QString::fromUtf8(qss.readAll());
         a.setStyleSheet(style);
         qss.close();
     }
     else
     {
-        qDebug("Open failed!");
+        qDebug() << "Failed to load style sheet";
     }
     // read config
     QString config_path = ":/resources/config.ini";

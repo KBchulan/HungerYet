@@ -50,6 +50,9 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>10</number>
+     </property>
      <property name="leftMargin">
       <number>20</number>
      </property>
@@ -57,6 +60,9 @@
       <number>20</number>
      </property>
      <property name="rightMargin">
+      <number>20</number>
+     </property>
+     <property name="bottomMargin">
       <number>20</number>
      </property>
      <item>
@@ -77,6 +83,12 @@
           <string>商品信息</string>
          </property>
          <layout class="QFormLayout" name="formLayout">
+          <property name="horizontalSpacing">
+           <number>15</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>15</number>
+          </property>
           <item row="0" column="0">
            <widget class="QLabel" name="nameLabel">
             <property name="text">
@@ -106,22 +118,25 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>10</number>
+         </property>
          <item>
-          <widget class="QPushButton" name="addButton">
+          <widget class="QPushButton" name="addProductButton">
            <property name="text">
             <string>添加</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="editButton">
+          <widget class="QPushButton" name="editProductButton">
            <property name="text">
             <string>修改</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="deleteButton">
+          <widget class="QPushButton" name="deleteProductButton">
            <property name="text">
             <string>删除</string>
            </property>

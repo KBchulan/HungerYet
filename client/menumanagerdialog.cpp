@@ -9,13 +9,20 @@ MenuManagerDialog::MenuManagerDialog(QWidget *parent)
     , ui(new Ui::MenuManagerDialog)
 {
     ui->setupUi(this);
+    
+    // 设置对象名称，使QSS样式生效
+    setObjectName("MenuManagerDialog");
+    ui->deleteProductButton->setObjectName("deleteProductButton");
+    ui->editProductButton->setObjectName("editProductButton");
+    ui->addProductButton->setObjectName("addProductButton");
+    
     setupUI();
     loadMenuItems();
 
     // 连接信号槽
-    connect(ui->addButton, &QPushButton::clicked, this, &MenuManagerDialog::onAddButtonClicked);
-    connect(ui->editButton, &QPushButton::clicked, this, &MenuManagerDialog::onEditButtonClicked);
-    connect(ui->deleteButton, &QPushButton::clicked, this, &MenuManagerDialog::onDeleteButtonClicked);
+    connect(ui->addProductButton, &QPushButton::clicked, this, &MenuManagerDialog::onAddProductButtonClicked);
+    connect(ui->editProductButton, &QPushButton::clicked, this, &MenuManagerDialog::onEditProductButtonClicked);
+    connect(ui->deleteProductButton, &QPushButton::clicked, this, &MenuManagerDialog::onDeleteProductButtonClicked);
     connect(ui->menuList, &QListWidget::itemSelectionChanged, this, &MenuManagerDialog::onItemSelectionChanged);
 }
 
@@ -26,8 +33,8 @@ MenuManagerDialog::~MenuManagerDialog()
 
 void MenuManagerDialog::setupUI()
 {
-    ui->editButton->setEnabled(false);
-    ui->deleteButton->setEnabled(false);
+    //ui->editProductButton->setEnabled(false);
+    //ui->deleteProductButton->setEnabled(false);
     ui->menuList->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
@@ -48,7 +55,7 @@ void MenuManagerDialog::loadMenuItems()
     }
 }
 
-void MenuManagerDialog::onAddButtonClicked()
+void MenuManagerDialog::onAddProductButtonClicked()
 {
     if(!validateInput())
         return;
@@ -69,9 +76,10 @@ void MenuManagerDialog::onAddButtonClicked()
 
 void MenuManagerDialog::onSaveButtonClicked()
 {
+
 }
 
-void MenuManagerDialog::onEditButtonClicked()
+void MenuManagerDialog::onEditProductButtonClicked()
 {
     if(!validateInput())
         return;
@@ -96,7 +104,7 @@ void MenuManagerDialog::onEditButtonClicked()
     clearInputs();
 }
 
-void MenuManagerDialog::onDeleteButtonClicked()
+void MenuManagerDialog::onDeleteProductButtonClicked()
 {
     QListWidgetItem* currentItem = ui->menuList->currentItem();
     if(!currentItem)
@@ -113,6 +121,7 @@ void MenuManagerDialog::onDeleteButtonClicked()
 
     if(reply == QMessageBox::Yes)
     {
+        qDebug() << QString("删除商品：") << name;
         menuItems.remove(name);
         updateMenuList();
         clearInputs();
@@ -124,8 +133,8 @@ void MenuManagerDialog::onItemSelectionChanged()
     QListWidgetItem* currentItem = ui->menuList->currentItem();
     bool hasSelection = currentItem != nullptr;
 
-    ui->editButton->setEnabled(hasSelection);
-    ui->deleteButton->setEnabled(hasSelection);
+    ui->editProductButton->setEnabled(hasSelection);
+    ui->deleteProductButton->setEnabled(hasSelection);
 
     if(hasSelection)
     {
@@ -143,10 +152,11 @@ void MenuManagerDialog::updateMenuList()
     ui->menuList->clear();
     for(auto it = menuItems.begin(); it != menuItems.end(); ++it)
     {
-        QString displayText = QString("%1 - ￥%2").arg(it.key()).arg(it.value(), 0, 'f', 2);
-        ui->menuList->addItem(displayText);
+        if (it.value() > 0){
+            QString displayText = QString("%1 - ￥%2").arg(it.key()).arg(it.value(), 0, 'f', 2);
+            ui->menuList->addItem(displayText);
+        }
     }
-
     // 更新到 MerchantManager
     // 这里需要实现保存到数据库或文件的逻辑
 }

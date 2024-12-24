@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/icos/MainWindow.ico</file>
         <file>style/stylesheet.qss</file>
+        <file>resources/icos/MainWindow.ico</file>
         <file>resources/config.ini</file>
         <file>resources/button/unvisible.png</file>
         <file>resources/button/unvisible_hover.png</file>

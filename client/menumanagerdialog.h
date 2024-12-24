@@ -15,11 +15,12 @@ class MenuManagerDialog : public QWidget
 public:
     explicit MenuManagerDialog(QWidget *parent = nullptr);
     ~MenuManagerDialog();
+    void setMerchantId(int id) { merchantId = id; }
 
 private slots:
-    void onAddButtonClicked();
-    void onDeleteButtonClicked();
-    void onEditButtonClicked();
+    void onAddProductButtonClicked();
+    void onDeleteProductButtonClicked();
+    void onEditProductButtonClicked();
     void onSaveButtonClicked();
     void onItemSelectionChanged();
     void updateMenuList();
@@ -33,6 +34,7 @@ private:
 private:
     Ui::MenuManagerDialog *ui;
     QMap<QString, double> menuItems;  // 存储菜品名称和价格
+    int merchantId = 0;
 };
 
 #endif // MENUMANAGERDIALOG_H 
