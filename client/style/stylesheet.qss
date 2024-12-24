@@ -193,6 +193,21 @@ LoginDialog, RegisterDialog, ResetDialog
     border: 3px solid rgb(0, 0, 0);
 }
 
+#chat_btn[state='hover']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(100, 100, 100);
+    border: 3px solid rgb(0,0,0);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/chat.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 /* 工具栏-home */
 #home_btn[state='normal']
 {
@@ -1633,7 +1648,7 @@ QMessageBox QPushButton[text="取消"]:hover {
 /* 按钮通用样式 */
 #addProductButton, #editProductButton, #deleteProductButton {
     background-color: rgb(255, 205, 97);
-    border: none;
+    border: 4px solid rgb(225, 170, 67);
     border-radius: 15px;
     padding: 8px 20px;
     color: rgb(0, 0, 0);
@@ -1644,13 +1659,17 @@ QMessageBox QPushButton[text="取消"]:hover {
 
 #addProductButton:hover, #editProductButton:hover, #deleteProductButton:hover {
     background-color: rgb(255, 185, 77);
+    border: 4px solid rgb(225, 150, 47);
+
 }
 
 #addProductButton:pressed, #editProductButton:pressed, #deleteProductButton:pressed {
     background-color: rgb(235, 165, 57);
+    border: 4px solid rgb(205, 135, 27);
 }
 
 #addProductButton:disabled, #editProductButton:disabled, #deleteProductButton:disabled {
     background-color: rgb(200, 200, 200);
     color: rgb(150, 150, 150);
+    border: 4px solid rgb(170, 170, 170);
 }

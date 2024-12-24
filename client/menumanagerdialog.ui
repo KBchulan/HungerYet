@@ -73,6 +73,24 @@
          <height>0</height>
         </size>
        </property>
+       <property name="styleSheet">
+      <string notr="true">QListWidget {
+    border: 1px solid #FFB74D;
+    border-radius: 4px;
+    background-color: #FFFDE7;
+}
+QListWidget::item {
+    padding: 5px;
+    border-bottom: 1px solid #FFE0B2;
+}
+QListWidget::item:selected {
+    background-color: #FFE082;
+    color: black;
+}
+QListWidget::item:hover {
+    background-color: #FFF8E1;
+}</string>
+     </property>
       </widget>
      </item>
      <item>
