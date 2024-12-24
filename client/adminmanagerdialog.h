@@ -21,9 +21,13 @@ signals:
 
 private slots:
     void on_return_btn_clicked();
+    void on_searchEdit_textChanged(const QString &text);
+    void on_refreshBtn_clicked();
 
 private:
     void loadLogFile();
+    void filterLogs(const QString &searchText);
+    QStringList m_allLogs;  // 存储所有日志
     Ui::AdminManagerDialog *ui;
 };
 

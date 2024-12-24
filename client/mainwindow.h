@@ -14,6 +14,7 @@
 #include "logindialog.h"
 #include "begindialog.h"
 #include "registerdialog.h"
+#include "merchantappdialog.h"
 #include "applicationdialog.h"
 #include "adminmanagerdialog.h"
 
@@ -73,6 +74,7 @@ private:
     RegisterDialog *_reg_dlg = nullptr;
     ApplicationDialog *_app_dlg = nullptr;
     AdminManagerDialog *_admin_dlg = nullptr;
+    MerchantAppDialog *_mer_app_dlg = nullptr;
 };
 
 #endif // MAINWINDOW_H

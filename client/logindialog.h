@@ -92,17 +92,15 @@ signals:
     // when receive info from http, it will send to tcp
     void sig_connect_tcp(ServerInfo);
 
-    // admin
-    void switchAdmin();
-
 private slots:
     // 登录按钮
     void on_login_btn_clicked();
 
     // 接到登录回包后的逻辑
     void slot_login_mod_finish(ReqId id, QString res, ErrorCodes err);
+
+    // 游客登录的逻辑
     void on_visitor_btn_clicked();
-    void on_admin_btn_clicked();
 };
 
 #endif // LOGINDIALOG_H

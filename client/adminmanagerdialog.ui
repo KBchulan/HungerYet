@@ -14,6 +14,9 @@
    <string>Dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>10</number>
+   </property>
    <property name="leftMargin">
     <number>20</number>
    </property>
@@ -32,18 +35,90 @@
       <widget class="QPushButton" name="return_btn">
        <property name="minimumSize">
         <size>
-         <width>40</width>
-         <height>40</height>
+         <width>80</width>
+         <height>35</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>40</width>
-         <height>40</height>
+         <width>80</width>
+         <height>35</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #FFA000;
+    color: white;
+    border-radius: 4px;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #FF8F00;
+}
+QPushButton:pressed {
+    background-color: #FF6F00;
+}</string>
        </property>
        <property name="text">
         <string>返回</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="searchEdit">
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="placeholderText">
+        <string>搜索日志...</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    border: 1px solid #FFB74D;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #FFF8E1;
+}
+QLineEdit:focus {
+    border: 2px solid #FFA000;
+    background-color: white;
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="refreshBtn">
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #FFB300;
+    color: white;
+    border-radius: 4px;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #FFA000;
+}
+QPushButton:pressed {
+    background-color: #FF8F00;
+}</string>
+       </property>
+       <property name="text">
+        <string>刷新</string>
        </property>
       </widget>
      </item>
@@ -63,7 +138,26 @@
     </layout>
    </item>
    <item>
-    <widget class="QListWidget" name="listWidget"/>
+    <widget class="QListWidget" name="listWidget">
+     <property name="styleSheet">
+      <string notr="true">QListWidget {
+    border: 1px solid #FFB74D;
+    border-radius: 4px;
+    background-color: #FFFDE7;
+}
+QListWidget::item {
+    padding: 5px;
+    border-bottom: 1px solid #FFE0B2;
+}
+QListWidget::item:selected {
+    background-color: #FFE082;
+    color: black;
+}
+QListWidget::item:hover {
+    background-color: #FFF8E1;
+}</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

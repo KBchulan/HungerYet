@@ -1,5 +1,6 @@
 #include "tcpmanager.h"
 #include "mainwindow.h"
+#include "usermanager.h"
 #include "ui_mainwindow.h"
 
 #include <QTimer>
@@ -117,6 +118,9 @@ void MainWindow::SlotSwitchBegin()
     _admin_dlg->hide();
     _begin_dlg->show();
 
+    this->setMinimumSize(_begin_dlg->size());
+    this->setMaximumSize(_begin_dlg->size());
+
     connect(_begin_dlg, &BeginDialog::SigSwitchToLogin, this, &MainWindow::SlotSwitchLogin0);
     connect(_begin_dlg, &BeginDialog::SigSwitchToAdmin, this, &MainWindow::SlotSwitchAdmin);
 }
@@ -136,18 +140,34 @@ void MainWindow::SlotSwitchReset()
 
 void MainWindow::SlotSwitchApp()
 {
-    _app_dlg = new ApplicationDialog(this);
-    _app_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+    if(UserManager::GetInstance()->GetUserType() == UserType::User)
+    {
+        _app_dlg = new ApplicationDialog(this);
+        _app_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
 
-    setCentralWidget(_app_dlg);
+        setCentralWidget(_app_dlg);
 
-    _login_dlg->hide();
-    _app_dlg->show();
+        _login_dlg->hide();
+        _app_dlg->show();
 
-    this->setMinimumSize(_app_dlg->size());
-    this->setMaximumSize(_app_dlg->size());
+        this->setMinimumSize(_app_dlg->size());
+        this->setMaximumSize(_app_dlg->size());
 
-    connect(_app_dlg, &ApplicationDialog::SigSwitchLogin, this, &MainWindow::SlotSwitchLogin3);
+        connect(_app_dlg, &ApplicationDialog::SigSwitchLogin, this, &MainWindow::SlotSwitchLogin3);
+    }
+    else if(UserManager::GetInstance()->GetUserType() == UserType::Merchant)
+    {
+        _mer_app_dlg = new MerchantAppDialog(this);
+        _mer_app_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+
+        setCentralWidget(_mer_app_dlg);
+
+        _login_dlg->hide();
+        _mer_app_dlg->show();
+
+        this->setMinimumSize(_mer_app_dlg->size());
+        this->setMaximumSize(_mer_app_dlg->size());
+    }
 }
 
 void MainWindow::SlotSwitchAdmin()

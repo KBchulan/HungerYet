@@ -33,6 +33,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     menudialog.cpp \
+    merchantappdialog.cpp \
     merchantdialog.cpp \
     merchantmanager.cpp \
     orderdialog.cpp \
@@ -63,6 +64,7 @@ HEADERS += \
     logindialog.h \
     mainwindow.h \
     menudialog.h \
+    merchantappdialog.h \
     merchantdialog.h \
     merchantmanager.h \
     orderdialog.h \
@@ -88,6 +90,7 @@ FORMS += \
     logindialog.ui \
     mainwindow.ui \
     menudialog.ui \
+    merchantappdialog.ui \
     merchantdialog.ui \
     orderdialog.ui \
     registerdialog.ui \

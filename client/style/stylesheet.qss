@@ -1235,52 +1235,124 @@ QMessageBox QPushButton[text="取消"]:hover {
     background-color: rgb(255, 255, 255);
 }
 
-#AdminManagerDialog #listWidget {
-    border: 2px solid rgb(230, 236, 240);
-    border-radius: 20px;
-    background-color: rgb(255, 255, 255);
+#AdminManagerDialog #topBar {
+    background-color: rgb(255, 205, 97);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     padding: 10px;
-    margin: 20px;
+}
+
+#AdminManagerDialog #return_btn {
+    background-color: rgb(255, 205, 97);
+    border: 2px solid rgb(255, 185, 77);
+    border-radius: 15px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    padding: 8px 20px;
+    min-width: 80px;
+}
+
+#AdminManagerDialog #return_btn:hover {
+    background-color: rgb(255, 185, 77);
+    border-color: rgb(255, 165, 57);
+}
+
+#AdminManagerDialog #return_btn:pressed {
+    background-color: rgb(255, 165, 57);
+    border-color: rgb(255, 145, 37);
+}
+
+#AdminManagerDialog #searchEdit {
+    background-color: rgb(255, 250, 240);
+    border: 2px solid rgb(255, 205, 97);
+    border-radius: 15px;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: rgb(80, 80, 80);
+}
+
+#AdminManagerDialog #searchEdit:focus {
+    background-color: white;
+    border-color: rgb(255, 185, 77);
+}
+
+#AdminManagerDialog #searchEdit::placeholder {
+    color: rgb(180, 180, 180);
+}
+
+#AdminManagerDialog #refreshBtn {
+    background-color: rgb(255, 205, 97);
+    border: 2px solid rgb(255, 185, 77);
+    border-radius: 15px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    padding: 8px 20px;
+    min-width: 80px;
+}
+
+#AdminManagerDialog #refreshBtn:hover {
+    background-color: rgb(255, 185, 77);
+    border-color: rgb(255, 165, 57);
+}
+
+#AdminManagerDialog #refreshBtn:pressed {
+    background-color: rgb(255, 165, 57);
+    border-color: rgb(255, 145, 37);
+}
+
+#AdminManagerDialog #listWidget {
+    border: 2px solid rgb(255, 205, 97);
+    border-radius: 15px;
+    background-color: rgb(255, 252, 245);
+    padding: 10px;
+    margin: 10px;
 }
 
 #AdminManagerDialog #listWidget::item {
-    border-bottom: 1px solid rgb(245, 245, 245);
+    padding: 12px;
+    margin: 2px 0px;
+    border-bottom: 1px solid rgb(255, 235, 200);
+    border-radius: 8px;
     color: rgb(80, 80, 80);
     font-size: 14px;
 }
 
 #AdminManagerDialog #listWidget::item:hover {
-    background-color: rgb(220, 220, 220);
-    border-radius: 8px;
+    background-color: rgb(255, 248, 225);
 }
 
 #AdminManagerDialog #listWidget::item:selected {
     background-color: rgb(255, 205, 97);
-    color: rgb(255, 255, 255);
-    border-radius: 8px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
 }
 
 /* AdminManagerDialog 滚动条样式 */
 #AdminManagerDialog QScrollBar:vertical {
     border: none;
-    background: rgb(245, 245, 245);
-    width: 8px;
-    margin: 0px 0px 0px 0px;
+    background: rgb(255, 248, 225);
+    width: 10px;
+    margin: 0px;
 }
 
 #AdminManagerDialog QScrollBar::handle:vertical {
-    background: rgb(200, 200, 200);
-    border-radius: 4px;
-    min-height: 20px;
+    background: rgb(255, 205, 97);
+    border-radius: 5px;
+    min-height: 30px;
 }
 
 #AdminManagerDialog QScrollBar::handle:vertical:hover {
-    background: rgb(180, 180, 180);
+    background: rgb(255, 185, 77);
 }
 
 #AdminManagerDialog QScrollBar::add-line:vertical,
 #AdminManagerDialog QScrollBar::sub-line:vertical {
     height: 0px;
+}
+
+#AdminManagerDialog QScrollBar::add-page:vertical,
+#AdminManagerDialog QScrollBar::sub-page:vertical {
+    background: none;
 }
 
 /* 开始界面样式 */
