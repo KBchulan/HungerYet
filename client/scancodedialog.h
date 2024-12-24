@@ -10,10 +10,12 @@
 #ifndef SCANCODEDIALOG_H
 #define SCANCODEDIALOG_H
 
+#include <QUrl>
 #include <QTimer>
 #include <QDialog>
 #include <opencv2/opencv.hpp>
 #include <QPropertyAnimation>
+#include <QDesktopServices>
 
 namespace Ui
 {
@@ -28,6 +30,10 @@ public:
     explicit ScanCodeDialog(QWidget *parent = nullptr);
     ~ScanCodeDialog();
 
+signals:
+    // 添加扫描结果信号
+    void qrCodeScanned(const QString &result);
+
 protected:
     void showEvent(QShowEvent *event) override;
     void hideEvent(QHideEvent *event) override;
@@ -35,6 +41,7 @@ protected:
 private slots:
     void updateFrame();
     bool processQrCode(const cv::Mat& frame);
+    void handleQRContent(const QString &content);
 
 private:
     void initCamera();

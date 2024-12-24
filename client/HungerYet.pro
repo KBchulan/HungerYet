@@ -25,6 +25,7 @@ SOURCES += \
     customizeedit.cpp \
     editinfodialog.cpp \
     favoritedialog.cpp \
+    givemoneydialog.cpp \
     global.cpp \
     homedialog.cpp \
     httpmanager.cpp \
@@ -57,6 +58,7 @@ HEADERS += \
     customizeedit.h \
     editinfodialog.h \
     favoritedialog.h \
+    givemoneydialog.h \
     global.h \
     homedialog.h \
     httpmanager.h \
@@ -86,6 +88,7 @@ FORMS += \
     chatdialog.ui \
     editinfodialog.ui \
     favoritedialog.ui \
+    givemoneydialog.ui \
     homedialog.ui \
     logindialog.ui \
     mainwindow.ui \
@@ -98,7 +101,7 @@ FORMS += \
     scancodedialog.ui \
     settingdialog.ui
 
-LIBS += -lcurl -ljsoncpp
+LIBS += -lcurl -ljsoncpp -lzbar
 
 # OpenCV configuration
 LIBS += -L/usr/local/lib \
@@ -117,4 +120,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    resources.qrc \
     resources.qrc
+
+DISTFILES += \
+    CMakeLists.txt \
+    HungerYet.pro.user \
+    package.sh

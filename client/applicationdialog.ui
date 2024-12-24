@@ -49,7 +49,7 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>7</number>
+        <number>8</number>
        </property>
        <widget class="MenuDialog" name="menu_wid"/>
        <widget class="HomeDialog" name="home_wid"/>
@@ -59,6 +59,7 @@
        <widget class="SettingDialog" name="setting_wid"/>
        <widget class="OrderDialog" name="order_wid"/>
        <widget class="FavoriteDialog" name="favor_wid"/>
+       <widget class="GiveMoneyDialog" name="give_money_wid"/>
        <widget class="ChatDialog" name="chat_wid"/>
       </widget>
      </item>
@@ -186,6 +187,12 @@
    <class>FavoriteDialog</class>
    <extends>QWidget</extends>
    <header location="global">favoritedialog.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>GiveMoneyDialog</class>
+   <extends>QWidget</extends>
+   <header location="global">givemoneydialog.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

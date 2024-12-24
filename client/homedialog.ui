@@ -105,7 +105,7 @@
        </spacer>
       </item>
       <item alignment="Qt::AlignHCenter">
-       <widget class="QLabel" name="usernameLabel">
+       <widget class="ClickedLabel" name="usernameLabel">
         <property name="text">
          <string>用户名</string>
         </property>

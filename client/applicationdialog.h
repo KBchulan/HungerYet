@@ -59,6 +59,8 @@ private slots:
     void SlotSwitchOrderManager();
 
     void SlotSwitchFarOrder();
+
+    void SlotSwitchGiveMoney();
 };
 
 #endif // APPLICATIONDIALOG_H

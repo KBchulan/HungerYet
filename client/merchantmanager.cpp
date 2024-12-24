@@ -37,11 +37,6 @@ MerchantManager::MerchantManager()
         {"鸡肉", 58.0}
     };
     AddMerchant("火锅店", "升华广场12号", "../resources/Application/merchant/4.jpg", menu4);
-
-    for(int i = 5; i <= 30; i++)
-    {
-        AddMerchant("老四川", "文化路127号", "../resources/Application/merchant/1.jpg", menu1);
-    }
 }
 
 MerchantManager::~MerchantManager()

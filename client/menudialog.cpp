@@ -41,6 +41,9 @@ MenuDialog::MenuDialog(QWidget *parent)
     clearAction->setIcon(QIcon(":/resources/Application/btn/close_transparent.png"));
     ui->search_edit->addAction(clearAction, QLineEdit::TrailingPosition);
 
+    // 连接搜索信号
+    connect(ui->search_edit, &QLineEdit::textChanged, this, &MenuDialog::onSearchTextChanged);
+
     connect(ui->search_edit, &QLineEdit::textChanged, [clearAction](const QString &text) ->void
     {
         if(!text.isEmpty())
@@ -49,13 +52,19 @@ MenuDialog::MenuDialog(QWidget *parent)
             clearAction->setIcon(QIcon(":/resources/Application/btn/close_transparent.png"));
     });
 
-    // 清除搜索框内容，同时关闭搜索界面
+    // 清除搜索框内容，同时刷新列表显示所有商家
     connect(clearAction, &QAction::triggered, [this, clearAction]() -> void
     {
+        // 清除文本时不触发 textChanged 信号
+        ui->search_edit->blockSignals(true);
         ui->search_edit->clear();
+        ui->search_edit->blockSignals(false);
+        
         clearAction->setIcon(QIcon(":/resources/Application/btn/close_transparent.png"));
         ui->search_edit->clearFocus();
-        ShowSearch(false);
+        
+        // 重新加载所有商家
+        loadMerchants();
     });
 }
 
@@ -74,6 +83,9 @@ void MenuDialog::ShowSearch(bool bSearch)
 
 void MenuDialog::loadMerchants()
 {
+    // 清空现有列表
+    ui->listWidget->clear();
+    
     // 获取商家管理器实例
     auto merchantManager = MerchantManager::GetInstance();
 
@@ -182,4 +194,87 @@ bool MenuDialog::eventFilter(QObject *obj, QEvent *event)
         return true;
     }
     return QDialog::eventFilter(obj, event);
+}
+
+// 处理搜索文本变化
+void MenuDialog::onSearchTextChanged(const QString &text)
+{
+    if (text.isEmpty()) 
+    {
+        loadMerchants();
+        return;
+    }
+    
+    // 搜索商家并更新显示
+    std::vector<int> results = searchMerchants(text);
+    loadFilteredMerchants(results);
+}
+
+// 搜索商家
+std::vector<int> MenuDialog::searchMerchants(const QString& keyword)
+{
+    std::vector<int> results;
+    auto merchantManager = MerchantManager::GetInstance();
+    
+    // 转换关键词为小写以进行不区分大小写的搜索
+    QString loweredKeyword = keyword.toLower();
+    
+    // 遍历所有商家
+    for (int id = 0; id < static_cast<int>(merchantManager->GetMerchantCount()); id++)
+    {
+        MerchantInfo info = merchantManager->GetMerchantInfo(id);
+        QString name = std::get<0>(info);
+        QString location = std::get<1>(info);
+        const auto& menu = std::get<3>(info);
+        
+        if (name.isEmpty()) continue;
+        
+        // 检查商家名称
+        if (name.toLower().contains(loweredKeyword))
+        {
+            results.push_back(id);
+            continue;
+        }
+        
+        // 检查地址
+        if (location.toLower().contains(loweredKeyword))
+        {
+            results.push_back(id);
+            continue;
+        }
+        
+        // 检查菜品名称
+        bool found = false;
+        for (const auto& dish : menu)
+        {
+            if (dish.first.toLower().contains(loweredKeyword))
+            {
+                results.push_back(id);
+                found = true;
+                break;
+            }
+        }
+        if (found) continue;
+    }
+    
+    return results;
+}
+
+// 加载过滤后的商家列表
+void MenuDialog::loadFilteredMerchants(const std::vector<int>& merchantIds)
+{
+    ui->listWidget->clear();
+    auto merchantManager = MerchantManager::GetInstance();
+    
+    for (int id : merchantIds)
+    {
+        MerchantInfo info = merchantManager->GetMerchantInfo(id);
+        if (std::get<0>(info).isEmpty())
+            continue;
+            
+        QListWidgetItem *item = new QListWidgetItem(ui->listWidget);
+        QWidget *merchantWidget = createMerchantWidget(id, info);
+        item->setSizeHint(merchantWidget->sizeHint());
+        ui->listWidget->setItemWidget(item, merchantWidget);
+    }
 }

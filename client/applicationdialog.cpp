@@ -7,6 +7,7 @@
 #include "scancodedialog.h"
 #include "editinfodialog.h"
 #include "favoritedialog.h"
+#include "givemoneydialog.h"
 #include "applicationdialog.h"
 #include "ui_applicationdialog.h"
 
@@ -54,8 +55,8 @@ ApplicationDialog::ApplicationDialog(QWidget *parent) :
     connect(ui->home_wid->findChild<QPushButton*>("settingsBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchSetting);
     connect(ui->home_wid->findChild<ClickedLabel*>("orderTextLabel"), &ClickedLabel::sig_clicked, this, &ApplicationDialog::SlotSwitchOrderManager);
     connect(ui->home_wid->findChild<ClickedLabel*>("favoriteTextLabel"), &ClickedLabel::sig_clicked, this, &ApplicationDialog::SlotSwitchFarOrder);
+    connect(ui->home_wid->findChild<ClickedLabel*>("usernameLabel"), &ClickedLabel::sig_clicked, this, &ApplicationDialog::SlotSwitchGiveMoney);
     connect(ui->favor_wid, &FavoriteDialog::SigMerchantSelected, this, &ApplicationDialog::SlotSwitchMerchant);
-
     connect(ui->edit_wid->findChild<QPushButton*>("saveBtn"), &QPushButton::clicked, this, &ApplicationDialog::SlotSwitchHome);
 
     ui->stackedWidget->setCurrentWidget(ui->menu_wid);
@@ -208,6 +209,11 @@ void ApplicationDialog::SlotSwitchOrderManager()
 void ApplicationDialog::SlotSwitchFarOrder()
 {
     ui->stackedWidget->setCurrentWidget(ui->favor_wid);
+}
+
+void ApplicationDialog::SlotSwitchGiveMoney()
+{
+    ui->stackedWidget->setCurrentWidget(ui->give_money_wid);
 }
 
 void ApplicationDialog::SlotSwitchHome()
