@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     adminmanagerdialog.cpp \
     applicationdialog.cpp \
+    begindialog.cpp \
     chatdialog.cpp \
     clickedbtn.cpp \
     clickedlabel.cpp \
@@ -48,6 +49,7 @@ SOURCES += \
 HEADERS += \
     adminmanagerdialog.h \
     applicationdialog.h \
+    begindialog.h \
     chatdialog.h \
     clickedbtn.h \
     clickedlabel.h \
@@ -78,6 +80,7 @@ HEADERS += \
 FORMS += \
     adminmanagerdialog.ui \
     applicationdialog.ui \
+    begindialog.ui \
     chatdialog.ui \
     editinfodialog.ui \
     favoritedialog.ui \

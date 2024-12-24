@@ -12,6 +12,7 @@
 
 #include "resetdialog.h"
 #include "logindialog.h"
+#include "begindialog.h"
 #include "registerdialog.h"
 #include "applicationdialog.h"
 #include "adminmanagerdialog.h"
@@ -40,6 +41,9 @@ public slots:
     // handle reg_btn's singal
     void SlotSwitchReg();
 
+    // handle from Begin
+    void SlotSwitchLogin0();
+
     // handle register's return singal
     void SlotSwitchLogin();
 
@@ -63,6 +67,7 @@ public slots:
 
 private:
     Ui::MainWindow *ui = nullptr;
+    BeginDialog *_begin_dlg = nullptr;
     LoginDialog *_login_dlg = nullptr;
     ResetDialog *_reset_dlg = nullptr;
     RegisterDialog *_reg_dlg = nullptr;

@@ -15,6 +15,14 @@
 #include <memory>
 #include <QObject>
 
+enum class UserType
+{
+    User = 0,
+    Merchant,
+    Admin,
+    Visttor
+};
+
 enum class UserLevel
 {
     SIMPLE = 0,

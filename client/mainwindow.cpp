@@ -14,25 +14,13 @@ MainWindow::MainWindow(QWidget *parent)
     // design ico
     setWindowIcon(QIcon(":/resources/icos/MainWindow.ico"));
 
-    // create LoginDialog
-    _login_dlg = new LoginDialog(this);
-    _login_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+    _begin_dlg = new BeginDialog(this);
+    _begin_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
 
-    // show current dialog(default widget is _login_dlg)
-    setCentralWidget(_login_dlg);
-    _login_dlg->show();
+    setCentralWidget(_begin_dlg);
+    _begin_dlg->show();
 
-    // create and register message link
-    connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
-
-    // reset password
-    connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
-
-    // admin
-    connect(_login_dlg, &LoginDialog::switchAdmin, this, &MainWindow::SlotSwitchAdmin);
-
-    // change to applicationDialog
-    connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
+    connect(_begin_dlg, &BeginDialog::SigSwitchToLogin, this, &MainWindow::SlotSwitchLogin0);
 }
 
 MainWindow::~MainWindow()
@@ -53,6 +41,23 @@ void MainWindow::SlotSwitchReg()
     _reg_dlg->show();
 
     connect(_reg_dlg, &RegisterDialog::sigSwitchLogin, this, &MainWindow::SlotSwitchLogin);
+}
+
+void MainWindow::SlotSwitchLogin0()
+{
+    // create LoginDialog
+    _login_dlg = new LoginDialog(this);
+    _login_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+
+    // show current dialog(default widget is _login_dlg)
+    setCentralWidget(_login_dlg);
+    _login_dlg->show();
+
+    // create and register message link
+    connect(_login_dlg, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
+    connect(_login_dlg, &LoginDialog::switchReset, this, &MainWindow::SlotSwitchReset);
+    connect(_login_dlg, &LoginDialog::switchAdmin, this, &MainWindow::SlotSwitchAdmin);
+    connect(TcpManager::GetInstance().get(), &TcpManager::sig_switch_chatdialog, this, &MainWindow::SlotSwitchApp);
 }
 
 void MainWindow::SlotSwitchLogin()
