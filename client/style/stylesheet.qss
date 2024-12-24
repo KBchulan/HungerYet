@@ -69,7 +69,7 @@ LoginDialog, RegisterDialog, ResetDialog
 }
 
 /* 工具栏-菜单 */
-#menu_btn[state='normal']
+#menu_btn[state='normal'], #menu_manager_btn[state='normal']
 {
     background-color: rgb(200, 200, 200);
     color: rgb(255, 255, 255);
@@ -84,7 +84,7 @@ LoginDialog, RegisterDialog, ResetDialog
     background-repeat: no-repeat;
 }
 
-#menu_btn[state='hover']
+#menu_btn[state='hover'], #menu_manager_btn[state='hover']
 {
     background-color: rgb(200, 200, 200);
     color: rgb(100, 100, 100);
@@ -99,7 +99,7 @@ LoginDialog, RegisterDialog, ResetDialog
     background-repeat: no-repeat;
 }
 
-#menu_btn[state='selected']
+#menu_btn[state='selected'], #menu_manager_btn[state='selected']
 {
     background-color: rgb(255, 205, 97);
     color: rgb(255, 255, 255);
@@ -115,8 +115,7 @@ LoginDialog, RegisterDialog, ResetDialog
     border: 3px solid rgb(0, 0, 0);
 }
 
-/* 工具栏-聊天 */
-#chat_btn[state='normal']
+#order_btn[state='normal']
 {
     background-color: rgb(200, 200, 200);
     color: rgb(255, 255, 255);
@@ -126,16 +125,48 @@ LoginDialog, RegisterDialog, ResetDialog
     max-width: 55px;
     min-height: 55px;
     max-height: 55px;
-    background-image: url(:resources/Application/btn/chat.svg);
+    background-image: url(:resources/Application/btn/bill.svg);
     background-position: center;
     background-repeat: no-repeat;
 }
 
-#chat_btn[state='hover']
+#order_btn[state='hover']
 {
     background-color: rgb(200, 200, 200);
     color: rgb(100, 100, 100);
     border: 3px solid rgb(0,0,0);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/bill.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#order_btn[state='selected']
+{
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(0,0,0);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/bill.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+/* 工具栏-聊天 */
+#chat_btn[state='normal']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(100, 100, 100);
     border-radius: 30px;
     min-width: 55px;
     max-width: 55px;
@@ -220,20 +251,6 @@ LoginDialog, RegisterDialog, ResetDialog
     min-height: 55px;
     max-height: 55px;
     background-image: url(:resources/Application/btn/home.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-#home_btn[state='hover']
-{
-    background-color: rgb(200, 200, 200);
-    color: rgb(100, 100, 100);
-    border: 3px solid rgb(0,0,0);
-    border-radius: 30px;
-    min-width: 55px;
-    max-width: 55px;
-    min-height: 55px;
-    max-height: 55px;
     background-position: center;
     background-repeat: no-repeat;
 }
