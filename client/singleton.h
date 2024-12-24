@@ -19,7 +19,7 @@ class Singleton
 public:
     ~Singleton()
     {
-        qDebug() << QStringLiteral("(Singleton basic has been destructed!)");
+        qDebug() << QStringLiteral("Singleton basic has been destructed!");
     }
 
     Singleton(const Singleton &) = delete;

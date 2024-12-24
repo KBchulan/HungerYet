@@ -45,7 +45,7 @@ public slots:
     void SlotSwitchLogin0();
 
     // handle register's return singal
-    void SlotSwitchLogin();
+    void SlotSwitchLogin1();
 
     // from resetDialog
     void SlotSwitchLogin2();
@@ -54,7 +54,7 @@ public slots:
     void SlotSwitchLogin3();
 
     // from admin
-    void SlotSwitchLogin4();
+    void SlotSwitchBegin();
 
     // handle reset
     void SlotSwitchReset();
