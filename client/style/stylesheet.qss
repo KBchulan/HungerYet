@@ -1282,3 +1282,31 @@ QMessageBox QPushButton[text="取消"]:hover {
 #AdminManagerDialog QScrollBar::sub-line:vertical {
     height: 0px;
 }
+
+/* 开始界面样式 */
+#BeginDialog {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* 开始界面按钮样式 */
+#BeginDialog QPushButton {
+    background-color: rgba(255, 205, 150, 0.75);
+    border: 3px solid rgba(225, 170, 120, 0.9);
+    border-radius: 30px;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#BeginDialog QPushButton:hover {
+    background-color: rgba(255, 185, 77, 0.9);
+    border-color: rgba(205, 150, 47, 0.95);
+    color: rgba(0, 0, 0, 0.9);
+}
+
+#BeginDialog QPushButton:pressed {
+    background-color: rgba(235, 165, 57, 0.95);
+    border-color: rgba(185, 130, 27, 1);
+    color: rgba(0, 0, 0, 1);
+}

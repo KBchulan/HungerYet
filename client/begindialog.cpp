@@ -7,7 +7,9 @@ BeginDialog::BeginDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setBackground(":/resources/Login/begin.jpg", 0.3);
+    setBackground(":/resources/Login/begin.jpg", 0.6);
+
+    setWindowTitle("欢迎使用");
 }
 
 BeginDialog::~BeginDialog()
