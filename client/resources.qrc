@@ -29,6 +29,7 @@
         <file>resources/Application/merchant/default.jpeg</file>
         <file>resources/Application/merchant/shop.png</file>
         <file>resources/Application/btn/search.png</file>
+        <file>resources/Application/btn/bill.svg</file>
         <file>resources/Application/btn/close_transparent.png</file>
         <file>resources/Application/btn/close_search.png</file>
         <file>resources/Application/btn/scan-code.svg</file>

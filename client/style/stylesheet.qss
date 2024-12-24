@@ -1327,7 +1327,7 @@ QMessageBox QPushButton[text="取消"]:hover {
     font-weight: bold;
 }
 
-/* AdminManagerDialog 滚动条样式 */
+/* AdminManagerDialog 滚动��样式 */
 #AdminManagerDialog QScrollBar:vertical {
     border: none;
     background: rgb(255, 248, 225);
@@ -1392,4 +1392,201 @@ QMessageBox QPushButton[text="取消"]:hover {
     background-color: rgba(235, 165, 57, 0.95);
     border-color: rgba(185, 130, 27, 1);
     color: rgba(0, 0, 0, 1);
+}
+
+/* 商家订单按钮样式 */
+#MerchantAppDialog #order_btn[state='normal']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(100, 100, 100);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/bill.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#MerchantAppDialog #order_btn[state='hover']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(100, 100, 100);
+    border: 3px solid rgb(0,0,0);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/bill.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#MerchantAppDialog #order_btn[state='selected']
+{
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(0,0,0);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/bill.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+/* 商家主页按钮样式 */
+#MerchantAppDialog #home_btn[state='normal']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(100, 100, 100);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/home.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#MerchantAppDialog #home_btn[state='hover']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(100, 100, 100);
+    border: 3px solid rgb(0,0,0);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/home.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#MerchantAppDialog #home_btn[state='selected']
+{
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(0,0,0);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/home.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+/* 商品管理按钮样式 */
+#MerchantAppDialog #menu_manager_btn[state='normal']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(100, 100, 100);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/food.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#MerchantAppDialog #menu_manager_btn[state='hover']
+{
+    background-color: rgb(200, 200, 200);
+    color: rgb(100, 100, 100);
+    border: 3px solid rgb(0,0,0);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/food.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#MerchantAppDialog #menu_manager_btn[state='selected']
+{
+    background-color: rgb(255, 205, 97);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(0,0,0);
+    border-radius: 30px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+    background-image: url(:resources/Application/btn/food.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+/* 商品管理界面样式 */
+#MenuManagerDialog #topBar {
+    background-color: rgb(255, 205, 97);
+}
+
+#MenuManagerDialog #titleLabel {
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#MenuManagerDialog #menuList {
+    border: 2px solid rgb(255, 205, 97);
+    border-radius: 15px;
+    background-color: rgb(255, 252, 245);
+    padding: 10px;
+}
+
+#MenuManagerDialog #menuList::item {
+    padding: 10px;
+    border-bottom: 1px solid rgb(255, 235, 200);
+}
+
+#MenuManagerDialog #menuList::item:selected {
+    background-color: rgb(255, 205, 97);
+    color: rgb(0, 0, 0);
+}
+
+#MenuManagerDialog QPushButton {
+    background-color: rgb(255, 205, 97);
+    border: none;
+    border-radius: 15px;
+    padding: 8px 20px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+#MenuManagerDialog QPushButton:hover {
+    background-color: rgb(255, 185, 77);
+}
+
+#MenuManagerDialog QPushButton:disabled {
+    background-color: rgb(200, 200, 200);
+    color: rgb(150, 150, 150);
+}
+
+#MenuManagerDialog QLineEdit, #MenuManagerDialog QDoubleSpinBox {
+    border: 2px solid rgb(255, 205, 97);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#MenuManagerDialog QLineEdit:focus, #MenuManagerDialog QDoubleSpinBox:focus {
+    border-color: rgb(255, 185, 77);
 }
