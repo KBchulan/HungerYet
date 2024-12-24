@@ -6,27 +6,161 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>700</width>
+    <height>900</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>900</height>
+   </size>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>90</y>
-     <width>80</width>
-     <height>16</height>
-    </rect>
+  <property name="maximumSize">
+   <size>
+    <width>700</width>
+    <height>900</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>商家管理系统</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
    </property>
-   <property name="text">
-    <string>merchantApp</string>
+   <property name="leftMargin">
+    <number>0</number>
    </property>
-  </widget>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QStackedWidget" name="stackedWidget">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="OrderDialog" name="order_wid"/>
+       <widget class="HomeDialog" name="home_wid"/>
+       <widget class="EditInfoDialog" name="edit_wid"/>
+       <widget class="SettingDialog" name="setting_wid"/>
+       <widget class="MenuManagerDialog" name="menu_manager_wid"/>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="topMargin">
+        <number>7</number>
+       </property>
+       <property name="bottomMargin">
+        <number>7</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="order_btn">
+         <property name="minimumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="menu_manager_btn">
+         <property name="minimumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="home_btn">
+         <property name="minimumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HomeDialog</class>
+   <extends>QWidget</extends>
+   <header location="global">homedialog.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>OrderDialog</class>
+   <extends>QWidget</extends>
+   <header location="global">orderdialog.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>EditInfoDialog</class>
+   <extends>QWidget</extends>
+   <header location="global">editinfodialog.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SettingDialog</class>
+   <extends>QWidget</extends>
+   <header location="global">settingdialog.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MenuManagerDialog</class>
+   <extends>QWidget</extends>
+   <header location="global">menumanagerdialog.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
