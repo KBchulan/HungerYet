@@ -9,7 +9,7 @@ BeginDialog::BeginDialog(QWidget *parent) :
 
     setBackground(":/resources/Login/begin.jpg", 0.6);
 
-    setWindowTitle("欢迎使用");
+    setWindowTitle("请选择你的身份");
 }
 
 BeginDialog::~BeginDialog()
