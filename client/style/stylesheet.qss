@@ -1782,8 +1782,7 @@ QMessageBox QPushButton[text="取消"]:hover {
 }
 
 /* 编辑和删除按钮样式 */
-#MenuManagerDialog #editProductButton,
-#MenuManagerDialog #deleteProductButton {
+#editProductButton, #deleteProductButton {
     background-color: rgb(255, 205, 97);
     border: none;
     border-radius: 15px;
@@ -1794,8 +1793,7 @@ QMessageBox QPushButton[text="取消"]:hover {
     font-size: 14px;
 }
 
-#MenuManagerDialog #editProductButton:hover,
-#MenuManagerDialog #deleteProductButton:hover {
+#editProductButton:hover, #deleteProductButton:hover {
     background-color: rgb(255, 185, 77);
 }
 
