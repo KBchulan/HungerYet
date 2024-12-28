@@ -1673,3 +1673,103 @@ QMessageBox QPushButton[text="取消"]:hover {
     color: rgb(150, 150, 150);
     border: 4px solid rgb(170, 170, 170);
 }
+
+/* AdminVarifyDialog 样式 */
+#AdminVarifyDialog {
+    background-color: rgb(255, 255, 255);
+}
+
+#AdminVarifyDialog #topBar {
+    background-color: rgb(255, 205, 97);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 15px;
+}
+
+#AdminVarifyDialog #titleLabel {
+    color: rgb(50, 50, 50);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 输入框样式 */
+#AdminVarifyDialog #va_user_edit, #AdminVarifyDialog #va_passwd_edit {
+    border: 2px solid rgb(230, 236, 240);
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 15px;
+    background-color: rgb(255, 255, 255);
+    margin: 5px 0;
+}
+
+#AdminVarifyDialog #va_user_edit:focus, #AdminVarifyDialog #va_passwd_edit:focus {
+    border-color: rgb(255, 205, 97);
+    background-color: rgb(255, 250, 240);
+}
+
+/* 标签样式 */
+#AdminVarifyDialog QLabel {
+    color: rgb(80, 80, 80);
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* 错误提示样式 */
+#AdminVarifyDialog #err_tip {
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+#AdminVarifyDialog #err_tip[state="err"] {
+    color: rgb(255, 85, 85);
+    background-color: rgb(255, 240, 240);
+}
+
+#AdminVarifyDialog #err_tip[state="normal"] {
+    color: rgb(85, 196, 85);
+    background-color: rgb(240, 255, 240);
+}
+
+/* 按钮样式 */
+#AdminVarifyDialog #va_confirm_btn {
+    background-color: rgb(255, 205, 97);
+    border: none;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    padding: 12px 30px;
+    font-size: 15px;
+    min-width: 120px;
+}
+
+#AdminVarifyDialog #va_confirm_btn:hover {
+    background-color: rgb(255, 185, 77);
+}
+
+#AdminVarifyDialog #va_confirm_btn:pressed {
+    background-color: rgb(235, 165, 57);
+}
+
+#AdminVarifyDialog #va_cancel_btn {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 85, 85);
+    border-radius: 10px;
+    color: rgb(255, 85, 85);
+    font-weight: bold;
+    padding: 12px 30px;
+    font-size: 15px;
+    min-width: 120px;
+}
+
+#AdminVarifyDialog #va_cancel_btn:hover {
+    background-color: rgb(255, 85, 85);
+    color: rgb(255, 255, 255);
+}
+
+#AdminVarifyDialog #va_cancel_btn:pressed {
+    background-color: rgb(235, 65, 65);
+    border-color: rgb(235, 65, 65);
+}
