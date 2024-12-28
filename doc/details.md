@@ -1,24 +1,33 @@
 # Details
 
-Date : 2024-12-17 14:26:30
+Date : 2024-12-28 16:25:56
 
 Directory /home/whx/文档/code/github/HungerYet
 
-Total : 209 files,  31481 codes, 2259 comments, 5207 blanks, all 38947 lines
+Total : 237 files,  35828 codes, 2415 comments, 5853 blanks, all 44096 lines
 
 [Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Files
 | filename | language | code | comment | blank | total |
 | :--- | :--- | ---: | ---: | ---: | ---: |
-| [README.md](/README.md) | Markdown | 9 | 0 | 7 | 16 |
-| [client/CMakeLists.txt](/client/CMakeLists.txt) | CMake | 54 | 0 | 11 | 65 |
-| [client/applicationdialog.cpp](/client/applicationdialog.cpp) | C++ | 137 | 3 | 22 | 162 |
-| [client/applicationdialog.h](/client/applicationdialog.h) | C++ | 33 | 10 | 18 | 61 |
-| [client/applicationdialog.ui](/client/applicationdialog.ui) | XML | 180 | 0 | 1 | 181 |
+| [README.md](/README.md) | Markdown | 74 | 0 | 23 | 97 |
+| [client/CMakeLists.txt](/client/CMakeLists.txt) | CMake | 67 | 0 | 14 | 81 |
+| [client/adminmanagerdialog.cpp](/client/adminmanagerdialog.cpp) | C++ | 66 | 5 | 17 | 88 |
+| [client/adminmanagerdialog.h](/client/adminmanagerdialog.h) | C++ | 26 | 0 | 9 | 35 |
+| [client/adminmanagerdialog.ui](/client/adminmanagerdialog.ui) | XML | 166 | 0 | 1 | 167 |
+| [client/adminvarifydialog.cpp](/client/adminvarifydialog.cpp) | C++ | 68 | 0 | 12 | 80 |
+| [client/adminvarifydialog.h](/client/adminvarifydialog.h) | C++ | 32 | 5 | 16 | 53 |
+| [client/adminvarifydialog.ui](/client/adminvarifydialog.ui) | XML | 204 | 0 | 1 | 205 |
+| [client/applicationdialog.cpp](/client/applicationdialog.cpp) | C++ | 244 | 4 | 39 | 287 |
+| [client/applicationdialog.h](/client/applicationdialog.h) | C++ | 36 | 10 | 21 | 67 |
+| [client/applicationdialog.ui](/client/applicationdialog.ui) | XML | 201 | 0 | 1 | 202 |
 | [client/backgrounddialog.cpp](/client/backgrounddialog.cpp) | C++ | 30 | 1 | 12 | 43 |
 | [client/backgrounddialog.h](/client/backgrounddialog.h) | C++ | 19 | 10 | 8 | 37 |
-| [client/chatdialog.cpp](/client/chatdialog.cpp) | C++ | 179 | 19 | 37 | 235 |
+| [client/begindialog.cpp](/client/begindialog.cpp) | C++ | 30 | 0 | 8 | 38 |
+| [client/begindialog.h](/client/begindialog.h) | C++ | 25 | 9 | 13 | 47 |
+| [client/begindialog.ui](/client/begindialog.ui) | XML | 190 | 0 | 1 | 191 |
+| [client/chatdialog.cpp](/client/chatdialog.cpp) | C++ | 180 | 20 | 38 | 238 |
 | [client/chatdialog.h](/client/chatdialog.h) | C++ | 32 | 11 | 11 | 54 |
 | [client/chatdialog.ui](/client/chatdialog.ui) | XML | 97 | 0 | 1 | 98 |
 | [client/clickedbtn.cpp](/client/clickedbtn.cpp) | C++ | 50 | 0 | 10 | 60 |
@@ -27,33 +36,49 @@ Total : 209 files,  31481 codes, 2259 comments, 5207 blanks, all 38947 lines
 | [client/clickedlabel.h](/client/clickedlabel.h) | C++ | 28 | 11 | 14 | 53 |
 | [client/customizeedit.cpp](/client/customizeedit.cpp) | C++ | 25 | 0 | 8 | 33 |
 | [client/customizeedit.h](/client/customizeedit.h) | C++ | 17 | 9 | 9 | 35 |
-| [client/editinfodialog.cpp](/client/editinfodialog.cpp) | C++ | 137 | 5 | 30 | 172 |
-| [client/editinfodialog.h](/client/editinfodialog.h) | C++ | 28 | 9 | 8 | 45 |
+| [client/editinfodialog.cpp](/client/editinfodialog.cpp) | C++ | 138 | 5 | 29 | 172 |
+| [client/editinfodialog.h](/client/editinfodialog.h) | C++ | 29 | 14 | 14 | 57 |
 | [client/editinfodialog.ui](/client/editinfodialog.ui) | XML | 269 | 0 | 1 | 270 |
-| [client/global.cpp](/client/global.cpp) | C++ | 17 | 2 | 7 | 26 |
+| [client/favoritedialog.cpp](/client/favoritedialog.cpp) | C++ | 116 | 14 | 25 | 155 |
+| [client/favoritedialog.h](/client/favoritedialog.h) | C++ | 28 | 9 | 11 | 48 |
+| [client/favoritedialog.ui](/client/favoritedialog.ui) | XML | 101 | 0 | 1 | 102 |
+| [client/givemoneydialog.cpp](/client/givemoneydialog.cpp) | C++ | 107 | 12 | 22 | 141 |
+| [client/givemoneydialog.h](/client/givemoneydialog.h) | C++ | 30 | 0 | 9 | 39 |
+| [client/givemoneydialog.ui](/client/givemoneydialog.ui) | XML | 460 | 2 | 1 | 463 |
+| [client/global.cpp](/client/global.cpp) | C++ | 17 | 0 | 7 | 24 |
 | [client/global.h](/client/global.h) | C++ | 79 | 16 | 16 | 111 |
-| [client/homedialog.cpp](/client/homedialog.cpp) | C++ | 71 | 5 | 15 | 91 |
+| [client/homedialog.cpp](/client/homedialog.cpp) | C++ | 88 | 6 | 17 | 111 |
 | [client/homedialog.h](/client/homedialog.h) | C++ | 21 | 9 | 8 | 38 |
-| [client/homedialog.ui](/client/homedialog.ui) | XML | 231 | 0 | 1 | 232 |
-| [client/httpmanager.cpp](/client/httpmanager.cpp) | C++ | 47 | 5 | 9 | 61 |
+| [client/homedialog.ui](/client/homedialog.ui) | XML | 269 | 0 | 1 | 270 |
+| [client/httpmanager.cpp](/client/httpmanager.cpp) | C++ | 48 | 5 | 9 | 62 |
 | [client/httpmanager.h](/client/httpmanager.h) | C++ | 29 | 15 | 14 | 58 |
-| [client/kimiapi.cpp](/client/kimiapi.cpp) | C++ | 81 | 4 | 15 | 100 |
+| [client/kimiapi.cpp](/client/kimiapi.cpp) | C++ | 98 | 7 | 17 | 122 |
 | [client/kimiapi.h](/client/kimiapi.h) | C++ | 26 | 10 | 11 | 47 |
 | [client/logindialog.cpp](/client/logindialog.cpp) | C++ | 287 | 21 | 73 | 381 |
-| [client/logindialog.h](/client/logindialog.h) | C++ | 50 | 28 | 27 | 105 |
-| [client/logindialog.ui](/client/logindialog.ui) | XML | 422 | 0 | 1 | 423 |
-| [client/main.cpp](/client/main.cpp) | C++ | 28 | 2 | 6 | 36 |
-| [client/mainwindow.cpp](/client/mainwindow.cpp) | C++ | 99 | 20 | 40 | 159 |
-| [client/mainwindow.h](/client/mainwindow.h) | C++ | 35 | 16 | 15 | 66 |
+| [client/logindialog.h](/client/logindialog.h) | C++ | 50 | 29 | 28 | 107 |
+| [client/logindialog.ui](/client/logindialog.ui) | XML | 425 | 0 | 1 | 426 |
+| [client/main.cpp](/client/main.cpp) | C++ | 61 | 5 | 6 | 72 |
+| [client/mainwindow.cpp](/client/mainwindow.cpp) | C++ | 171 | 3 | 65 | 239 |
+| [client/mainwindow.h](/client/mainwindow.h) | C++ | 48 | 21 | 20 | 89 |
 | [client/mainwindow.ui](/client/mainwindow.ui) | XML | 32 | 0 | 1 | 33 |
-| [client/menudialog.cpp](/client/menudialog.cpp) | C++ | 138 | 20 | 28 | 186 |
-| [client/menudialog.h](/client/menudialog.h) | C++ | 27 | 12 | 12 | 51 |
+| [client/menudialog.cpp](/client/menudialog.cpp) | C++ | 203 | 33 | 45 | 281 |
+| [client/menudialog.h](/client/menudialog.h) | C++ | 31 | 15 | 12 | 58 |
 | [client/menudialog.ui](/client/menudialog.ui) | XML | 120 | 0 | 1 | 121 |
-| [client/merchantdialog.cpp](/client/merchantdialog.cpp) | C++ | 158 | 14 | 38 | 210 |
-| [client/merchantdialog.h](/client/merchantdialog.h) | C++ | 33 | 9 | 12 | 54 |
+| [client/menumanagerdialog.cpp](/client/menumanagerdialog.cpp) | C++ | 145 | 7 | 32 | 184 |
+| [client/menumanagerdialog.h](/client/menumanagerdialog.h) | C++ | 32 | 0 | 8 | 40 |
+| [client/menumanagerdialog.ui](/client/menumanagerdialog.ui) | XML | 186 | 0 | 0 | 186 |
+| [client/merchantappdialog.cpp](/client/merchantappdialog.cpp) | C++ | 160 | 0 | 27 | 187 |
+| [client/merchantappdialog.h](/client/merchantappdialog.h) | C++ | 31 | 0 | 11 | 42 |
+| [client/merchantappdialog.ui](/client/merchantappdialog.ui) | XML | 166 | 0 | 1 | 167 |
+| [client/merchantdialog.cpp](/client/merchantdialog.cpp) | C++ | 193 | 14 | 39 | 246 |
+| [client/merchantdialog.h](/client/merchantdialog.h) | C++ | 35 | 9 | 12 | 56 |
 | [client/merchantdialog.ui](/client/merchantdialog.ui) | XML | 259 | 0 | 1 | 260 |
-| [client/merchantmanager.cpp](/client/merchantmanager.cpp) | C++ | 69 | 0 | 12 | 81 |
+| [client/merchantmanager.cpp](/client/merchantmanager.cpp) | C++ | 65 | 0 | 11 | 76 |
 | [client/merchantmanager.h](/client/merchantmanager.h) | C++ | 24 | 11 | 14 | 49 |
+| [client/orderdialog.cpp](/client/orderdialog.cpp) | C++ | 271 | 27 | 64 | 362 |
+| [client/orderdialog.h](/client/orderdialog.h) | C++ | 43 | 11 | 12 | 66 |
+| [client/orderdialog.ui](/client/orderdialog.ui) | XML | 130 | 0 | 1 | 131 |
+| [client/package.sh](/client/package.sh) | Shell Script | 37 | 14 | 11 | 62 |
 | [client/particleeffect.cpp](/client/particleeffect.cpp) | C++ | 168 | 10 | 38 | 216 |
 | [client/particleeffect.h](/client/particleeffect.h) | C++ | 63 | 17 | 17 | 97 |
 | [client/registerdialog.cpp](/client/registerdialog.cpp) | C++ | 327 | 20 | 74 | 421 |
@@ -62,7 +87,8 @@ Total : 209 files,  31481 codes, 2259 comments, 5207 blanks, all 38947 lines
 | [client/resetdialog.cpp](/client/resetdialog.cpp) | C++ | 263 | 20 | 71 | 354 |
 | [client/resetdialog.h](/client/resetdialog.h) | C++ | 42 | 23 | 23 | 88 |
 | [client/resetdialog.ui](/client/resetdialog.ui) | XML | 352 | 0 | 1 | 353 |
-| [client/resources.qrc](/client/resources.qrc) | Qrc | 40 | 0 | 0 | 40 |
+| [client/resources.qrc](/client/resources.qrc) | Qrc | 42 | 0 | 0 | 42 |
+| [client/resources/Application/btn/bill.svg](/client/resources/Application/btn/bill.svg) | SVG | 1 | 0 | 0 | 1 |
 | [client/resources/Application/btn/chat.svg](/client/resources/Application/btn/chat.svg) | SVG | 1 | 0 | 0 | 1 |
 | [client/resources/Application/btn/food.svg](/client/resources/Application/btn/food.svg) | SVG | 1 | 0 | 0 | 1 |
 | [client/resources/Application/btn/home.svg](/client/resources/Application/btn/home.svg) | SVG | 1 | 0 | 0 | 1 |
@@ -70,21 +96,22 @@ Total : 209 files,  31481 codes, 2259 comments, 5207 blanks, all 38947 lines
 | [client/resources/Application/btn/scan-code.svg](/client/resources/Application/btn/scan-code.svg) | SVG | 1 | 0 | 0 | 1 |
 | [client/resources/Application/btn/shopping.svg](/client/resources/Application/btn/shopping.svg) | SVG | 1 | 0 | 0 | 1 |
 | [client/resources/config.ini](/client/resources/config.ini) | Ini | 3 | 0 | 1 | 4 |
-| [client/scancodedialog.cpp](/client/scancodedialog.cpp) | C++ | 180 | 15 | 31 | 226 |
-| [client/scancodedialog.h](/client/scancodedialog.h) | C++ | 37 | 9 | 10 | 56 |
+| [client/scancodedialog.cpp](/client/scancodedialog.cpp) | C++ | 245 | 11 | 40 | 296 |
+| [client/scancodedialog.h](/client/scancodedialog.h) | C++ | 42 | 10 | 11 | 63 |
 | [client/scancodedialog.ui](/client/scancodedialog.ui) | XML | 83 | 0 | 1 | 84 |
-| [client/settingdialog.cpp](/client/settingdialog.cpp) | C++ | 247 | 8 | 39 | 294 |
+| [client/settingdialog.cpp](/client/settingdialog.cpp) | C++ | 249 | 8 | 39 | 296 |
 | [client/settingdialog.h](/client/settingdialog.h) | C++ | 36 | 9 | 18 | 63 |
 | [client/settingdialog.ui](/client/settingdialog.ui) | XML | 362 | 0 | 1 | 363 |
-| [client/singleton.h](/client/singleton.h) | C++ | 32 | 9 | 9 | 50 |
-| [client/style/stylesheet.qss](/client/style/stylesheet.qss) | QSS | 793 | 34 | 140 | 967 |
-| [client/tcpmanager.cpp](/client/tcpmanager.cpp) | C++ | 138 | 7 | 34 | 179 |
+| [client/singleton.h](/client/singleton.h) | C++ | 33 | 9 | 9 | 51 |
+| [client/style/stylesheet.qss](/client/style/stylesheet.qss) | QSS | 1,453 | 59 | 263 | 1,775 |
+| [client/tcpmanager.cpp](/client/tcpmanager.cpp) | C++ | 139 | 7 | 34 | 180 |
 | [client/tcpmanager.h](/client/tcpmanager.h) | C++ | 34 | 10 | 19 | 63 |
 | [client/timerbtn.cpp](/client/timerbtn.cpp) | C++ | 36 | 0 | 6 | 42 |
 | [client/timerbtn.h](/client/timerbtn.h) | C++ | 15 | 9 | 6 | 30 |
-| [client/usermanager.cpp](/client/usermanager.cpp) | C++ | 47 | 0 | 14 | 61 |
-| [client/usermanager.h](/client/usermanager.h) | C++ | 31 | 9 | 19 | 59 |
-| [doc/details.md](/doc/details.md) | Markdown | 211 | 0 | 6 | 217 |
+| [client/usermanager.cpp](/client/usermanager.cpp) | C++ | 63 | 0 | 18 | 81 |
+| [client/usermanager.h](/client/usermanager.h) | C++ | 50 | 9 | 26 | 85 |
+| [doc/QMC.md](/doc/QMC.md) | Markdown | 194 | 0 | 87 | 281 |
+| [doc/details.md](/doc/details.md) | Markdown | 218 | 0 | 6 | 224 |
 | [doc/results.md](/doc/results.md) | Markdown | 59 | 0 | 7 | 66 |
 | [proto/message.proto](/proto/message.proto) | Protocol Buffers | 35 | 0 | 10 | 45 |
 | [scripts/RMALLEXTRA.sh](/scripts/RMALLEXTRA.sh) | Shell Script | 29 | 0 | 9 | 38 |
@@ -219,6 +246,7 @@ Total : 209 files,  31481 codes, 2259 comments, 5207 blanks, all 38947 lines
 | [server/VarifyServer/proto.js](/server/VarifyServer/proto.js) | JavaScript | 15 | 0 | 5 | 20 |
 | [server/VarifyServer/redis.js](/server/VarifyServer/redis.js) | JavaScript | 70 | 0 | 7 | 77 |
 | [server/VarifyServer/server.js](/server/VarifyServer/server.js) | JavaScript | 68 | 1 | 10 | 79 |
+| [test/promise.cc](/test/promise.cc) | C++ | 16 | 2 | 4 | 22 |
 | [test/random.cc](/test/random.cc) | C++ | 23 | 8 | 8 | 39 |
 
 [Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)

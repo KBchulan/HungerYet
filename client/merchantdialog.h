@@ -49,7 +49,7 @@ private:
     Ui::MerchantDialog *ui;
     QMap<QString, DishInfo> cartItems;
     MenuPrices menuPrices;
-    int currentMemberLevel = 0; // 0: 普通用户, 1: VIP, 2: VVIP
+    int currentMemberLevel = 0;
 };
 
 #endif // MERCHANTDIALOG_H

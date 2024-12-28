@@ -1,42 +1,42 @@
 # Summary
 
-Date : 2024-12-17 14:26:30
+Date : 2024-12-28 16:25:56
 
 Directory /home/whx/文档/code/github/HungerYet
 
-Total : 209 files,  31481 codes, 2259 comments, 5207 blanks, all 38947 lines
+Total : 237 files,  35828 codes, 2415 comments, 5853 blanks, all 44096 lines
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| C++ | 157 | 25,684 | 2,224 | 4,839 | 32,747 |
-| XML | 12 | 2,942 | 0 | 12 | 2,954 |
+| C++ | 174 | 27,387 | 2,339 | 5,238 | 34,964 |
+| XML | 20 | 4,607 | 2 | 19 | 4,628 |
+| QSS | 1 | 1,453 | 59 | 263 | 1,775 |
 | JSON | 3 | 952 | 0 | 4 | 956 |
-| QSS | 1 | 793 | 34 | 140 | 967 |
-| CMake | 5 | 286 | 0 | 79 | 365 |
-| Markdown | 3 | 279 | 0 | 20 | 299 |
+| Markdown | 4 | 545 | 0 | 123 | 668 |
+| CMake | 5 | 299 | 0 | 82 | 381 |
 | JavaScript | 6 | 219 | 1 | 32 | 252 |
-| Shell Script | 8 | 142 | 0 | 43 | 185 |
+| Shell Script | 9 | 179 | 14 | 54 | 247 |
 | Ini | 5 | 90 | 0 | 24 | 114 |
 | Protocol Buffers | 2 | 48 | 0 | 14 | 62 |
-| Qrc | 1 | 40 | 0 | 0 | 40 |
-| SVG | 6 | 6 | 0 | 0 | 6 |
+| Qrc | 1 | 42 | 0 | 0 | 42 |
+| SVG | 7 | 7 | 0 | 0 | 7 |
 
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 209 | 31,481 | 2,259 | 5,207 | 38,947 |
-| . (Files) | 1 | 9 | 0 | 7 | 16 |
-| client | 72 | 7,732 | 550 | 1,194 | 9,476 |
-| client (Files) | 64 | 6,930 | 516 | 1,053 | 8,499 |
-| client/resources | 7 | 9 | 0 | 1 | 10 |
+| . | 237 | 35,828 | 2,415 | 5,853 | 44,096 |
+| . (Files) | 1 | 74 | 0 | 23 | 97 |
+| client | 98 | 11,797 | 704 | 1,733 | 14,234 |
+| client (Files) | 89 | 10,334 | 645 | 1,469 | 12,448 |
+| client/resources | 8 | 10 | 0 | 1 | 11 |
 | client/resources (Files) | 1 | 3 | 0 | 1 | 4 |
-| client/resources/Application | 6 | 6 | 0 | 0 | 6 |
-| client/resources/Application/btn | 6 | 6 | 0 | 0 | 6 |
-| client/style | 1 | 793 | 34 | 140 | 967 |
-| doc | 2 | 270 | 0 | 13 | 283 |
+| client/resources/Application | 7 | 7 | 0 | 0 | 7 |
+| client/resources/Application/btn | 7 | 7 | 0 | 0 | 7 |
+| client/style | 1 | 1,453 | 59 | 263 | 1,775 |
+| doc | 3 | 471 | 0 | 100 | 571 |
 | proto | 1 | 35 | 0 | 10 | 45 |
 | scripts | 8 | 142 | 0 | 43 | 185 |
 | server | 124 | 23,270 | 1,701 | 3,932 | 28,903 |
@@ -61,6 +61,6 @@ Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-
 | server/StatusServer/include | 11 | 2,482 | 247 | 385 | 3,114 |
 | server/StatusServer/src | 10 | 2,467 | 165 | 458 | 3,090 |
 | server/VarifyServer | 10 | 1,184 | 1 | 40 | 1,225 |
-| test | 1 | 23 | 8 | 8 | 39 |
+| test | 2 | 39 | 10 | 12 | 61 |
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
