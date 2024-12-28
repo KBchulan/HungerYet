@@ -15,6 +15,7 @@
 #include "begindialog.h"
 #include "registerdialog.h"
 #include "merchantappdialog.h"
+#include "adminvarifydialog.h"
 #include "applicationdialog.h"
 #include "adminmanagerdialog.h"
 
@@ -54,17 +55,23 @@ public slots:
     // from Application
     void SlotSwitchLogin3();
 
-    // from admin
-    void SlotSwitchBegin();
-
     // handle reset
     void SlotSwitchReset();
 
     // handle app
     void SlotSwitchApp();
 
+    // handle varify
+    void SlotSwitchVarify();
+
     // handle admin
     void SlotSwitchAdmin();
+
+    // handle
+    void SlotSwitchBeginFromVarify();
+
+    // from admin
+    void SlotSwitchBegin();
 
 private:
     Ui::MainWindow *ui = nullptr;
@@ -73,6 +80,7 @@ private:
     ResetDialog *_reset_dlg = nullptr;
     RegisterDialog *_reg_dlg = nullptr;
     ApplicationDialog *_app_dlg = nullptr;
+    AdminVarifyDialog *_varify_dlg = nullptr;
     AdminManagerDialog *_admin_dlg = nullptr;
     MerchantAppDialog *_mer_app_dlg = nullptr;
 };

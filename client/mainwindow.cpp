@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     _begin_dlg->show();
 
     connect(_begin_dlg, &BeginDialog::SigSwitchToLogin, this, &MainWindow::SlotSwitchLogin0);
-    connect(_begin_dlg, &BeginDialog::SigSwitchToAdmin, this, &MainWindow::SlotSwitchAdmin);
+    connect(_begin_dlg, &BeginDialog::SigSwitchToAdmin, this, &MainWindow::SlotSwitchVarify);
 }
 
 MainWindow::~MainWindow()
@@ -122,7 +122,7 @@ void MainWindow::SlotSwitchBegin()
     this->setMaximumSize(_begin_dlg->size());
 
     connect(_begin_dlg, &BeginDialog::SigSwitchToLogin, this, &MainWindow::SlotSwitchLogin0);
-    connect(_begin_dlg, &BeginDialog::SigSwitchToAdmin, this, &MainWindow::SlotSwitchAdmin);
+    connect(_begin_dlg, &BeginDialog::SigSwitchToAdmin, this, &MainWindow::SlotSwitchVarify);
 }
 
 void MainWindow::SlotSwitchReset()
@@ -170,6 +170,23 @@ void MainWindow::SlotSwitchApp()
     }
 }
 
+void MainWindow::SlotSwitchVarify()
+{
+    _varify_dlg = new AdminVarifyDialog(this);
+    _varify_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+
+    setCentralWidget(_varify_dlg);
+
+    _begin_dlg->hide();
+    _varify_dlg->show();
+
+    this->setMinimumSize(_varify_dlg->size());
+    this->setMaximumSize(_varify_dlg->size());
+
+    connect(_varify_dlg, &AdminVarifyDialog::SigSwitchAdminFromVarify, this, &MainWindow::SlotSwitchAdmin);
+    connect(_varify_dlg, &AdminVarifyDialog::SigSwitchBeginFromVarify, this, &MainWindow::SlotSwitchBeginFromVarify);
+}
+
 void MainWindow::SlotSwitchAdmin()
 {
     _admin_dlg = new AdminManagerDialog(this);
@@ -177,7 +194,7 @@ void MainWindow::SlotSwitchAdmin()
 
     setCentralWidget(_admin_dlg);
 
-    _begin_dlg->hide();
+    _varify_dlg->hide();
     _admin_dlg->show();
 
     this->setMinimumSize(_admin_dlg->size());
@@ -185,6 +202,23 @@ void MainWindow::SlotSwitchAdmin()
 
     // 连接从管理界面回来的槽函数
     connect(_admin_dlg, &AdminManagerDialog::SigReturnLogin, this, &MainWindow::SlotSwitchBegin);
+}
+
+void MainWindow::SlotSwitchBeginFromVarify()
+{
+    _begin_dlg = new BeginDialog(this);
+    _begin_dlg->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+
+    setCentralWidget(_begin_dlg);
+
+    _varify_dlg->hide();
+    _begin_dlg->show();
+
+    this->setMinimumSize(_begin_dlg->size());
+    this->setMaximumSize(_begin_dlg->size());
+
+    connect(_begin_dlg, &BeginDialog::SigSwitchToLogin, this, &MainWindow::SlotSwitchLogin0);
+    connect(_begin_dlg, &BeginDialog::SigSwitchToAdmin, this, &MainWindow::SlotSwitchVarify);
 }
 
 void MainWindow::setupEntranceAnimation(QWidget* widget, int duration)

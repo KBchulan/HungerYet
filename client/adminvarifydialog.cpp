@@ -44,30 +44,30 @@ void AdminVarifyDialog::DelTipErr(TipErr te)
 bool AdminVarifyDialog::CheckName()
 {
     auto name = ui->va_user_edit->text();
-    if(name == QString("admin"))
+    if(name != QString("admin"))
     {
         AddTipErr(TipErr::TIP_USER_ERR, tr("账号错误"));
-        return true;
+        return false;
     }
     DelTipErr(TipErr::TIP_USER_ERR);
-    return false;
+    return true;
 }
 
 bool AdminVarifyDialog::CheckPasswd()
 {
     auto passwd = ui->va_passwd_edit->text();
-    if(passwd == QString("123456"))
+    if(passwd != QString("123456"))
     {
-        AddTipErr(TipErr::TIP_PWD_ERR, tr("账号错误"));
-        return true;
+        AddTipErr(TipErr::TIP_PWD_ERR, tr("密码错误"));
+        return false;
     }
     DelTipErr(TipErr::TIP_PWD_ERR);
-    return false;
+    return true;
 }
 
 void AdminVarifyDialog::on_va_confirm_btn_clicked()
 {
-    if(CheckName() || CheckPasswd())
+    if(!CheckName() || !CheckPasswd())
         return;
 
     emit SigSwitchAdminFromVarify();
