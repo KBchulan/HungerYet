@@ -358,7 +358,7 @@ std::shared_ptr<UserInfo> MysqlDao::GetUser(std::string name)
 	}
 }
 
-bool MysqlDao::AddOrder(const std::string& order_id, const std::string& order_items, 
+bool MysqlDao::AddOrder(const std::string& order_id, int merchant_id, const std::string& order_items, 
                        const std::string& time, double total, const std::string& user_name)
 {
     auto con = _pool->GetConnection();
@@ -372,16 +372,18 @@ bool MysqlDao::AddOrder(const std::string& order_id, const std::string& order_it
             return false;
 
         std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement(
-            "INSERT INTO `orders` (order_id, order_items, time, total, user_name) VALUES (?, ?, ?, ?, ?)"));
+            "INSERT INTO `orders` (order_id, merchant_id, order_items, time, total, user_name) "
+            "VALUES (?, ?, ?, ?, ?, ?)"));
             
         pstmt->setString(1, order_id);
-        pstmt->setString(2, order_items);
-        pstmt->setString(3, time);
-        pstmt->setDouble(4, total);
-        pstmt->setString(5, user_name);
+        pstmt->setInt(2, merchant_id);
+        pstmt->setString(3, order_items);
+        pstmt->setString(4, time);
+        pstmt->setDouble(5, total);
+        pstmt->setString(6, user_name);
 
         pstmt->executeUpdate();
-        LOG_SQL->info("Add order success, order_id: {}", order_id);
+        LOG_SQL->info("Add order success, order_id: {}, merchant_id: {}", order_id, merchant_id);
         return true;
     }
     catch(sql::SQLException& e)
@@ -414,6 +416,7 @@ std::vector<OrderInfo> MysqlDao::GetAllOrders()
         {
             OrderInfo order;
             order.order_id = res->getString("order_id");
+            order.merchant_id = res->getInt("merchant_id");
             order.order_items = res->getString("order_items");
             order.time = res->getString("time");
             order.total = res->getDouble("total");

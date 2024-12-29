@@ -265,38 +265,48 @@ void MerchantDialog::sendMsg(double totalPrice)
         qDebug() << "购物车为空，无法提交订单";
         return;
     }
-
-    QJsonObject jsonObj;
     
     QString user_name = UserManager::GetInstance()->GetName();
     if (user_name.isEmpty()) 
     {
         user_name = "tourist";
     }
-    jsonObj["user_name"] = user_name;
     
     QDateTime current = QDateTime::currentDateTime();
     QString currentTime = current.toString("yyyyMMddhhmmss");
-    jsonObj["order_id"] = user_name + "_" + currentTime;
+
+    QMap<int, QJsonObject> merchant_json;
+    QMap<int, QString> merchant_order_items;
+    QMap<int, int> merchant_total;
 
     QString orderItems = "";
+    for (auto it = cartItems.begin(); it != cartItems.end(); ++it){
+        int id = std::get<2>(it.value());
+        merchant_json[id] = QJsonObject();
+        merchant_json[id]["user_name"] = user_name;
+        merchant_json[id]["order_id"] = user_name + "_" + QString::number(id) + "_" + currentTime;
+        merchant_json[id]["total"] = 0;
+        merchant_json[id]["time"] = currentTime;
+        merchant_json[id]["merchant_id"] = id;
+        merchant_order_items[id] = QString("");
+        merchant_total[id] = 0;
+    }
     for (auto it = cartItems.begin(); it != cartItems.end(); ++it)
     {
-        orderItems+=it.key()+"|"; //name
-        orderItems+=QString::number(static_cast<double>(std::get<0>(it.value())))+"|"; //price
-        orderItems+=QString::number(static_cast<int>(std::get<1>(it.value())))+"|"; //count
-        orderItems+=QString::number(static_cast<int>(std::get<2>(it.value()))); //merchant_id
-        if (it+1 != cartItems.end()) orderItems+="#";
-        qDebug()<<QString::number(static_cast<double>(std::get<0>(it.value()),10));
+        int id = std::get<2>(it.value());
+        merchant_order_items[id] += it.key()+"|"; //name
+        merchant_order_items[id] += QString::number(static_cast<double>(std::get<0>(it.value())))+"|"; //price
+        merchant_order_items[id] += QString::number(static_cast<int>(std::get<1>(it.value())))+"|"; //count
+        if (it+1 != cartItems.end()) merchant_order_items[id] += "#";
+        merchant_total[id] += static_cast<double>(std::get<0>(it.value())) * static_cast<int>(std::get<1>(it.value()));
     }
-    qDebug()<<orderItems;
-    jsonObj["total"] = totalPrice;
-    jsonObj["time"] = currentTime;
-    jsonObj["order_items"] = orderItems;
-
-    QJsonDocument doc(jsonObj);
-    QString jsonString = doc.toJson(QJsonDocument::Compact);
-
-    qDebug() << "准备发送订单数据:" << jsonString;
-    emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_PURCHASE, jsonString);
+    for (auto it = merchant_json.begin(); it != merchant_json.end(); ++it)
+    {
+        it.value()["order_items"] = merchant_order_items[it.key()];
+        it.value()["total"] = merchant_total[it.key()];
+        QJsonDocument doc(it.value());
+        QString jsonString = doc.toJson(QJsonDocument::Compact);
+        qDebug() << "准备发送订单数据:" << jsonString;
+        emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_PURCHASE, jsonString);
+    }
 }

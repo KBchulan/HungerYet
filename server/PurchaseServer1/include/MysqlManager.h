@@ -30,7 +30,7 @@ public:
     std::shared_ptr<UserInfo> GetUser(std::string name);
 
     // 添加订单
-    bool AddOrder(const std::string& order_id, const std::string& order_items, const std::string& time, double total, const std::string& user_name);
+    bool AddOrder(const std::string& order_id, int merchant_id, const std::string& order_items, const std::string& time, double total, const std::string& user_name);
 
     // 获取所有订单
     std::vector<OrderInfo> GetAllOrders();

@@ -3,6 +3,7 @@
 
 #include "const.h"
 #include "MysqlDao.h"
+#include "Singleton.h"
 
 class MysqlDao;
 class MysqlManager final : public Singleton<MysqlManager>
@@ -24,8 +25,15 @@ public:
     // 验证用户密码是否正确,并返回用户信息
     bool CheckPwd(const std::string &email, const std::string &pwd, UserInfo &userInfo);
     
-    // 测试存储过程
-    // bool TestProcedure(const std::string &email, int &uid, std::string &name);
+    // 查询用户
+    std::shared_ptr<UserInfo> GetUser(int uid);
+    std::shared_ptr<UserInfo> GetUser(std::string name);
+
+    // 添加订单
+    bool AddOrder(const std::string& order_id, int merchant_id, const std::string& order_items, const std::string& time, double total, const std::string& user_name);
+
+    // 获取所有订单
+    std::vector<OrderInfo> GetAllOrders();
 
 private:
     MysqlManager();

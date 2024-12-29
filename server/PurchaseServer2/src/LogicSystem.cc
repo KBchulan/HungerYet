@@ -161,6 +161,7 @@ void LogicSystem::PurchaseHandler(std::shared_ptr<CSession> session, const short
     {
         // 从JSON中获取订单信息
         std::string order_id = root["order_id"].asString();
+        int merchant_id = root["merchant_id"].asInt();
         std::string order_items = root["order_items"].asString();
         std::string time = root["time"].asString();
         double total = root["total"].asDouble();
@@ -168,12 +169,12 @@ void LogicSystem::PurchaseHandler(std::shared_ptr<CSession> session, const short
 
         // 存储订单到数据库
         bool success = MysqlManager::GetInstance()->AddOrder(
-            order_id, order_items, time, total, user_name);
+            order_id, merchant_id, order_items, time, total, user_name);
 
         if (success)
         {
             root["error"] = ErrorCodes::Success;
-            LOG_SERVER->info("Purchase success, order_id: {}", order_id);
+            LOG_SERVER->info("Purchase success, order_id: {}, merchant_id: {}", order_id, merchant_id);
         }
         else
         {

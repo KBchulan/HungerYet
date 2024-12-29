@@ -30,3 +30,23 @@ bool MysqlManager::CheckPwd(const std::string &email, const std::string &pwd, Us
 {
     return _dao.CheckPasswd(email, pwd, userInfo);
 }
+
+std::shared_ptr<UserInfo> MysqlManager::GetUser(int uid)
+{
+	return _dao.GetUser(uid);
+}
+
+std::shared_ptr<UserInfo> MysqlManager::GetUser(std::string name)
+{
+	return _dao.GetUser(name);
+}
+
+bool MysqlManager::AddOrder(const std::string& order_id, int merchant_id, const std::string& order_items, const std::string& time, double total, const std::string& user_name)
+{
+    return _dao.AddOrder(order_id, merchant_id, order_items, time, total, user_name);
+}
+
+std::vector<OrderInfo> MysqlManager::GetAllOrders()
+{
+    return _dao.GetAllOrders();
+}

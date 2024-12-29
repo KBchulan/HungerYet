@@ -3,6 +3,18 @@
 
 #include "const.h"
 
+#include <queue>
+#include <atomic>
+#include <thread>
+#include <condition_variable>
+
+#include <mysql_driver.h>
+#include <mysql_connection.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+#include <cppconn/exception.h>
+#include <cppconn/prepared_statement.h>
+
 class SqlConnection
 {
 public:
@@ -61,6 +73,16 @@ struct UserInfo
     std::string _passwd;
 };
 
+struct OrderInfo
+{
+    std::string order_id;
+    int merchant_id;
+    std::string order_items;
+    std::string time;
+    double total;
+    std::string user_name;
+};
+
 class MysqlDao
 {
 public:
@@ -69,7 +91,10 @@ public:
 
     // 注册用户,返回错误码
     int RegUser(const std::string &name, const std::string &email, const std::string &passwd);
-  
+
+    // 使用事务注册用户,包含头像上传,返回错误码
+    // int RegUserTransaction(const std::string &name, const std::string &email, const std::string &passwd, const std::string &icon);
+    
     // 检查用户名和邮箱是否匹配
     bool CheckEmail(const std::string &name, const std::string &email);
     
@@ -79,6 +104,16 @@ public:
     // 验证用户密码,成功则返回用户信息
     bool CheckPasswd(const std::string &email, const std::string &passwd, UserInfo &userInfo);
     
+    // 查询用户
+    std::shared_ptr<UserInfo> GetUser(int uid);
+    std::shared_ptr<UserInfo> GetUser(std::string name);
+
+    // 添加订单
+    bool AddOrder(const std::string& order_id, int merchant_id, const std::string& order_items, const std::string& time, double total, const std::string& user_name);
+
+    // 获取所有订单
+    std::vector<OrderInfo> GetAllOrders();
+
 private:
     std::unique_ptr<MysqlPool> _pool;
 };

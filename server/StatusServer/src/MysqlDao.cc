@@ -280,3 +280,156 @@ bool MysqlDao::CheckPasswd(const std::string &email, const std::string &passwd, 
         return false;
     }
 }
+
+
+std::shared_ptr<UserInfo> MysqlDao::GetUser(int uid)
+{
+	auto con = _pool->GetConnection();
+	if (con == nullptr) {
+		return nullptr;
+	}
+
+	Defer defer([this, &con]
+    {
+		_pool->ReturnConnection(std::move(con));
+	});
+
+	try 
+    {
+		std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement("SELECT * FROM user WHERE uid = ?"));
+		pstmt->setInt(1, uid);
+
+		std::unique_ptr<sql::ResultSet> res(pstmt->executeQuery());
+		std::shared_ptr<UserInfo> user_ptr = nullptr;
+
+		while (res->next())
+        {
+			user_ptr.reset(new UserInfo);
+			user_ptr->_passwd = res->getString("passwd");
+			user_ptr->_email = res->getString("email");
+			user_ptr->_name = res->getString("name");
+			user_ptr->_uid = res->getInt("uid");
+			break;
+		}
+		return user_ptr;
+	}
+	catch (sql::SQLException& e) 
+    {
+		LOG_SQL->error("SQLException: {} (MySQL error code: {}, SQLState: {})", e.what(), e.getErrorCode(), e.getSQLState());
+		return nullptr;
+	}
+}
+
+std::shared_ptr<UserInfo> MysqlDao::GetUser(std::string name)
+{
+	auto con = _pool->GetConnection();
+	if (con == nullptr) {
+		return nullptr;
+	}
+
+	Defer defer([this, &con]
+    {
+		_pool->ReturnConnection(std::move(con));
+	});
+
+	try 
+    {
+		std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement("SELECT * FROM user WHERE name = ?"));
+		pstmt->setString(1, name);
+
+		std::unique_ptr<sql::ResultSet> res(pstmt->executeQuery());
+		std::shared_ptr<UserInfo> user_ptr = nullptr;
+
+		while (res->next()) 
+        {
+			user_ptr.reset(new UserInfo);
+			user_ptr->_passwd = res->getString("passwd");
+			user_ptr->_email = res->getString("email");
+			user_ptr->_name = res->getString("name");
+			user_ptr->_uid = res->getInt("uid");
+			break;
+		}
+		return user_ptr;
+	}
+	catch (sql::SQLException& e) 
+    {
+		LOG_SQL->error("SQLException: {} (MySQL error code: {}, SQLState: {})", e.what(), e.getErrorCode(), e.getSQLState());
+		return nullptr;
+	}
+}
+
+bool MysqlDao::AddOrder(const std::string& order_id, int merchant_id, const std::string& order_items, 
+                       const std::string& time, double total, const std::string& user_name)
+{
+    auto con = _pool->GetConnection();
+    
+    Defer defer([this, &con]
+                { _pool->ReturnConnection(std::move(con)); });
+
+    try
+    {
+        if(con == nullptr)
+            return false;
+
+        std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement(
+            "INSERT INTO `orders` (order_id, merchant_id, order_items, time, total, user_name) "
+            "VALUES (?, ?, ?, ?, ?, ?)"));
+            
+        pstmt->setString(1, order_id);
+        pstmt->setInt(2, merchant_id);
+        pstmt->setString(3, order_items);
+        pstmt->setString(4, time);
+        pstmt->setDouble(5, total);
+        pstmt->setString(6, user_name);
+
+        pstmt->executeUpdate();
+        LOG_SQL->info("Add order success, order_id: {}, merchant_id: {}", order_id, merchant_id);
+        return true;
+    }
+    catch(sql::SQLException& e)
+    {
+        LOG_SQL->error("SQLException: {} (MySQL error code: {}, SQLState: {})", 
+                      e.what(), e.getErrorCode(), e.getSQLState());
+        return false;
+    }
+}
+
+std::vector<OrderInfo> MysqlDao::GetAllOrders()
+{
+    auto con = _pool->GetConnection();
+    std::vector<OrderInfo> orders;
+
+    Defer defer([this, &con]
+                { _pool->ReturnConnection(std::move(con)); });
+
+    try
+    {
+        if(con == nullptr)
+            return orders;
+
+        std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement(
+            "SELECT * FROM `orders` ORDER BY time DESC"));
+
+        std::unique_ptr<sql::ResultSet> res(pstmt->executeQuery());
+
+        while(res->next())
+        {
+            OrderInfo order;
+            order.order_id = res->getString("order_id");
+            order.merchant_id = res->getInt("merchant_id");
+            order.order_items = res->getString("order_items");
+            order.time = res->getString("time");
+            order.total = res->getDouble("total");
+            order.user_name = res->getString("user_name");
+            orders.push_back(order);
+        }
+        LOG_SQL->info("Get all orders, count: {}", orders.size());
+        return orders;
+    }
+    catch(sql::SQLException& e)
+    {
+        LOG_SQL->error("SQLException: {} (MySQL error code: {}, SQLState: {})", 
+                      e.what(), e.getErrorCode(), e.getSQLState());
+        return orders;
+    }
+}
