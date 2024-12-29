@@ -166,7 +166,7 @@ void TcpManager::initHandlers()
         qDebug() << "jsonDoc is: " << jsonDoc;
         
         QJsonObject jsonObj = jsonDoc.object();
-        if(!jsonObj.contains("order_id"))
+        if(!jsonObj.contains("error"))
         {
             qDebug() << "Failed to create QJsonDocument";
             return;

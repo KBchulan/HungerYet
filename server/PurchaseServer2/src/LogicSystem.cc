@@ -202,7 +202,7 @@ void LogicSystem::GetOrdersHandler(std::shared_ptr<CSession> session, const shor
     Defer defer([this, &rtvalue, session]() -> void
     {
         std::string return_str = rtvalue.toStyledString();
-        session->Send(return_str, MSG_PURCHASE_RSP);
+        session->Send(return_str, MSG_GET_ORDERS_RSP);
     });
 
     try
