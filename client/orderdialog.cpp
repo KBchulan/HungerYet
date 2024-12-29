@@ -59,6 +59,9 @@ void OrderDialog::setupUI()
 
 void OrderDialog::createOrderWidget(const OrderInfo &info)
 {
+    qDebug()<<"info: "<<std::get<0>(info);
+    qDebug()<<"info: "<<std::get<1>(info);
+    qDebug()<<"info: "<<std::get<2>(info);
     QWidget *widget = new QWidget;
     widget->setObjectName("orderItem");
     QVBoxLayout *layout = new QVBoxLayout(widget);
@@ -279,7 +282,7 @@ void OrderDialog::updateOrderList(const QString &searchText)
                   return std::get<4>(a) > std::get<4>(b);
               });
 
-    if (!searchText.isEmpty())
+    /*if (!searchText.isEmpty())
     {
         for (const auto &order : orders)
         {
@@ -289,11 +292,11 @@ void OrderDialog::updateOrderList(const QString &searchText)
                 createOrderWidget(order);
         }
     }
-    else
-    {
+    else*/{
         // 显示排序后的订单
         for (const auto &order : orders)
         {
+            qDebug()<<"order:"<<std::get<0>(order);
             createOrderWidget(order);
         }
     }
@@ -338,7 +341,7 @@ void OrderDialog::onGetOrdersSuccess()
 {
     QJsonObject obj = OrdersManager::GetInstance()->GetOrder();
     auto doc = QJsonDocument(obj);
-    qDebug() << "doc:" << doc;
+    qDebug() << "obj orders" << obj["orders"];
     // 检查是否存在 orders 数组
     if (obj["orders"].isArray())
     {
@@ -375,12 +378,5 @@ void OrderDialog::onGetOrdersSuccess()
                 ));
         }
     }
-    for (const auto &order : orders)
-    {
-        std::cout << "tqg3" << std::endl;
-
-        qDebug() << "order:" << std::get<0>(order);
-        qDebug() << "order:" << std::get<1>(order);
-        qDebug() << "order:" << std::get<2>(order);
-    }
+    updateOrderList();
 }
