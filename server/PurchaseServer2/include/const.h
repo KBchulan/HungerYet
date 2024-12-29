@@ -43,6 +43,7 @@ enum ErrorCodes
     PasswdInvalid = 1009,   // 密码格式无效
     TokenInvalid = 1010,    // token无效
     UidInvaild = 1011,      // uid无效
+    DBError = 1012,         // 数据库错误
 };
 
 #endif // !CONST_H

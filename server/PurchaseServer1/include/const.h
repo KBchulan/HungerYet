@@ -14,17 +14,19 @@ private:
     std::function<void()> _func;
 };
 
-#define MAX_LENGTH 2048   // 单个包的最大长度
-#define HEAD_TOTAL_LEN 4  // 头部总长度
-#define HEAD_ID_LEN 2     // ID长度
-#define HEAD_DATA_LEN 2   // 信息长度(不是信息)
-#define MAX_RECVQUE 10000 // 接收队列最大值
-#define MAX_SENDQUE 1000  // 发送队列最大值
+#define MAX_LENGTH 1024 * 4    // 单个包的最大长度
+#define HEAD_TOTAL_LEN 4       // 头部总长度
+#define HEAD_ID_LEN 2          // ID长度
+#define HEAD_DATA_LEN 2        // 信息长度(不是信息)
+#define MAX_RECVQUE 10000      // 接收队列最大值
+#define MAX_SENDQUE 1000       // 发送队列最大值
 
 enum MSG_IDS
 {
     MSG_CHAT_LOGIN = 1005,      // 用户登录
     MSG_CHAT_LOGIN_RSP = 1006,  // 用户登录回包
+    MSG_PURCHASE = 1007,        // 用户购买
+    MSG_PURCHASE_RSP = 1008,    // 用户购买回包
 };
 
 enum ErrorCodes
@@ -41,6 +43,7 @@ enum ErrorCodes
     PasswdInvalid = 1009,   // 密码格式无效
     TokenInvalid = 1010,    // token无效
     UidInvaild = 1011,      // uid无效
+    DBError = 1012,         // 数据库错误
 };
 
 #endif // !CONST_H

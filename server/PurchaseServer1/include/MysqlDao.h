@@ -73,6 +73,15 @@ struct UserInfo
     std::string _passwd;
 };
 
+struct OrderInfo
+{
+    std::string order_id;
+    std::string order_items;
+    std::string time;
+    double total;
+    std::string user_name;
+};
+
 class MysqlDao
 {
 public:
@@ -97,6 +106,12 @@ public:
     // 查询用户
     std::shared_ptr<UserInfo> GetUser(int uid);
     std::shared_ptr<UserInfo> GetUser(std::string name);
+
+    // 添加订单
+    bool AddOrder(const std::string& order_id, const std::string& order_items, const std::string& time, double total, const std::string& user_name);
+
+    // 获取所有订单
+    std::vector<OrderInfo> GetAllOrders();
 
 private:
     std::unique_ptr<MysqlPool> _pool;

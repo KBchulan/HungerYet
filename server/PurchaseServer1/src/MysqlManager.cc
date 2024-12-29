@@ -40,3 +40,13 @@ std::shared_ptr<UserInfo> MysqlManager::GetUser(std::string name)
 {
 	return _dao.GetUser(name);
 }
+
+bool MysqlManager::AddOrder(const std::string& order_id, const std::string& order_items, const std::string& time, double total, const std::string& user_name)
+{
+    return _dao.AddOrder(order_id, order_items, time, total, user_name);
+}
+
+std::vector<OrderInfo> MysqlManager::GetAllOrders()
+{
+    return _dao.GetAllOrders();
+}

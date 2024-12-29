@@ -1,6 +1,7 @@
 #include "../include/CSession.h"
 #include "../include/LogManager.h"
 #include "../include/LogicSystem.h"
+#include "../include/MysqlManager.h"
 #include "../include/StatusGrpcClient.h"
 
 LogicSystem::LogicSystem() 
@@ -85,6 +86,11 @@ void LogicSystem::RegisterCallBacks()
     {
         LoginHandler(session, id, data);
     };
+
+    _fun_callbacks[MSG_PURCHASE] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data)
+    {
+        PurchaseHandler(session, id, data);
+    };
 }
 
 void LogicSystem::LoginHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
@@ -134,4 +140,50 @@ void LogicSystem::LoginHandler(std::shared_ptr<CSession> session, const short &i
     rtvalue["uid"] = uid;
     rtvalue["token"] = rsp.token();
     rtvalue["name"] = user_info->_name;
+    rtvalue["head"] = root["head"].asString();
+    rtvalue["email"] = user_info->_email;
+}
+
+void LogicSystem::PurchaseHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
+{
+    Json::Reader reader;
+    Json::Value root;
+
+    reader.parse(data, root);
+
+    Defer defer([this, &root, session]() -> void
+    {
+        std::string return_str = root.toStyledString();
+        session->Send(return_str, MSG_PURCHASE_RSP);
+    });
+
+    try
+    {
+        // 从JSON中获取订单信息
+        std::string order_id = root["order_id"].asString();
+        std::string order_items = root["order_items"].asString();
+        std::string time = root["time"].asString();
+        double total = root["total"].asDouble();
+        std::string user_name = root["user_name"].asString();
+
+        // 存储订单到数据库
+        bool success = MysqlManager::GetInstance()->AddOrder(
+            order_id, order_items, time, total, user_name);
+
+        if (success)
+        {
+            root["error"] = ErrorCodes::Success;
+            LOG_SERVER->info("Purchase success, order_id: {}", order_id);
+        }
+        else
+        {
+            root["error"] = ErrorCodes::DBError;
+            LOG_SERVER->error("Purchase failed, order_id: {}", order_id);
+        }
+    }
+    catch (const std::exception &e)
+    {
+        root["error"] = ErrorCodes::DBError;
+        LOG_SERVER->error("Purchase exception: {}", e.what());
+    }
 }

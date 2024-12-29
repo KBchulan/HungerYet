@@ -1,6 +1,7 @@
 #include "../include/CSession.h"
 #include "../include/LogManager.h"
 #include "../include/LogicSystem.h"
+#include "../include/MysqlManager.h"
 #include "../include/StatusGrpcClient.h"
 
 LogicSystem::LogicSystem() 
@@ -150,11 +151,39 @@ void LogicSystem::PurchaseHandler(std::shared_ptr<CSession> session, const short
 
     reader.parse(data, root);
 
-    Json::Value rtvalue;
-
     Defer defer([this, &root, session]() -> void
     {
         std::string return_str = root.toStyledString();
         session->Send(return_str, MSG_PURCHASE_RSP);
     });
+
+    try
+    {
+        // 从JSON中获取订单信息
+        std::string order_id = root["order_id"].asString();
+        std::string order_items = root["order_items"].asString();
+        std::string time = root["time"].asString();
+        double total = root["total"].asDouble();
+        std::string user_name = root["user_name"].asString();
+
+        // 存储订单到数据库
+        bool success = MysqlManager::GetInstance()->AddOrder(
+            order_id, order_items, time, total, user_name);
+
+        if (success)
+        {
+            root["error"] = ErrorCodes::Success;
+            LOG_SERVER->info("Purchase success, order_id: {}", order_id);
+        }
+        else
+        {
+            root["error"] = ErrorCodes::DBError;
+            LOG_SERVER->error("Purchase failed, order_id: {}", order_id);
+        }
+    }
+    catch (const std::exception &e)
+    {
+        root["error"] = ErrorCodes::DBError;
+        LOG_SERVER->error("Purchase exception: {}", e.what());
+    }
 }

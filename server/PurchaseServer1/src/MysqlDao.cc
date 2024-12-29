@@ -357,3 +357,76 @@ std::shared_ptr<UserInfo> MysqlDao::GetUser(std::string name)
 		return nullptr;
 	}
 }
+
+bool MysqlDao::AddOrder(const std::string& order_id, const std::string& order_items, 
+                       const std::string& time, double total, const std::string& user_name)
+{
+    auto con = _pool->GetConnection();
+    
+    Defer defer([this, &con]
+                { _pool->ReturnConnection(std::move(con)); });
+
+    try
+    {
+        if(con == nullptr)
+            return false;
+
+        std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement(
+            "INSERT INTO `orders` (order_id, order_items, time, total, user_name) VALUES (?, ?, ?, ?, ?)"));
+            
+        pstmt->setString(1, order_id);
+        pstmt->setString(2, order_items);
+        pstmt->setString(3, time);
+        pstmt->setDouble(4, total);
+        pstmt->setString(5, user_name);
+
+        pstmt->executeUpdate();
+        LOG_SQL->info("Add order success, order_id: {}", order_id);
+        return true;
+    }
+    catch(sql::SQLException& e)
+    {
+        LOG_SQL->error("SQLException: {} (MySQL error code: {}, SQLState: {})", 
+                      e.what(), e.getErrorCode(), e.getSQLState());
+        return false;
+    }
+}
+
+std::vector<OrderInfo> MysqlDao::GetAllOrders()
+{
+    auto con = _pool->GetConnection();
+    std::vector<OrderInfo> orders;
+
+    Defer defer([this, &con]
+                { _pool->ReturnConnection(std::move(con)); });
+
+    try
+    {
+        if(con == nullptr)
+            return orders;
+
+        std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement(
+            "SELECT * FROM `orders` ORDER BY time DESC"));
+
+        std::unique_ptr<sql::ResultSet> res(pstmt->executeQuery());
+
+        while(res->next())
+        {
+            OrderInfo order;
+            order.order_id = res->getString("order_id");
+            order.order_items = res->getString("order_items");
+            order.time = res->getString("time");
+            order.total = res->getDouble("total");
+            order.user_name = res->getString("user_name");
+            orders.push_back(order);
+        }
+        LOG_SQL->info("Get all orders, count: {}", orders.size());
+        return orders;
+    }
+    catch(sql::SQLException& e)
+    {
+        LOG_SQL->error("SQLException: {} (MySQL error code: {}, SQLState: {})", 
+                      e.what(), e.getErrorCode(), e.getSQLState());
+        return orders;
+    }
+}
