@@ -61,6 +61,7 @@ enum ErrorCodes
     EmailNotMatch = 1007,   // 邮箱不匹配
     PasswdUpFailed = 1008,  // 密码更新失败
     PasswdInvalid = 1009,   // 密码格式无效
+    DBError = 1010,         // 数据库错误
 };
 
 // RAII统一实现，仿go语言的defer

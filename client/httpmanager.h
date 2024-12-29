@@ -47,6 +47,9 @@ signals:
     // login response finished,then the register will be done
     void sig_login_mod_finish(ReqId id, QString res, ErrorCodes err);
 
+    // admin manager
+    void sig_admin_mod_finish(ReqId id, QString res, ErrorCodes err);
+
 private:
     HttpManager();
 

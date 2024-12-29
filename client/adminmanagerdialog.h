@@ -1,6 +1,8 @@
 #ifndef ADMINMANAGERDIALOG_H
 #define ADMINMANAGERDIALOG_H
 
+#include "global.h"
+
 #include <QDialog>
 #include <QTableWidget>
 
@@ -31,7 +33,7 @@ private:
     void filterLogs(const QString &searchText);
     void loadOrders();
     void initOrderTable();
-    void updateOrderTable(const QJsonObject &orders);
+    void updateOrderTable(ReqId id, QString res, ErrorCodes err);
 
 private:
     QStringList m_allLogs;

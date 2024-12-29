@@ -60,6 +60,7 @@ enum Modules
     REGISTERMOD = 0,            // register mod
     RESETMOD = 1,               // reset password
     LOGINMOD = 2,               // user login
+    ADMINMOD = 3,               // admin manager
 };
 
 enum ErrorCodes

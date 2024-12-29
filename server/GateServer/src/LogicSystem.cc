@@ -287,6 +287,60 @@ LogicSystem::LogicSystem()
         LOG_HTTP->info(R"({} : {})", __FILE__, "send response: " + jsonstr);
         return true;
     });
+
+    RegPost("/admin_get_orders", [](std::shared_ptr<HttpConnection> connection)
+    {
+        auto body_str = boost::beast::buffers_to_string(connection->_request.body().data());
+        LOG_HTTP->info(R"({} : {})", __FILE__, "receive body is: " + body_str);
+
+        connection->_response.set(boost::beast::http::field::content_type, "text/json");
+
+        Json::Value root;
+        Json::Value src_root;
+        Json::Reader reader;
+
+        bool parse_success = reader.parse(body_str, src_root);  
+
+        if(!parse_success)
+        {
+            LOG_HTTP->error(R"({} : {})", __FILE__, "Failed to parse Json data");
+            root["error"] = ErrorCodes::ErrorJson;
+            std::string jsonstr = root.toStyledString();
+            boost::beast::ostream(connection->_response.body()) << jsonstr;
+            return true;
+        }
+
+        try
+        {
+            auto orders = MysqlManager::GetInstance()->GetAllOrders();
+            for (const auto &order : orders)
+            {
+                Json::Value order_json;
+                order_json["order_id"] = order.order_id;
+                order_json["merchant_id"] = order.merchant_id;
+                order_json["order_items"] = order.order_items;
+                order_json["time"] = order.time;
+                order_json["total"] = order.total;
+                order_json["user_name"] = order.user_name;
+                order_json["status"] = order.status;
+                root["orders"].append(order_json);
+            }
+            root["error"] = ErrorCodes::Success;
+            
+            std::string jsonstr = root.toStyledString();
+            boost::beast::ostream(connection->_response.body()) << jsonstr;
+            LOG_HTTP->info(R"({} : {})", __FILE__, "send response: " + jsonstr);
+            return true;
+        }
+        catch (const std::exception &e)
+        {
+            LOG_HTTP->error("Admin get orders exception: {}", e.what());
+            root["error"] = ErrorCodes::DBError;
+            std::string jsonstr = root.toStyledString();
+            boost::beast::ostream(connection->_response.body()) << jsonstr;
+            return true;
+        }
+    });
 }
 
 void LogicSystem::RegGet(const std::string &url, HttpHandler handler)

@@ -22,6 +22,10 @@ void HttpManager::slot_http_finish(ReqId id, QString res, ErrorCodes err, Module
     {
         emit sig_login_mod_finish(id, res, err);
     }
+    if(mod == Modules::ADMINMOD)
+    {
+        emit sig_admin_mod_finish(id, res, err);
+    }
 }
 
 HttpManager::HttpManager()

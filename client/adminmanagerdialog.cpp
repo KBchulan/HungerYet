@@ -1,5 +1,5 @@
-#include "global.h"
 #include "tcpmanager.h"
+#include "httpmanager.h"
 #include "ordersmanager.h"
 #include "adminmanagerdialog.h"
 #include "ui_adminmanagerdialog.h"
@@ -28,6 +28,8 @@ AdminManagerDialog::AdminManagerDialog(QWidget *parent)
 
     ui->stackedWidget->setCurrentIndex(0);
     ui->searchEdit->setVisible(true);
+
+    connect(HttpManager::GetInstance().get(), &HttpManager::sig_admin_mod_finish, this, &AdminManagerDialog::updateOrderTable);
 }
 
 AdminManagerDialog::~AdminManagerDialog()
@@ -88,12 +90,11 @@ void AdminManagerDialog::filterLogs(const QString &searchText)
 
 void AdminManagerDialog::loadOrders()
 {
-    QJsonObject empty;
-    QString jsonString = QJsonDocument(empty).toJson(QJsonDocument::Compact);
-    emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_ADMIN_GET_ORDERS, jsonString);
-    
-    auto reply = OrdersManager::GetInstance()->GetAllOrders();
-    updateOrderTable(reply);
+    QJsonObject json_obj;
+    json_obj["email"] = "admin";
+    json_obj["passwd"] = "123456";
+    HttpManager::GetInstance()->PostHttpReq(QUrl(gate_url_prefix + "/admin_get_orders"),
+                                            json_obj, ReqId::ID_ADMIN_GET_ORDERS, Modules::ADMINMOD);
 }
 
 void AdminManagerDialog::on_searchEdit_textChanged(const QString &text)
@@ -144,21 +145,42 @@ void AdminManagerDialog::on_switchBtn_clicked()
     }
 }
 
-void AdminManagerDialog::updateOrderTable(const QJsonObject &reply)
+void AdminManagerDialog::updateOrderTable(ReqId id, QString res, ErrorCodes err)
 {
+    if (id != ReqId::ID_ADMIN_GET_ORDERS || err != ErrorCodes::SUCCESS)
+    {
+        QMessageBox::warning(this, "错误", "获取订单失败!");
+        return;
+    }
+
     ui->orderTableWidget->clearContents();
     ui->orderTableWidget->setRowCount(0);
+
+    QJsonDocument doc = QJsonDocument::fromJson(res.toUtf8());
+    if (doc.isNull())
+    {
+        QMessageBox::warning(this, "错误", "解析订单数据失败!");
+        return;
+    }
+
+    QJsonObject reply = doc.object();
+    if (reply["error"].toInt() != ErrorCodes::SUCCESS)
+    {
+        QMessageBox::warning(this, "错误", "服务器返回错误!");
+        return;
+    }
 
     if (reply.contains("orders") && reply["orders"].isArray())
     {
         QJsonArray orders = reply["orders"].toArray();
-
+        
         for (const QJsonValue &orderVal : orders)
         {
             QJsonObject order = orderVal.toObject();
             int row = ui->orderTableWidget->rowCount();
             ui->orderTableWidget->insertRow(row);
-
+            
+            // 设置每列的数据
             ui->orderTableWidget->setItem(row, 0, new QTableWidgetItem(order["order_id"].toString()));
             ui->orderTableWidget->setItem(row, 1, new QTableWidgetItem(order["merchant_id"].toString()));
             ui->orderTableWidget->setItem(row, 2, new QTableWidgetItem(order["order_items"].toString()));
