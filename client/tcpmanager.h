@@ -57,6 +57,8 @@ signals:
     void sig_switch_chatdialog();
 
     void sig_send_data(ReqId id, QString body);
+
+    void sig_get_orders_success();
 };
 
 #endif // TCPMANAGER_H

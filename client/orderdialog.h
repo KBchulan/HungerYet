@@ -55,7 +55,8 @@ private:
     void createOrderWidget(const OrderInfo &info);
     QString getStatusString(OrderStatus status);
     QString getStatusStyleSheet(OrderStatus status);
-
+    void onGetOrdersSuccess();
+    
 private:
     Ui::OrderDialog *ui;
     QVector<OrderInfo> orders;

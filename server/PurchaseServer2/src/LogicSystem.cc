@@ -212,6 +212,7 @@ void LogicSystem::GetOrdersHandler(std::shared_ptr<CSession> session, const shor
     Defer defer([this, &rtvalue, session]() -> void
     {
         std::string return_str = rtvalue.toStyledString();
+        LOG_SERVER->info("Get orders success, return_str: {}", return_str);
         session->Send(return_str, MSG_GET_ORDERS_RSP);
     });
 
@@ -220,6 +221,7 @@ void LogicSystem::GetOrdersHandler(std::shared_ptr<CSession> session, const shor
         auto _merchant_id = root["merchant_id"].asString();
         int merchant_id = std::stoi(_merchant_id);
         auto orders = MysqlManager::GetInstance()->GetOrders(merchant_id);
+        LOG_SERVER->info("Get orders success, merchant_id: {}", merchant_id);
         for(const auto& order : orders)
         {
             Json::Value order_json;
@@ -234,7 +236,6 @@ void LogicSystem::GetOrdersHandler(std::shared_ptr<CSession> session, const shor
         }
         rtvalue["error"] = ErrorCodes::Success;
 
-        LOG_SERVER->info("Get orders success, merchant_id: {}", merchant_id);
     }
     catch (const std::exception &e)
     {
