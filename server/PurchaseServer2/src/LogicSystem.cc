@@ -91,6 +91,16 @@ void LogicSystem::RegisterCallBacks()
     {
         PurchaseHandler(session, id, data);
     };
+
+    _fun_callbacks[MSG_GET_ORDERS] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data)
+    {
+        GetOrdersHandler(session, id, data);
+    };
+
+    _fun_callbacks[MSG_ADMIN_GET_ORDERS] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data)
+    {
+        AdminGetOrdersHandler(session, id, data);
+    };
 }
 
 void LogicSystem::LoginHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
@@ -207,7 +217,8 @@ void LogicSystem::GetOrdersHandler(std::shared_ptr<CSession> session, const shor
 
     try
     {
-        auto merchant_id = root["merchant_id"].asInt();
+        auto _merchant_id = root["merchant_id"].asString();
+        int merchant_id = std::stoi(_merchant_id);
         auto orders = MysqlManager::GetInstance()->GetOrders(merchant_id);
         for(const auto& order : orders)
         {

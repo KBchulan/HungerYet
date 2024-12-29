@@ -17,8 +17,8 @@ OrderDialog::OrderDialog(QWidget *parent) :
     ui(new Ui::OrderDialog),
     currentFilter(OrderStatus::Pending)
 {
-    setupUI();
     ui->setupUi(this);
+    setupUI();
     getOrders(0);
     //updateOrderList();
 }
@@ -303,7 +303,9 @@ bool OrderDialog::eventFilter(QObject *obj, QEvent *event)
 void OrderDialog::getOrders(int merchant_id)
 {
     QJsonObject jsonObj;
-    jsonObj["merchant_id"] = merchant_id;
+    jsonObj["merchant_id"] = QString::number(merchant_id);
+    jsonObj["name"] = "KBchulan";
+    jsonObj["token"] = "eaeaac34-fe85-4a0d-b0ec-8e5cb4b37b24";
 
     QJsonDocument doc(jsonObj);
     QString jsonString = doc.toJson(QJsonDocument::Indented);

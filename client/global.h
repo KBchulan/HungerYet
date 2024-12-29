@@ -52,7 +52,7 @@ enum ReqId
     ID_GET_ORDERS = 1009,               // 获取订单
     ID_GET_ORDERS_RSP = 1010,           // 获取订单回包
     ID_ADMIN_GET_ORDERS = 1011,         // 管理员获取订单
-    ID_ADMIN_GET_ORDERS_RSP = 1012,   // 管理员获取订单回包
+    ID_ADMIN_GET_ORDERS_RSP = 1012,     // 管理员获取订单回包
 };
 
 enum Modules

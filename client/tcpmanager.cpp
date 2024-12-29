@@ -171,7 +171,7 @@ void TcpManager::initHandlers()
             qDebug() << "Failed to create QJsonDocument";
             return;
         }
-        OrdersManager::GetInstance()->AddOrder(jsonObj);
+        OrdersManager::GetInstance()->SetOrder(jsonObj);
     });
 
     _handlers.insert(ReqId::ID_ADMIN_GET_ORDERS_RSP, [this](ReqId id, int len, QByteArray data)

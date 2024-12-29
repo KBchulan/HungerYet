@@ -11,7 +11,9 @@ class OrdersManager final : public Singleton<OrdersManager>
 public:
     ~OrdersManager();
 
-    void AddOrder(QJsonObject jsonObj);
+    void SetOrder(QJsonObject jsonObj);
+
+    QJsonObject GetOrder();
 
     void SetAllOrders(QJsonObject jsonObj);
 

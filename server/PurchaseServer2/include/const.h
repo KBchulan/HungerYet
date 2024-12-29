@@ -27,9 +27,10 @@ enum MSG_IDS
     MSG_CHAT_LOGIN_RSP = 1006,        // 用户登录回包
     MSG_PURCHASE = 1007,              // 用户购买
     MSG_PURCHASE_RSP = 1008,          // 用户购买回包
-    MSG_GET_ORDERS_RSP = 1009,        // 获取订单回包
-    MSG_ADMIN_GET_ORDERS = 1010,      // 管理员获取订单
-    MSG_ADMIN_GET_ORDERS_RSP = 1011,  // 管理员获取订单回包
+    MSG_GET_ORDERS = 1009,            // 获取订单
+    MSG_GET_ORDERS_RSP = 1010,        // 获取订单回包
+    MSG_ADMIN_GET_ORDERS = 1011,      // 管理员获取订单
+    MSG_ADMIN_GET_ORDERS_RSP = 1012,  // 管理员获取订单回包
 };
 
 enum ErrorCodes

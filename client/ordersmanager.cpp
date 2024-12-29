@@ -10,9 +10,14 @@ OrdersManager::~OrdersManager()
 
 }
 
-void OrdersManager::AddOrder(QJsonObject jsonObj)
+void OrdersManager::SetOrder(QJsonObject jsonObj)
 {
     _obj = jsonObj;
+}
+
+QJsonObject OrdersManager::GetOrder()
+{
+    return _obj;
 }
 
 void OrdersManager::SetAllOrders(QJsonObject jsonObj)
