@@ -17,9 +17,9 @@
 #include <memory>
 #include <unordered_map>
 
-// 菜单
+// 菜名，价格
 using MenuPrices = std::unordered_map<QString, double>;
-// 名称, 位置, 图片，菜单
+// 商家名称, 位置, 图片，菜单
 using MerchantInfo = std::tuple<QString, QString, QString, MenuPrices>;
 
 class MerchantManager final : public Singleton<MerchantManager>, public std::enable_shared_from_this<MerchantManager>

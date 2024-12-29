@@ -42,6 +42,9 @@ private:
     // 登录回调
     void LoginHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data);
 
+    // 购买回调
+    void PurchaseHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data);
+
 private:
     std::mutex _mutex;
     std::atomic<bool> _stop;

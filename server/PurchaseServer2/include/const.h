@@ -25,6 +25,8 @@ enum MSG_IDS
 {
     MSG_CHAT_LOGIN = 1005,      // 用户登录
     MSG_CHAT_LOGIN_RSP = 1006,  // 用户登录回包
+    MSG_PURCHASE = 1007,        // 用户购买
+    MSG_PURCHASE_RSP = 1008,    // 用户购买回包
 };
 
 enum ErrorCodes

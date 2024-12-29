@@ -1,7 +1,8 @@
 #include "menudialog.h"
+#include "tcpmanager.h"
 #include "ui_menudialog.h"
-#include "merchantmanager.h"
 #include "merchantdialog.h"
+#include "merchantmanager.h"
 
 #include <QDebug>
 #include <QLabel>

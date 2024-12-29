@@ -85,6 +85,11 @@ void LogicSystem::RegisterCallBacks()
     {
         LoginHandler(session, id, data);
     };
+
+    _fun_callbacks[MSG_PURCHASE] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data)
+    {
+        PurchaseHandler(session, id, data);
+    };
 }
 
 void LogicSystem::LoginHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
@@ -136,4 +141,12 @@ void LogicSystem::LoginHandler(std::shared_ptr<CSession> session, const short &i
     rtvalue["name"] = user_info->_name;
     rtvalue["head"] = root["head"].asString();
     rtvalue["email"] = user_info->_email;
+}
+
+void LogicSystem::PurchaseHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
+{
+    Json::Reader reader;
+    Json::Value root;
+
+    reader.parse(data, root);
 }

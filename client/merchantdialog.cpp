@@ -1,9 +1,10 @@
+#include "tcpmanager.h"
+#include "usermanager.h"
 #include "merchantdialog.h"
 #include "ui_merchantdialog.h"
 
 #include <QPixmap>
 #include <QMessageBox>
-#include <tuple>
 
 MerchantDialog::MerchantDialog(QWidget *parent) :
     QDialog(parent),
@@ -35,6 +36,7 @@ void MerchantDialog::init(int merchant_id)
     
     menuPrices = std::get<3>(merchantInfo);
     updateMenuList(menuPrices);
+    _merchant_id = merchant_id;
 }
 
 void MerchantDialog::updateMenuList(const MenuPrices& menu)
@@ -85,11 +87,16 @@ void MerchantDialog::onMenuItemClicked(QListWidgetItem* item)
     QMessageBox confirmBox(this);
     confirmBox.setWindowTitle("添加到购物车");
     QString priceInfo;
-    if (currentMemberLevel == 1) {
+    if (currentMemberLevel == 1)
+    {
         priceInfo = QString("原价：￥%1,VIP价:￥%2").arg(originalPrice, 0, 'f', 2).arg(finalPrice, 0, 'f', 2);
-    } else if (currentMemberLevel == 2) {
+    }
+    else if (currentMemberLevel == 2)
+    {
         priceInfo = QString("原价：￥%1,VVIP价:￥%2").arg(originalPrice, 0, 'f', 2).arg(finalPrice, 0, 'f', 2);
-    } else {
+    }
+    else
+    {
         priceInfo = QString("￥%1").arg(finalPrice, 0, 'f', 2);
     }
     confirmBox.setText(QString("是否将 %1 (%2) 加入购物车？").arg(dishName).arg(priceInfo));
@@ -111,7 +118,8 @@ void MerchantDialog::onMenuItemClicked(QListWidgetItem* item)
     
     // 获取消息框的布局
     QGridLayout* layout = qobject_cast<QGridLayout*>(confirmBox.layout());
-    if (layout) {
+    if (layout)
+    {
         // 移除原有的按钮布局
         layout->takeAt(layout->count() - 1);
         // 添加新的按钮布局
@@ -124,11 +132,11 @@ void MerchantDialog::onMenuItemClicked(QListWidgetItem* item)
     {
         if (!cartItems.contains(dishName))
         {
-            cartItems[dishName] = std::make_tuple(finalPrice, 1);
+            cartItems[dishName] = std::make_tuple(finalPrice, 1, _merchant_id);
         }
         else
         {
-            auto& [price, count] = cartItems[dishName];
+            auto& [price, count, _] = cartItems[dishName];
             count++;
         }
         updateCartCount();
@@ -142,7 +150,7 @@ void MerchantDialog::onCartButtonClicked()
     
     for(auto it = cartItems.begin(); it != cartItems.end(); ++it)
     {
-        const auto& [price, count] = it.value();
+        const auto& [price, count, _] = it.value();
         if(count > 0)
         {
             double itemTotal = price * count;
@@ -170,6 +178,7 @@ void MerchantDialog::onCartButtonClicked()
     if (msgBox.clickedButton() == payButton)
     {
         pay(totalPrice);
+        sendMsg();
     }
 }
 
@@ -222,7 +231,7 @@ void MerchantDialog::pay(double totalPrice)
 void MerchantDialog::updateCartCount()
 {
     int count = 0;
-    for(const auto& [price, itemCount] : cartItems)
+    for(const auto& [price, itemCount, _] : cartItems)
     {
         count += itemCount;
     }
@@ -242,4 +251,41 @@ double MerchantDialog::calculatePrice(double originalPrice, int memberLevel) con
         default:
             return originalPrice;
     }
+}
+
+void MerchantDialog::sendMsg()
+{
+    QJsonObject obj;
+    obj["merchant_id"] = QString(_merchant_id);
+
+    auto time = std::chrono::system_clock::now();
+    auto time_t = std::chrono::system_clock::to_time_t(time);
+    QString currentTime = QString::fromStdString(std::ctime(&time_t));
+    currentTime = currentTime.trimmed();
+
+    QString user_name = UserManager::GetInstance()->GetName();
+    
+    if (user_name.isEmpty())
+        user_name = "tourist";
+    obj["order_id"] = user_name + currentTime;
+    obj["user_name"] = user_name;
+
+    QString order_data = "";
+    for(auto it = cartItems.begin(); it != cartItems.end(); ++it)
+    {
+        auto dish_name = it.key();
+        auto tuple = it.value();
+        auto price = std::get<0>(tuple);
+        auto count = std::get<1>(tuple);
+        auto merchant_id = std::get<2>(tuple);
+        order_data += QString(dish_name) + "|" + QString(std::to_string(price).c_str()) + "|" + QString(std::to_string(count).c_str()) + "|" + QString(std::to_string(merchant_id).c_str()) + ";";
+    }
+    obj["order_data"] = order_data;
+
+    QJsonDocument doc(obj);
+    QString jsonString = doc.toJson(QJsonDocument::Indented);
+
+    qDebug() << "jsonString is: " << jsonString;
+
+    emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_PURCHASE, jsonString);
 }

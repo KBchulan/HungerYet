@@ -26,7 +26,8 @@ class MerchantDialog : public QDialog
 {
     Q_OBJECT
 
-using DishInfo = std::tuple<double, int>;
+// 价格， 数量, merchant_id
+using DishInfo = std::tuple<double, int, int>;
 
 public:
     explicit MerchantDialog(QWidget *parent = nullptr);
@@ -37,6 +38,7 @@ public:
 private slots:
     void onMenuItemClicked(QListWidgetItem* item);
     void onCartButtonClicked();
+    void sendMsg();
 
 private:
     double calculatePrice(double originalPrice, int memberLevel) const;
@@ -47,9 +49,10 @@ private:
 
 private:
     Ui::MerchantDialog *ui;
-    QMap<QString, DishInfo> cartItems;
+    QMap<QString, DishInfo> cartItems;      // 菜品名，菜品价格和数量
     MenuPrices menuPrices;
-    int currentMemberLevel = 0;
+    int currentMemberLevel = 0;             // 用户等级
+    int _merchant_id = 0;
 };
 
 #endif // MERCHANTDIALOG_H

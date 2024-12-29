@@ -140,6 +140,22 @@ void TcpManager::initHandlers()
 
         emit sig_switch_chatdialog();
     });
+
+    _handlers.insert(ReqId::ID_PURCHASE, [this](ReqId id, int len, QByteArray data)
+    {
+        Q_UNUSED(len);
+        qDebug() << "message id is: " << id << " message len is: " << len;
+
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(data);
+        qDebug() << "jsonDoc is: " << jsonDoc;
+        QJsonObject jsonObj = jsonDoc.object();
+
+        if(!jsonObj.contains("error"))
+        {
+            qDebug() << "Failed to create QJsonDocument";
+            return;
+        }
+    });
 }
 
 void TcpManager::handleMessage(ReqId id, int len, QByteArray body)
