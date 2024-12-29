@@ -283,9 +283,9 @@ void MerchantDialog::sendMsg(double totalPrice)
     for (auto it = cartItems.begin(); it != cartItems.end(); ++it)
     {
         orderItems+=it.key()+"|"; //name
-        orderItems+=QString::number(static_cast<double>(std::get<0>(it.value()),10))+"|"; //price
-        orderItems+=QString::number(static_cast<int>(std::get<1>(it.value())),10)+"|"; //count
-        orderItems+=QString::number(static_cast<int>(std::get<2>(it.value())),10); //merchant_id
+        orderItems+=QString::number(static_cast<double>(std::get<0>(it.value())))+"|"; //price
+        orderItems+=QString::number(static_cast<int>(std::get<1>(it.value())))+"|"; //count
+        orderItems+=QString::number(static_cast<int>(std::get<2>(it.value()))); //merchant_id
         if (it+1 != cartItems.end()) orderItems+="#";
         qDebug()<<QString::number(static_cast<double>(std::get<0>(it.value()),10));
     }
