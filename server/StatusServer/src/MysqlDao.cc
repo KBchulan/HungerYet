@@ -359,7 +359,7 @@ std::shared_ptr<UserInfo> MysqlDao::GetUser(std::string name)
 }
 
 bool MysqlDao::AddOrder(const std::string& order_id, int merchant_id, const std::string& order_items, 
-                       const std::string& time, double total, const std::string& user_name)
+                       const std::string& time, double total, const std::string& user_name, std::uint32_t status)
 {
     auto con = _pool->GetConnection();
     
@@ -372,8 +372,8 @@ bool MysqlDao::AddOrder(const std::string& order_id, int merchant_id, const std:
             return false;
 
         std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement(
-            "INSERT INTO `orders` (order_id, merchant_id, order_items, time, total, user_name) "
-            "VALUES (?, ?, ?, ?, ?, ?)"));
+            "INSERT INTO `orders` (order_id, merchant_id, order_items, time, total, user_name, status) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)"));
             
         pstmt->setString(1, order_id);
         pstmt->setInt(2, merchant_id);
@@ -381,6 +381,7 @@ bool MysqlDao::AddOrder(const std::string& order_id, int merchant_id, const std:
         pstmt->setString(4, time);
         pstmt->setDouble(5, total);
         pstmt->setString(6, user_name);
+        pstmt->setInt(7, status);
 
         pstmt->executeUpdate();
         LOG_SQL->info("Add order success, order_id: {}, merchant_id: {}", order_id, merchant_id);
@@ -421,9 +422,53 @@ std::vector<OrderInfo> MysqlDao::GetAllOrders()
             order.time = res->getString("time");
             order.total = res->getDouble("total");
             order.user_name = res->getString("user_name");
+            order.status = res->getInt("status");
             orders.push_back(order);
         }
         LOG_SQL->info("Get all orders, count: {}", orders.size());
+        return orders;
+    }
+    catch(sql::SQLException& e)
+    {
+        LOG_SQL->error("SQLException: {} (MySQL error code: {}, SQLState: {})", 
+                      e.what(), e.getErrorCode(), e.getSQLState());
+        return orders;
+    }
+}
+
+std::vector<OrderInfo> MysqlDao::GetOrders(int merchant_id)
+{
+    auto con = _pool->GetConnection();
+    std::vector<OrderInfo> orders;
+
+    Defer defer([this, &con]
+                { _pool->ReturnConnection(std::move(con)); });
+
+    try
+    {
+        if(con == nullptr)
+            return orders;
+
+        std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement(
+            "SELECT * FROM `orders` WHERE merchant_id = ? AND status = 0 ORDER BY time DESC"));
+
+        pstmt->setInt(1, merchant_id);
+
+        std::unique_ptr<sql::ResultSet> res(pstmt->executeQuery());
+
+        while(res->next())
+        {
+            OrderInfo order;
+            order.order_id = res->getString("order_id");
+            order.merchant_id = res->getInt("merchant_id");
+            order.order_items = res->getString("order_items");
+            order.time = res->getString("time");
+            order.total = res->getDouble("total");
+            order.user_name = res->getString("user_name");
+            order.status = res->getInt("status");
+            orders.push_back(order);
+        }
+        LOG_SQL->info("Get orders, count: {}", orders.size());
         return orders;
     }
     catch(sql::SQLException& e)

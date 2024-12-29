@@ -41,16 +41,18 @@ extern std::function<QString(QString)> xorString;
 
 enum ReqId
 {
-    ID_GET_VARIFY_CODE = 1001,  // get varify code(in RegisterDialog)
-    ID_REG_USER = 1002,         // register user(in RegisterDialog)
-    ID_RESET_PWD = 1003,        // reset password
-    ID_LOGIN_USER = 1004,       // login user
-    ID_CHAT_LOGIN = 1005,       // login chat server
-    ID_CHAT_LOGIN_RSP = 1006,   // when the 1005 be done, the return body
-    ID_PURCHASE = 1007,         // 购买
-    ID_PURCHASE_RSP = 1008,     // 购买
-    ID_GET_ORDERS = 1009,       // 获取订单
-    ID_GET_ORDERS_RSP = 1010,   // 获取订单
+    ID_GET_VARIFY_CODE = 1001,          // 获取验证码(在RegisterDialog)
+    ID_REG_USER = 1002,                 // 注册用户(在RegisterDialog)
+    ID_RESET_PWD = 1003,                // 重置密码
+    ID_LOGIN_USER = 1004,               // 登录用户
+    ID_CHAT_LOGIN = 1005,               // 登录聊天服务器
+    ID_CHAT_LOGIN_RSP = 1006,           // when the 1005 be done, the return body
+    ID_PURCHASE = 1007,                 // 购买
+    ID_PURCHASE_RSP = 1008,             // 购买
+    ID_GET_ORDERS = 1009,               // 获取订单
+    ID_GET_ORDERS_RSP = 1010,           // 获取订单回包
+    ID_ADMIN_GET_ORDERS = 1011,         // 管理员获取订单
+    ID_ADMIN_GET_ORDERS_RSP = 1012,   // 管理员获取订单回包
 };
 
 enum Modules

@@ -48,6 +48,9 @@ private:
     // 获取订单回调
     void GetOrdersHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data);
 
+    // 管理员获取订单回调
+    void AdminGetOrdersHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data);
+
 private:
     std::mutex _mutex;
     std::atomic<bool> _stop;

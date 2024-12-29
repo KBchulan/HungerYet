@@ -231,3 +231,44 @@ void LogicSystem::GetOrdersHandler(std::shared_ptr<CSession> session, const shor
         LOG_SERVER->error("Purchase exception: {}", e.what());
     }
 }
+
+void LogicSystem::AdminGetOrdersHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
+{
+    Json::Reader reader;
+    Json::Value root;
+
+    reader.parse(data, root);
+
+    Json::Value rtvalue;
+
+    Defer defer([this, &rtvalue, session]() -> void
+    {
+        std::string return_str = rtvalue.toStyledString();
+        session->Send(return_str, MSG_ADMIN_GET_ORDERS_RSP);
+    });
+
+    try
+    {
+        auto orders = MysqlManager::GetInstance()->GetAllOrders();
+        for(const auto& order : orders)
+        {
+            Json::Value order_json;
+            order_json["order_id"] = order.order_id;
+            order_json["merchant_id"] = order.merchant_id;
+            order_json["order_items"] = order.order_items;
+            order_json["time"] = order.time;
+            order_json["total"] = order.total;
+            order_json["user_name"] = order.user_name;
+            order_json["status"] = order.status;
+            rtvalue["orders"].append(order_json);
+        }
+        rtvalue["error"] = ErrorCodes::Success;
+
+        LOG_SERVER->info("Admin get orders success");
+    }
+    catch (const std::exception &e)
+    {
+        root["error"] = ErrorCodes::DBError;
+        LOG_SERVER->error("Admin get orders exception: {}", e.what());
+    }
+}

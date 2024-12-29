@@ -123,6 +123,39 @@ QPushButton:pressed {
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="switchBtn">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #FFB300;
+    color: white;
+    border-radius: 4px;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #FFA000;
+}
+QPushButton:pressed {
+    background-color: #FF8F00;
+}</string>
+       </property>
+       <property name="text">
+        <string>切换视图</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -138,9 +171,13 @@ QPushButton:pressed {
     </layout>
    </item>
    <item>
-    <widget class="QListWidget" name="listWidget">
-     <property name="styleSheet">
-      <string notr="true">QListWidget {
+    <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="QWidget" name="logPage">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QListWidget" name="listWidget">
+         <property name="styleSheet">
+          <string notr="true">QListWidget {
     border: 1px solid #FFB74D;
     border-radius: 4px;
     background-color: #FFFDE7;
@@ -156,7 +193,36 @@ QListWidget::item:selected {
 QListWidget::item:hover {
     background-color: #FFF8E1;
 }</string>
-     </property>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="orderPage">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QTableWidget" name="orderTableWidget">
+         <property name="styleSheet">
+          <string notr="true">QTableWidget {
+    border: 1px solid #FFB74D;
+    border-radius: 4px;
+    background-color: #FFFDE7;
+}
+QTableWidget::item {
+    padding: 5px;
+}
+QTableWidget::item:selected {
+    background-color: #FFE082;
+    color: black;
+}
+QTableWidget::item:hover {
+    background-color: #FFF8E1;
+}</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>

@@ -2,6 +2,7 @@
 #define ADMINMANAGERDIALOG_H
 
 #include <QDialog>
+#include <QTableWidget>
 
 namespace Ui
 {
@@ -23,12 +24,19 @@ private slots:
     void on_return_btn_clicked();
     void on_searchEdit_textChanged(const QString &text);
     void on_refreshBtn_clicked();
+    void on_switchBtn_clicked();
 
 private:
     void loadLogFile();
     void filterLogs(const QString &searchText);
-    QStringList m_allLogs;  // 存储所有日志
+    void loadOrders();
+    void initOrderTable();
+    void updateOrderTable(const QJsonObject &orders);
+
+private:
+    QStringList m_allLogs;
     Ui::AdminManagerDialog *ui;
+    bool m_isLogView;
 };
 
 #endif // ADMINMANAGERDIALOG_H

@@ -173,6 +173,17 @@ void TcpManager::initHandlers()
         }
         OrdersManager::GetInstance()->AddOrder(jsonObj);
     });
+
+    _handlers.insert(ReqId::ID_ADMIN_GET_ORDERS_RSP, [this](ReqId id, int len, QByteArray data)
+    {
+        Q_UNUSED(len);
+        qDebug() << "message id is: " << id << " message len is: " << len;
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(data);
+        qDebug() << "jsonDoc is: " << jsonDoc;
+        
+        QJsonObject jsonObj = jsonDoc.object();
+        OrdersManager::GetInstance()->SetAllOrders(jsonObj);
+    });
 }
 
 void TcpManager::handleMessage(ReqId id, int len, QByteArray body)
