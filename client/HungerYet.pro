@@ -39,6 +39,7 @@ SOURCES += \
     merchantdialog.cpp \
     merchantmanager.cpp \
     orderdialog.cpp \
+    ordersmanager.cpp \
     particleeffect.cpp \
     registerdialog.cpp \
     resetdialog.cpp \
@@ -72,6 +73,7 @@ HEADERS += \
     merchantdialog.h \
     merchantmanager.h \
     orderdialog.h \
+    ordersmanager.h \
     particleeffect.h \
     registerdialog.h \
     resetdialog.h \

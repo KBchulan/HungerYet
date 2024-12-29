@@ -1,3 +1,4 @@
+#include "tcpmanager.h"
 #include "orderdialog.h"
 #include "ui_orderdialog.h"
 #include "merchantmanager.h"
@@ -16,10 +17,10 @@ OrderDialog::OrderDialog(QWidget *parent) :
     ui(new Ui::OrderDialog),
     currentFilter(OrderStatus::Pending)
 {
-    ui->setupUi(this);
     setupUI();
-    generateRandomOrders();
-    updateOrderList();
+    ui->setupUi(this);
+    getOrders(0);
+    //updateOrderList();
 }
 
 OrderDialog::~OrderDialog()
@@ -49,69 +50,6 @@ void OrderDialog::setupUI()
     // 连接信号
     connect(ui->searchEdit, &QLineEdit::textChanged, this, &OrderDialog::onSearchTextChanged);
     connect(ui->filterComboBox, &QComboBox::currentTextChanged, this, &OrderDialog::onFilterButtonClicked);
-}
-
-void OrderDialog::generateRandomOrders()
-{
-    auto merchantManager = MerchantManager::GetInstance();
-    QStringList orderContents = {"米饭", "面条", "饺子", "炒菜", "汤"};
-    
-    // 确保每个状态至少有一个订单
-    QVector<OrderStatus> statuses = {
-        OrderStatus::Pending,
-        OrderStatus::Processing,
-        OrderStatus::Completed,
-        OrderStatus::Cancelled
-    };
-
-    // 先为每个状态生成一个订单
-    for(const auto& status : statuses)
-    {
-        int merchantId = QRandomGenerator::global()->bounded(static_cast<int>(merchantManager->GetMerchantCount()));
-        MerchantInfo merchantInfo = merchantManager->GetMerchantInfo(merchantId);
-        
-        QString orderId = QString("ORD%1").arg(orders.size() + 1, 6, 10, QChar('0'));
-        QString merchantName = std::get<0>(merchantInfo);
-        
-        // 随机生成2-4个菜品
-        QString content;
-        int itemCount = QRandomGenerator::global()->bounded(2, 5);
-        for(int j = 0; j < itemCount; j++) {
-            content += orderContents[QRandomGenerator::global()->bounded(orderContents.size())];
-            if(j < itemCount - 1) content += "、";
-        }
-        
-        double price = QRandomGenerator::global()->bounded(2000, 15000) / 100.0;
-        QDateTime time = QDateTime::currentDateTime().addDays(-QRandomGenerator::global()->bounded(7));
-        
-        orders.append(std::make_tuple(orderId, merchantName, content, price, time, status));
-    }
-
-    // 再随机生成剩余的订单
-    for(int i = orders.size(); i < 12; i++)
-    {
-        int merchantId = QRandomGenerator::global()->bounded(static_cast<int>(merchantManager->GetMerchantCount()));
-        MerchantInfo merchantInfo = merchantManager->GetMerchantInfo(merchantId);
-        
-        QString orderId = QString("ORD%1").arg(i + 1, 6, 10, QChar('0'));
-        QString merchantName = std::get<0>(merchantInfo);
-        
-        // 随机生成2-4个菜品
-        QString content;
-        int itemCount = QRandomGenerator::global()->bounded(2, 5);
-        for(int j = 0; j < itemCount; j++) {
-            content += orderContents[QRandomGenerator::global()->bounded(orderContents.size())];
-            if(j < itemCount - 1) content += "、";
-        }
-        
-        double price = QRandomGenerator::global()->bounded(2000, 15000) / 100.0;
-        QDateTime time = QDateTime::currentDateTime().addDays(-QRandomGenerator::global()->bounded(7));
-        
-        // 随机选择一个状态
-        OrderStatus status = statuses[QRandomGenerator::global()->bounded(statuses.size())];
-        
-        orders.append(std::make_tuple(orderId, merchantName, content, price, time, status));
-    }
 }
 
 void OrderDialog::createOrderWidget(const OrderInfo &info)
@@ -343,8 +281,10 @@ void OrderDialog::updateOrderList(const QString &searchText)
 bool OrderDialog::eventFilter(QObject *obj, QEvent *event)
 {
     QWidget *widget = qobject_cast<QWidget*>(obj);
-    if (widget && widget->objectName() == "orderItem") {
-        switch (event->type()) {
+    if (widget && widget->objectName() == "orderItem") 
+    {
+        switch (event->type()) 
+        {
             case QEvent::Enter:
                 widget->setProperty("hovered", true);
                 widget->style()->polish(widget);
@@ -358,4 +298,15 @@ bool OrderDialog::eventFilter(QObject *obj, QEvent *event)
         }
     }
     return QDialog::eventFilter(obj, event);
+}
+
+void OrderDialog::getOrders(int merchant_id)
+{
+    QJsonObject jsonObj;
+    jsonObj["merchant_id"] = merchant_id;
+
+    QJsonDocument doc(jsonObj);
+    QString jsonString = doc.toJson(QJsonDocument::Indented);
+
+    emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_GET_ORDERS, jsonString);
 }

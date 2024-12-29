@@ -1,5 +1,6 @@
 #include "tcpmanager.h"
 #include "usermanager.h"
+#include "ordersmanager.h"
 
 #include <QDataStream>
 #include <QAbstractSocket>
@@ -155,6 +156,22 @@ void TcpManager::initHandlers()
             qDebug() << "Failed to create QJsonDocument";
             return;
         }
+    });
+
+    _handlers.insert(ReqId::ID_GET_ORDERS_RSP, [this](ReqId id, int len, QByteArray data)
+    {
+        Q_UNUSED(len);
+        qDebug() << "message id is: " << id << " message len is: " << len;
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(data);
+        qDebug() << "jsonDoc is: " << jsonDoc;
+        
+        QJsonObject jsonObj = jsonDoc.object();
+        if(!jsonObj.contains("order_id"))
+        {
+            qDebug() << "Failed to create QJsonDocument";
+            return;
+        }
+        OrdersManager::GetInstance()->AddOrder(jsonObj);
     });
 }
 

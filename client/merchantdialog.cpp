@@ -280,7 +280,8 @@ void MerchantDialog::sendMsg(double totalPrice)
     QMap<int, int> merchant_total;
 
     QString orderItems = "";
-    for (auto it = cartItems.begin(); it != cartItems.end(); ++it){
+    for (auto it = cartItems.begin(); it != cartItems.end(); ++it)
+    {
         int id = std::get<2>(it.value());
         merchant_json[id] = QJsonObject();
         merchant_json[id]["user_name"] = user_name;

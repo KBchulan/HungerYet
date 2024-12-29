@@ -48,7 +48,9 @@ enum ReqId
     ID_CHAT_LOGIN = 1005,       // login chat server
     ID_CHAT_LOGIN_RSP = 1006,   // when the 1005 be done, the return body
     ID_PURCHASE = 1007,         // 购买
-    ID_PURCHASE_RSP = 1008      // 购买
+    ID_PURCHASE_RSP = 1008,     // 购买
+    ID_GET_ORDERS = 1009,       // 获取订单
+    ID_GET_ORDERS_RSP = 1010,   // 获取订单
 };
 
 enum Modules

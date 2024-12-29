@@ -50,8 +50,8 @@ private slots:
     void updateOrderList(const QString &searchText = QString());
 
 private:
+    void getOrders(int merchant_id);
     void setupUI();
-    void generateRandomOrders();
     void createOrderWidget(const OrderInfo &info);
     QString getStatusString(OrderStatus status);
     QString getStatusStyleSheet(OrderStatus status);

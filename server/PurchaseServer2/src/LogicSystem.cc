@@ -166,10 +166,11 @@ void LogicSystem::PurchaseHandler(std::shared_ptr<CSession> session, const short
         std::string time = root["time"].asString();
         double total = root["total"].asDouble();
         std::string user_name = root["user_name"].asString();
+        std::uint32_t status = 0;
 
         // 存储订单到数据库
         bool success = MysqlManager::GetInstance()->AddOrder(
-            order_id, merchant_id, order_items, time, total, user_name);
+            order_id, merchant_id, order_items, time, total, user_name, status);
 
         if (success)
         {
@@ -181,6 +182,48 @@ void LogicSystem::PurchaseHandler(std::shared_ptr<CSession> session, const short
             root["error"] = ErrorCodes::DBError;
             LOG_SERVER->error("Purchase failed, order_id: {}", order_id);
         }
+    }
+    catch (const std::exception &e)
+    {
+        root["error"] = ErrorCodes::DBError;
+        LOG_SERVER->error("Purchase exception: {}", e.what());
+    }
+}
+
+void LogicSystem::GetOrdersHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
+{
+    Json::Reader reader;
+    Json::Value root;
+
+    reader.parse(data, root);
+
+    Json::Value rtvalue;
+
+    Defer defer([this, &rtvalue, session]() -> void
+    {
+        std::string return_str = rtvalue.toStyledString();
+        session->Send(return_str, MSG_PURCHASE_RSP);
+    });
+
+    try
+    {
+        auto merchant_id = root["merchant_id"].asInt();
+        auto orders = MysqlManager::GetInstance()->GetOrders(merchant_id);
+        for(const auto& order : orders)
+        {
+            Json::Value order_json;
+            order_json["order_id"] = order.order_id;
+            order_json["merchant_id"] = order.merchant_id;
+            order_json["order_items"] = order.order_items;
+            order_json["time"] = order.time;
+            order_json["total"] = order.total;
+            order_json["user_name"] = order.user_name;
+            order_json["status"] = order.status;
+            rtvalue["orders"].append(order_json);
+        }
+        rtvalue["error"] = ErrorCodes::Success;
+
+        LOG_SERVER->info("Get orders success, merchant_id: {}", merchant_id);
     }
     catch (const std::exception &e)
     {
