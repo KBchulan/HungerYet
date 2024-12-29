@@ -24,7 +24,6 @@ namespace Ui
 // 订单状态
 enum class OrderStatus {
     Pending,    // 待处理
-    Processing, // 处理中
     Completed,  // 已完成
     Cancelled   // 已取消
 };

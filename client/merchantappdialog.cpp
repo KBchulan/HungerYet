@@ -14,7 +14,6 @@ MerchantAppDialog::MerchantAppDialog(QWidget *parent) :
     ui(new Ui::MerchantAppDialog)
 {
     ui->setupUi(this);
-    
     if(!ui->order_wid)
         ui->order_wid = new OrderDialog(this);
 

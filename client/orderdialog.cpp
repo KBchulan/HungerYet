@@ -20,7 +20,7 @@ OrderDialog::OrderDialog(QWidget *parent) :
     ui->setupUi(this);
     setupUI();
     getOrders(0);
-    //updateOrderList();
+    updateOrderList();
 }
 
 OrderDialog::~OrderDialog()
@@ -153,7 +153,7 @@ void OrderDialog::createOrderWidget(const OrderInfo &info)
         buttonLayout->addWidget(acceptButton);
         
         connect(acceptButton, &QPushButton::clicked, [this, orderId = std::get<0>(info)]() {
-            onOrderStatusChanged(orderId, OrderStatus::Processing);
+            onOrderStatusChanged(orderId, OrderStatus::Completed);
         });
         
         connect(rejectButton, &QPushButton::clicked, [this, orderId = std::get<0>(info)]() {
@@ -177,7 +177,6 @@ QString OrderDialog::getStatusString(OrderStatus status)
 {
     switch(status) {
         case OrderStatus::Pending: return "待处理";
-        case OrderStatus::Processing: return "处理中";
         case OrderStatus::Completed: return "已完成";
         case OrderStatus::Cancelled: return "已取消";
         default: return "未状态";
@@ -190,8 +189,6 @@ QString OrderDialog::getStatusStyleSheet(OrderStatus status)
     switch(status) {
         case OrderStatus::Pending:
             return baseStyle + "background-color: #FFA500;"; // 橙色
-        case OrderStatus::Processing:
-            return baseStyle + "background-color: #4169E1;"; // 蓝色
         case OrderStatus::Completed:
             return baseStyle + "background-color: #32CD32;"; // 绿色
         case OrderStatus::Cancelled:
@@ -231,51 +228,25 @@ void OrderDialog::onOrderStatusChanged(const QString &orderId, OrderStatus newSt
 void OrderDialog::updateOrderList(const QString &searchText)
 {
     ui->listWidget->clear();
-    
-    // 创建一个临时��表用于排序
-    QVector<OrderInfo> filteredOrders;
-    
-    // 过滤订单
-    for(const auto &order : orders) {
-        bool matchesSearch = searchText.isEmpty() ||
-                           std::get<0>(order).contains(searchText, Qt::CaseInsensitive) ||
-                           std::get<1>(order).contains(searchText, Qt::CaseInsensitive) ||
-                           std::get<2>(order).contains(searchText, Qt::CaseInsensitive);
-        
-        bool matchesFilter = ui->filterComboBox->currentIndex() == 0 ||
-                           std::get<5>(order) == currentFilter;
-        
-        if(matchesSearch && matchesFilter) {
-            filteredOrders.append(order);
+    std::sort(orders.begin(), orders.end(), 
+        [](const OrderInfo &a, const OrderInfo &b) {
+            return std::get<4>(a) > std::get<4>(b);
+        });
+
+    if (!searchText.isEmpty()){
+        for(const auto &order : orders) {
+            if (std::get<0>(order).contains(searchText, Qt::CaseInsensitive) ||
+                std::get<1>(order).contains(searchText, Qt::CaseInsensitive) ||
+                std::get<2>(order).contains(searchText, Qt::CaseInsensitive))
+            createOrderWidget(order);
+        }
+    }else{
+        // 显示排序后的订单
+        for(const auto &order : orders) {
+            createOrderWidget(order);
         }
     }
     
-    // 按状态��时间排序
-    std::sort(filteredOrders.begin(), filteredOrders.end(), 
-        [](const OrderInfo &a, const OrderInfo &b) {
-            // 首先按状态排序
-            OrderStatus statusA = std::get<5>(a);
-            OrderStatus statusB = std::get<5>(b);
-            
-            if (statusA != statusB) {
-                // 排序优先级：待处理 > 处理中 > 已完成 > 已取消
-                static const std::map<OrderStatus, int> priorityMap = {
-                    {OrderStatus::Pending, 0},
-                    {OrderStatus::Processing, 1},
-                    {OrderStatus::Completed, 2},
-                    {OrderStatus::Cancelled, 3}
-                };
-                return priorityMap.at(statusA) < priorityMap.at(statusB);
-            }
-            
-            // 状态相同时，按时间倒序排序（新的在前）
-            return std::get<4>(a) > std::get<4>(b);
-        });
-    
-    // 显示排序后的订单
-    for(const auto &order : filteredOrders) {
-        createOrderWidget(order);
-    }
 }
 
 bool OrderDialog::eventFilter(QObject *obj, QEvent *event)
