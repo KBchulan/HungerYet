@@ -38,7 +38,7 @@ public:
 private slots:
     void onMenuItemClicked(QListWidgetItem* item);
     void onCartButtonClicked();
-    void sendMsg();
+    void sendMsg(double totalPrice);
 
 private:
     double calculatePrice(double originalPrice, int memberLevel) const;
