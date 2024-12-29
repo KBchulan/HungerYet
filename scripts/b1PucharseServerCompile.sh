@@ -9,7 +9,7 @@ mkdir "$BUILD_DIR"
 cd "$BUILD_DIR"
 
 cmake ..
-make -j$(nproc)
+make -j4
 
 if [ $? -eq 0 ]; then
     echo "编译成功,正在启动程序..."

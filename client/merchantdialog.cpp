@@ -255,37 +255,44 @@ double MerchantDialog::calculatePrice(double originalPrice, int memberLevel) con
 
 void MerchantDialog::sendMsg()
 {
-    QJsonObject obj;
-    obj["merchant_id"] = QString(_merchant_id);
+    if (cartItems.isEmpty()) 
+    {
+        qDebug() << "购物车为空，无法提交订单";
+        return;
+    }
 
-    auto time = std::chrono::system_clock::now();
-    auto time_t = std::chrono::system_clock::to_time_t(time);
-    QString currentTime = QString::fromStdString(std::ctime(&time_t));
-    currentTime = currentTime.trimmed();
+    QJsonObject obj;
+    obj["merchant_id"] = QString::number(_merchant_id);
+
+    // 使用更规范的时间格式
+    QDateTime current = QDateTime::currentDateTime();
+    QString currentTime = current.toString("yyyyMMddhhmmss");
 
     QString user_name = UserManager::GetInstance()->GetName();
-    
-    if (user_name.isEmpty())
+    if (user_name.isEmpty()) 
+    {
         user_name = "tourist";
-    obj["order_id"] = user_name + currentTime;
+    }
+    obj["order_id"] = user_name + "_" + currentTime;
     obj["user_name"] = user_name;
 
-    QString order_data = "";
-    for(auto it = cartItems.begin(); it != cartItems.end(); ++it)
+    // 使用 JSON 数组存储订单项
+    QJsonArray orderItems;
+    for (auto it = cartItems.begin(); it != cartItems.end(); ++it) 
     {
-        auto dish_name = it.key();
-        auto tuple = it.value();
-        auto price = std::get<0>(tuple);
-        auto count = std::get<1>(tuple);
-        auto merchant_id = std::get<2>(tuple);
-        order_data += QString(dish_name) + "|" + QString(std::to_string(price).c_str()) + "|" + QString(std::to_string(count).c_str()) + "|" + QString(std::to_string(merchant_id).c_str()) + ";";
+        QJsonObject item;
+        item["dish_name"] = it.key();
+        item["price"] = std::get<0>(it.value());
+        item["count"] = std::get<1>(it.value());
+        item["merchant_id"] = std::get<2>(it.value());
+        orderItems.append(item);
     }
-    obj["order_data"] = order_data;
+    obj["order_items"] = orderItems;
 
     QJsonDocument doc(obj);
     QString jsonString = doc.toJson(QJsonDocument::Indented);
 
-    qDebug() << "jsonString is: " << jsonString;
+    qDebug() << "准备发送订单数据:" << jsonString;
 
     emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_PURCHASE, jsonString);
 }
