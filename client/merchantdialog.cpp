@@ -282,12 +282,14 @@ void MerchantDialog::sendMsg(double totalPrice)
     QString orderItems = "";
     for (auto it = cartItems.begin(); it != cartItems.end(); ++it)
     {
-        order_items+=it.key()+"|"; //name
-        order_items+=std::get<0>(it.value())+"|"; //price
-        order_items+=std::get<1>(it.value())+"|"; //count
-        order_items+=std::get<2>(it.value()); //merchant_id
-        if (it+1 != cartItems.end()) order_items+="#";
+        orderItems+=it.key()+"|"; //name
+        orderItems+=QString::number(static_cast<double>(std::get<0>(it.value()),10))+"|"; //price
+        orderItems+=QString::number(static_cast<int>(std::get<1>(it.value())),10)+"|"; //count
+        orderItems+=QString::number(static_cast<int>(std::get<2>(it.value())),10); //merchant_id
+        if (it+1 != cartItems.end()) orderItems+="#";
+        qDebug()<<QString::number(static_cast<double>(std::get<0>(it.value()),10));
     }
+    qDebug()<<orderItems;
     jsonObj["total"] = totalPrice;
     jsonObj["time"] = currentTime;
     jsonObj["order_items"] = orderItems;
