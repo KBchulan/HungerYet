@@ -181,7 +181,7 @@ void MerchantDialog::onCartButtonClicked()
     if (msgBox.clickedButton() == payButton)
     {
         pay(totalPrice);
-        sendMsg();
+        sendMsg(totalPrice);
         cartItems.clear();
         updateCartCount();
     }
@@ -258,7 +258,7 @@ double MerchantDialog::calculatePrice(double originalPrice, int memberLevel) con
     }
 }
 
-void MerchantDialog::sendMsg()
+void MerchantDialog::sendMsg(double totalPrice)
 {
     if (cartItems.isEmpty()) 
     {
@@ -274,22 +274,22 @@ void MerchantDialog::sendMsg()
         user_name = "tourist";
     }
     jsonObj["user_name"] = user_name;
-    jsonObj["merchant_id"] = QString::number(_merchant_id);
     
     QDateTime current = QDateTime::currentDateTime();
     QString currentTime = current.toString("yyyyMMddhhmmss");
     jsonObj["order_id"] = user_name + "_" + currentTime;
 
-    QJsonArray orderItems;
-    for (auto it = cartItems.begin(); it != cartItems.end(); ++it) 
+    QString orderItems = "";
+    for (auto it = cartItems.begin(); it != cartItems.end(); ++it)
     {
-        QJsonObject item;
-        item["dish_name"] = it.key();
-        item["price"] = std::get<0>(it.value());
-        item["count"] = std::get<1>(it.value());
-        item["merchant_id"] = std::get<2>(it.value());
-        orderItems.append(item);
+        order_items+=it.key()+"|"; //name
+        order_items+=std::get<0>(it.value())+"|"; //price
+        order_items+=std::get<1>(it.value())+"|"; //count
+        order_items+=std::get<2>(it.value()); //merchant_id
+        if (it+1 != cartItems.end()) order_items+="#";
     }
+    jsonObj["total"] = totalPrice;
+    jsonObj["time"] = currentTime;
     jsonObj["order_items"] = orderItems;
 
     QJsonDocument doc(jsonObj);
