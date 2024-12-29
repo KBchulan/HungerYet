@@ -1,4 +1,5 @@
 #include "tcpmanager.h"
+#include "ordersmanager.h"
 #include "orderdialog.h"
 #include "ui_orderdialog.h"
 #include "merchantmanager.h"
@@ -282,4 +283,9 @@ void OrderDialog::getOrders(int merchant_id)
     QString jsonString = doc.toJson(QJsonDocument::Indented);
 
     emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_GET_ORDERS, jsonString);
+
+    QJsonObject obj = OrdersManager::GetInstance()->GetOrder();
+    doc = QJsonDocument(obj);
+    QString strJson(doc.toJson(QJsonDocument::Compact));
+    qDebug()<<strJson;
 }

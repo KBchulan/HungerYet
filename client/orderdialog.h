@@ -14,6 +14,7 @@
 #include <QString>
 #include <QVector>
 #include <QDialog>
+#include <QJsonObject>
 #include <QDateTime>
 
 namespace Ui
@@ -59,6 +60,7 @@ private:
     Ui::OrderDialog *ui;
     QVector<OrderInfo> orders;
     OrderStatus currentFilter;
+
 };
 
 #endif // ORDERDIALOG_H
