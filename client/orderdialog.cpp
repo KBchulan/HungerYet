@@ -11,6 +11,8 @@
 #include <algorithm>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QJsonObject>
+#include <QJsonArray>
 #include <QRandomGenerator>
 
 OrderDialog::OrderDialog(QWidget *parent) :
@@ -94,45 +96,74 @@ void OrderDialog::createOrderWidget(const OrderInfo &info)
     line->setFrameShape(QFrame::HLine);
     line->setObjectName("orderDivider");
     
-    // 商家信息
-    QWidget *merchantWidget = new QWidget;
-    QHBoxLayout *merchantLayout = new QHBoxLayout(merchantWidget);
-    merchantLayout->setContentsMargins(0, 0, 0, 0);
+    // 修改商家信息部分为用户信息
+    QWidget *userWidget = new QWidget;
+    QHBoxLayout *userLayout = new QHBoxLayout(userWidget);
+    userLayout->setContentsMargins(0, 0, 0, 0);
     
-    QLabel *merchantIcon = new QLabel;
-    merchantIcon->setObjectName("merchantIcon");
-    merchantIcon->setFixedSize(40, 40);
-    merchantIcon->setPixmap(QPixmap(":/resources/Application/merchant/default.jpeg").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    merchantIcon->setStyleSheet("border-radius: 20px;");
+    QLabel *userIcon = new QLabel;
+    userIcon->setObjectName("userIcon");
+    userIcon->setFixedSize(40, 40);
+    userIcon->setPixmap(QPixmap(":/resources/Application/user/default.jpeg").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    userIcon->setStyleSheet("border-radius: 20px;");
     
-    QLabel *merchantLabel = new QLabel(std::get<1>(info));
-    merchantLabel->setObjectName("merchantName");
+    QLabel *userLabel = new QLabel(std::get<1>(info));  // 使用用户名
+    userLabel->setObjectName("userName");
     
-    merchantLayout->addWidget(merchantIcon);
-    merchantLayout->addWidget(merchantLabel);
-    merchantLayout->addStretch();
-    
-    // 订单内容和价格
+    userLayout->addWidget(userIcon);
+    userLayout->addWidget(userLabel);
+    userLayout->addStretch();
+
+    // 修改订单内容显示逻辑
     QWidget *contentWidget = new QWidget;
-    QHBoxLayout *contentLayout = new QHBoxLayout(contentWidget);
+    QVBoxLayout *contentLayout = new QVBoxLayout(contentWidget);
     contentLayout->setContentsMargins(0, 0, 0, 0);
     
-    QLabel *contentLabel = new QLabel(std::get<2>(info));
-    contentLabel->setObjectName("orderContent");
-    contentLabel->setWordWrap(true);
+    // 解析订单项目字符串 (格式: "商品名|价格|数量|#")
+    QString itemsStr = std::get<2>(info);
+    QStringList items = itemsStr.split("#", Qt::SkipEmptyParts);
     
-    QLabel *priceLabel = new QLabel(QString("￥%1").arg(std::get<3>(info), 0, 'f', 2));
-    priceLabel->setObjectName("orderPrice");
+    for (const QString &item : items) {
+        QStringList itemInfo = item.split("|");
+        if (itemInfo.size() >= 3) {
+            QString itemName = itemInfo[0];
+            double itemPrice = itemInfo[1].toDouble();
+            int itemCount = itemInfo[2].toInt();
+            
+            QWidget *itemWidget = new QWidget;
+            QHBoxLayout *itemLayout = new QHBoxLayout(itemWidget);
+            itemLayout->setContentsMargins(0, 0, 0, 0);
+            
+            QLabel *itemLabel = new QLabel(QString("%1 x%2").arg(itemName).arg(itemCount));
+            QLabel *priceLabel = new QLabel(QString("￥%1").arg(itemPrice * itemCount, 0, 'f', 2));
+            
+            itemLayout->addWidget(itemLabel);
+            itemLayout->addStretch();
+            itemLayout->addWidget(priceLabel);
+            
+            contentLayout->addWidget(itemWidget);
+        }
+    }
     
-    contentLayout->addWidget(contentLabel);
-    contentLayout->addStretch();
-    contentLayout->addWidget(priceLabel);
+    // 添加总价
+    QWidget *totalWidget = new QWidget;
+    QHBoxLayout *totalLayout = new QHBoxLayout(totalWidget);
+    totalLayout->setContentsMargins(0, 8, 0, 0);
+    
+    QLabel *totalLabel = new QLabel("总计：");
+    QLabel *totalPriceLabel = new QLabel(QString("￥%1").arg(std::get<3>(info), 0, 'f', 2));
+    totalPriceLabel->setObjectName("totalPrice");
+    
+    totalLayout->addStretch();
+    totalLayout->addWidget(totalLabel);
+    totalLayout->addWidget(totalPriceLabel);
     
     // 添加到主布局
     layout->addWidget(headerWidget);
     layout->addWidget(line);
-    layout->addWidget(merchantWidget);
+    layout->addWidget(userWidget);  // 使用新的用户信息部分
     layout->addWidget(contentWidget);
+    layout->addWidget(totalWidget);
     
     // 如果订单状态是待处理，添加操作按钮
     if(std::get<5>(info) == OrderStatus::Pending)
@@ -285,7 +316,39 @@ void OrderDialog::getOrders(int merchant_id)
     emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_GET_ORDERS, jsonString);
 
     QJsonObject obj = OrdersManager::GetInstance()->GetOrder();
-    doc = QJsonDocument(obj);
-    QString strJson(doc.toJson(QJsonDocument::Compact));
-    qDebug()<<strJson;
+    
+    // 检查是否存在 orders 数组
+    if (obj.contains("orders") && obj["orders"].isArray()) {
+        QJsonArray ordersArray = obj["orders"].toArray();
+        // 清空现有订单列表
+        orders.clear();
+        
+        // 遍历订单数组
+        for (const QJsonValue &orderValue : ordersArray) {
+            QJsonObject order = orderValue.toObject();
+            
+            // 提取订单信息并创建 OrderInfo
+            QString orderId = order["order_id"].toString();
+            QString userName = order["user_name"].toString();
+            QString orderItems = order["order_items"].toString();
+            double total = order["total"].toDouble();
+            
+            // 解析时间字符串
+            QString timeStr = order["time"].toString();
+            QDateTime dateTime = QDateTime::fromString(timeStr, "yyyyMMddhhmmss");
+            
+            // 解析订单状态
+            OrderStatus status = static_cast<OrderStatus>(order["status"].toInt());
+            
+            // 将订单信息添加到 orders 列表中
+            orders.push_back(std::make_tuple(
+                orderId,        // 订单ID
+                userName,       // 用户名
+                orderItems,     // 订单内容
+                total,         // 总价
+                dateTime,      // 时间
+                status         // 状态
+            ));
+        }   
+    }
 }

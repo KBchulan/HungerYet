@@ -92,11 +92,6 @@
         </item>
         <item>
          <property name="text">
-          <string>处理中</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
           <string>已完成</string>
          </property>
         </item>
