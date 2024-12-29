@@ -4,7 +4,10 @@
 #include "ui_merchantdialog.h"
 
 #include <QPixmap>
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QMessageBox>
+#include <QJsonDocument>
 
 MerchantDialog::MerchantDialog(QWidget *parent) :
     QDialog(parent),
@@ -179,6 +182,8 @@ void MerchantDialog::onCartButtonClicked()
     {
         pay(totalPrice);
         sendMsg();
+        cartItems.clear();
+        updateCartCount();
     }
 }
 
@@ -261,22 +266,20 @@ void MerchantDialog::sendMsg()
         return;
     }
 
-    QJsonObject obj;
-    obj["merchant_id"] = QString::number(_merchant_id);
-
-    // 使用更规范的时间格式
-    QDateTime current = QDateTime::currentDateTime();
-    QString currentTime = current.toString("yyyyMMddhhmmss");
-
+    QJsonObject jsonObj;
+    
     QString user_name = UserManager::GetInstance()->GetName();
     if (user_name.isEmpty()) 
     {
         user_name = "tourist";
     }
-    obj["order_id"] = user_name + "_" + currentTime;
-    obj["user_name"] = user_name;
+    jsonObj["user_name"] = user_name;
+    jsonObj["merchant_id"] = QString::number(_merchant_id);
+    
+    QDateTime current = QDateTime::currentDateTime();
+    QString currentTime = current.toString("yyyyMMddhhmmss");
+    jsonObj["order_id"] = user_name + "_" + currentTime;
 
-    // 使用 JSON 数组存储订单项
     QJsonArray orderItems;
     for (auto it = cartItems.begin(); it != cartItems.end(); ++it) 
     {
@@ -287,12 +290,11 @@ void MerchantDialog::sendMsg()
         item["merchant_id"] = std::get<2>(it.value());
         orderItems.append(item);
     }
-    obj["order_items"] = orderItems;
+    jsonObj["order_items"] = orderItems;
 
-    QJsonDocument doc(obj);
-    QString jsonString = doc.toJson(QJsonDocument::Indented);
+    QJsonDocument doc(jsonObj);
+    QString jsonString = doc.toJson(QJsonDocument::Compact);
 
     qDebug() << "准备发送订单数据:" << jsonString;
-
     emit TcpManager::GetInstance()->sig_send_data(ReqId::ID_PURCHASE, jsonString);
 }

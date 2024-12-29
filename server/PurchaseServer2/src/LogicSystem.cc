@@ -149,4 +149,12 @@ void LogicSystem::PurchaseHandler(std::shared_ptr<CSession> session, const short
     Json::Value root;
 
     reader.parse(data, root);
+
+    Json::Value rtvalue;
+
+    Defer defer([this, &root, session]() -> void
+    {
+        std::string return_str = root.toStyledString();
+        session->Send(return_str, MSG_PURCHASE_RSP);
+    });
 }

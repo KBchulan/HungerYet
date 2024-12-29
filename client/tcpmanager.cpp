@@ -141,7 +141,7 @@ void TcpManager::initHandlers()
         emit sig_switch_chatdialog();
     });
 
-    _handlers.insert(ReqId::ID_PURCHASE, [this](ReqId id, int len, QByteArray data)
+    _handlers.insert(ReqId::ID_PURCHASE_RSP, [this](ReqId id, int len, QByteArray data)
     {
         Q_UNUSED(len);
         qDebug() << "message id is: " << id << " message len is: " << len;
@@ -179,17 +179,19 @@ void TcpManager::slot_send_data(ReqId reqid, QString body)
     std::uint16_t id = reqid;
 
     QByteArray dataBytes = body.toUtf8();
-
-    quint16 len = static_cast<quint16>(body.size());
+    
+    quint16 len = static_cast<quint16>(dataBytes.size());
 
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
-
     out.setByteOrder(QDataStream::BigEndian);
 
     // 写入TLV
     out << id << len;
     block.append(dataBytes);
+
+    qDebug() << "Sending data with length:" << len << "bytes";
+    qDebug() << "Actual data:" << dataBytes;
 
     _socket.write(block);
 }
