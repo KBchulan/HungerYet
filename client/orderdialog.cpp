@@ -78,10 +78,10 @@ void OrderDialog::createOrderWidget(const OrderInfo &info)
     leftLayout->setContentsMargins(0, 0, 0, 0);
     leftLayout->setSpacing(4);
 
-    QLabel *orderIdLabel = new QLabel(std::get<0>(info));
+    QLabel *orderIdLabel = new QLabel("订单号: "+std::get<0>(info));
     orderIdLabel->setObjectName("orderId");
 
-    QLabel *timeLabel = new QLabel(std::get<4>(info).toString("yyyy-MM-dd hh:mm:ss"));
+    QLabel *timeLabel = new QLabel("时间: "+std::get<4>(info).toString("yyyy-MM-dd hh:mm:ss"));
     timeLabel->setObjectName("orderTime");
 
     leftLayout->addWidget(orderIdLabel);
@@ -106,7 +106,7 @@ void OrderDialog::createOrderWidget(const OrderInfo &info)
     QHBoxLayout *userLayout = new QHBoxLayout(userWidget);
     userLayout->setContentsMargins(0, 0, 0, 0);
 
-    QLabel *userLabel = new QLabel("user:"+ std::get<1>(info)); // 使用用户名
+    QLabel *userLabel = new QLabel("客户: "+ std::get<1>(info)); // 使用用户名
     userLabel->setObjectName("userName");
 
     userLayout->addWidget(userLabel);
@@ -135,7 +135,10 @@ void OrderDialog::createOrderWidget(const OrderInfo &info)
             itemLayout->setContentsMargins(0, 0, 0, 0);
 
             QLabel *itemLabel = new QLabel(QString("%1 x%2").arg(itemName).arg(itemCount));
+            itemLabel->setProperty("itemLabel", true);
+
             QLabel *priceLabel = new QLabel(QString("￥%1").arg(itemPrice * itemCount, 0, 'f', 2));
+            priceLabel->setProperty("priceLabel", true);
 
             itemLayout->addWidget(itemLabel);
             itemLayout->addStretch();

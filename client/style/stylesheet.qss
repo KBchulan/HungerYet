@@ -1201,16 +1201,16 @@ QMessageBox QPushButton[text="取消"]:hover {
 
 /* 订单项样式 */
 #OrderDialog QWidget[objectName="orderItem"] {
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(230, 236, 240);
-    border-radius: 15px;
+    background-color: rgb(255, 248, 225);
+    border: 2px solid rgb(255, 205, 97);
+    border-radius: 20px;
     padding: 15px;
     margin: 5px 15px;
 }
 
 #OrderDialog QWidget[objectName="orderItem"][hovered="true"] {
-    background-color: rgb(250, 250, 250);
-    border-color: rgb(255, 205, 97);
+    background-color: rgb(255, 242, 204);
+    border-color: rgb(255, 185, 77);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -1221,45 +1221,36 @@ QMessageBox QPushButton[text="取消"]:hover {
 }
 
 #OrderDialog #orderTime {
-    color: rgb(150, 150, 150);
+    color: rgb(120, 120, 120);
     font-size: 13px;
 }
 
-#OrderDialog #orderStatus {
-    padding: 5px 15px;
-    border-radius: 15px;
-    font-weight: bold;
-    min-width: 80px;
-    text-align: center;
-}
-
 #OrderDialog #orderDivider {
-    color: rgb(230, 236, 240);
+    color: rgb(255, 205, 97);
     height: 1px;
     margin: 8px 0;
 }
 
-#OrderDialog #merchantIcon {
-    background-color: rgb(245, 248, 250);
-    border: 1px solid rgb(230, 236, 240);
-}
-
-#OrderDialog #merchantName {
+#OrderDialog #userName {
     font-size: 15px;
     color: rgb(80, 80, 80);
     margin-left: 10px;
 }
 
-#OrderDialog #orderContent {
-    color: rgb(100, 100, 100);
+#OrderDialog QLabel[itemLabel="true"] {
+    color: rgb(80, 80, 80);
     font-size: 14px;
-    line-height: 1.4;
 }
 
-#OrderDialog #orderPrice {
-    color: rgb(255, 99, 71);
+#OrderDialog QLabel[priceLabel="true"] {
+    color: rgb(255, 153, 0);
     font-weight: bold;
+}
+
+#OrderDialog #totalPrice {
+    color: rgb(255, 153, 0);
     font-size: 16px;
+    font-weight: bold;
 }
 
 /* 按钮样式 */
