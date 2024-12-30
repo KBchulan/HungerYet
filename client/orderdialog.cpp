@@ -106,16 +106,9 @@ void OrderDialog::createOrderWidget(const OrderInfo &info)
     QHBoxLayout *userLayout = new QHBoxLayout(userWidget);
     userLayout->setContentsMargins(0, 0, 0, 0);
 
-    QLabel *userIcon = new QLabel;
-    userIcon->setObjectName("userIcon");
-    userIcon->setFixedSize(40, 40);
-    userIcon->setPixmap(QPixmap(":/resources/Application/user/default.jpeg").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    userIcon->setStyleSheet("border-radius: 20px;");
-
-    QLabel *userLabel = new QLabel(std::get<1>(info)); // 使用用户名
+    QLabel *userLabel = new QLabel("user:"+ std::get<1>(info)); // 使用用户名
     userLabel->setObjectName("userName");
 
-    userLayout->addWidget(userIcon);
     userLayout->addWidget(userLabel);
     userLayout->addStretch();
 
