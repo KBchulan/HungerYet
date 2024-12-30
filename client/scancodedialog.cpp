@@ -14,9 +14,10 @@
 #include <QApplication>
 #include <QDesktopServices>
 
-ScanCodeDialog::ScanCodeDialog(QWidget *parent) : QDialog(parent),
-                                                  isScanning(false),
-                                                  ui(new Ui::ScanCodeDialog)
+ScanCodeDialog::ScanCodeDialog(QWidget *parent) 
+    : QDialog(parent),
+      isScanning(false),
+      ui(new Ui::ScanCodeDialog)
 {
     ui->setupUi(this);
 
@@ -184,8 +185,7 @@ QImage ScanCodeDialog::cvMatToQImage(const cv::Mat &mat)
     }
 
     return QImage((uchar *)rgb.data, rgb.cols, rgb.rows,
-                  rgb.step, QImage::Format_RGB888)
-        .copy();
+                  rgb.step, QImage::Format_RGB888).copy();
 }
 
 void ScanCodeDialog::initScanAnimation()
@@ -200,9 +200,9 @@ void ScanCodeDialog::initScanAnimation()
 void ScanCodeDialog::handleLocalImage()
 {
     QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("选择图片"),
-                                                    "",
-                                                    tr("图片文件 (*.png *.jpg *.jpeg *.bmp)"));
+        tr("选择图片"),
+        "",
+        tr("图片文件 (*.png *.jpg *.jpeg *.bmp)"));
 
     if (fileName.isEmpty())
     {
@@ -245,7 +245,7 @@ void ScanCodeDialog::handleQRContent(const QString &content)
     {
         QMessageBox msgBox;
         msgBox.setText("检测到微信二维码");
-        msgBox.setInformativeText("是否打开微信处理？\n注意：在Linux系统下可能需要手动打开微信扫一扫");
+        msgBox.setInformativeText("是否打开微信处理？\n注意:在Linux系统下可能需要手动打开微信扫一扫");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         
         if (msgBox.exec() == QMessageBox::Yes)

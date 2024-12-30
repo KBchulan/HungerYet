@@ -15,7 +15,7 @@
 #include <QJsonArray>
 #include <QRandomGenerator>
 
-OrderDialog::OrderDialog(QWidget *parent) 
+OrderDialog::OrderDialog(QWidget *parent)
     : QDialog(parent),
       ui(new Ui::OrderDialog),
       currentFilter(OrderStatus::Pending)
@@ -59,9 +59,9 @@ void OrderDialog::setupUI()
 
 void OrderDialog::createOrderWidget(const OrderInfo &info)
 {
-    qDebug()<<"info: "<<std::get<0>(info);
-    qDebug()<<"info: "<<std::get<1>(info);
-    qDebug()<<"info: "<<std::get<2>(info);
+    qDebug() << "info: " << std::get<0>(info);
+    qDebug() << "info: " << std::get<1>(info);
+    qDebug() << "info: " << std::get<2>(info);
     QWidget *widget = new QWidget;
     widget->setObjectName("orderItem");
     QVBoxLayout *layout = new QVBoxLayout(widget);
@@ -168,7 +168,7 @@ void OrderDialog::createOrderWidget(const OrderInfo &info)
     // 添加到主布局
     layout->addWidget(headerWidget);
     layout->addWidget(line);
-    layout->addWidget(userWidget); // 使用新的用户信息部分
+    layout->addWidget(userWidget);
     layout->addWidget(contentWidget);
     layout->addWidget(totalWidget);
 
@@ -251,7 +251,7 @@ void OrderDialog::onFilterButtonClicked()
     int index = ui->filterComboBox->currentIndex();
     if (index == 0)
     {
-        currentFilter = OrderStatus::Pending; // 全部订单
+        currentFilter = OrderStatus::Pending;
     }
     else
     {
@@ -292,11 +292,12 @@ void OrderDialog::updateOrderList(const QString &searchText)
                 createOrderWidget(order);
         }
     }
-    else*/{
+    else*/
+    {
         // 显示排序后的订单
         for (const auto &order : orders)
         {
-            qDebug()<<"order:"<<std::get<0>(order);
+            qDebug() << "order:" << std::get<0>(order);
             createOrderWidget(order);
         }
     }
