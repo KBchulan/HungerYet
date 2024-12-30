@@ -91,6 +91,21 @@ void LogicSystem::RegisterCallBacks()
     {
         PurchaseHandler(session, id, data);
     };
+
+    _fun_callbacks[MSG_GET_ORDERS] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data)
+    {
+        GetOrdersHandler(session, id, data);
+    };
+
+    _fun_callbacks[MSG_ADMIN_GET_ORDERS] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data)
+    {
+        AdminGetOrdersHandler(session, id, data);
+    };
+
+    _fun_callbacks[MSG_UPDATE_ORDER_STATUS] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data)
+    {
+        UpdateOrderStatusHandler(session, id, data);
+    };
 }
 
 void LogicSystem::LoginHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
@@ -202,13 +217,16 @@ void LogicSystem::GetOrdersHandler(std::shared_ptr<CSession> session, const shor
     Defer defer([this, &rtvalue, session]() -> void
     {
         std::string return_str = rtvalue.toStyledString();
+        LOG_SERVER->info("Get orders success, return_str: {}", return_str);
         session->Send(return_str, MSG_GET_ORDERS_RSP);
     });
 
     try
     {
-        auto merchant_id = root["merchant_id"].asInt();
+        auto _merchant_id = root["merchant_id"].asString();
+        int merchant_id = std::stoi(_merchant_id);
         auto orders = MysqlManager::GetInstance()->GetOrders(merchant_id);
+        LOG_SERVER->info("Get orders success, merchant_id: {}", merchant_id);
         for(const auto& order : orders)
         {
             Json::Value order_json;
@@ -223,7 +241,6 @@ void LogicSystem::GetOrdersHandler(std::shared_ptr<CSession> session, const shor
         }
         rtvalue["error"] = ErrorCodes::Success;
 
-        LOG_SERVER->info("Get orders success, merchant_id: {}", merchant_id);
     }
     catch (const std::exception &e)
     {
@@ -271,4 +288,18 @@ void LogicSystem::AdminGetOrdersHandler(std::shared_ptr<CSession> session, const
         root["error"] = ErrorCodes::DBError;
         LOG_SERVER->error("Admin get orders exception: {}", e.what());
     }
+}
+
+void LogicSystem::UpdateOrderStatusHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
+{
+    Json::Reader reader;
+    Json::Value root;
+
+    reader.parse(data, root);
+
+    auto order_id = root["order_id"].asString();
+    auto status = root["status"].asString();
+    std::uint32_t status_int = std::stoi(status);
+
+    MysqlManager::GetInstance()->UpdateOrderStatus(order_id, status_int);
 }

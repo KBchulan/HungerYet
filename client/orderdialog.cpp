@@ -53,6 +53,9 @@ void OrderDialog::setupUI()
     ui->listWidget->setSpacing(10);
     ui->listWidget->setViewMode(QListWidget::ListMode);
     ui->listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    // 设置listWidget的背景和边框样式
+    ui->listWidget->setStyleSheet("QListWidget { background-color: #F5F5F5; border: none; } QListWidget::item { background-color: transparent; }");
+    ui->listWidget->setFrameShape(QFrame::NoFrame);
 
     // 搜索框样式设置
     QAction *searchAction = new QAction(ui->searchEdit);
@@ -72,8 +75,12 @@ void OrderDialog::createOrderWidget(const OrderInfo &info)
     qDebug() << "info: " << std::get<2>(info);
     QWidget *widget = new QWidget;
     widget->setObjectName("orderItem");
+    // 添加圆角边框样式
+    widget->setStyleSheet("QWidget#orderItem { background-color: white; border: 1px solid #E0E0E0; border-radius: 10px; margin: 5px; padding: 10px; }");
+    
     QVBoxLayout *layout = new QVBoxLayout(widget);
     layout->setSpacing(8);
+    layout->setContentsMargins(15, 15, 15, 15);  // 增加内边距使内容不会太贴近边框
 
     // 订单头部信息
     QWidget *headerWidget = new QWidget;
@@ -294,21 +301,22 @@ void OrderDialog::updateOrderList(const QString &searchText)
                   return std::get<4>(a) > std::get<4>(b);
               });
 
-    if (!searchText.isEmpty())
+    for (const auto &order : orders)
     {
-        for (const auto &order : orders)
+        // 首先检查订单状态是否匹配当前过滤器
+        if (ui->filterComboBox->currentIndex() != 0 && std::get<5>(order) != currentFilter)
+            continue;
+
+        // 如果有搜索文本，检查是否匹配
+        if (!searchText.isEmpty())
         {
             if (std::get<0>(order).contains(searchText, Qt::CaseInsensitive) ||
                 std::get<1>(order).contains(searchText, Qt::CaseInsensitive) ||
                 std::get<2>(order).contains(searchText, Qt::CaseInsensitive))
                 createOrderWidget(order);
         }
-    }
-    else
-    {
-        for (const auto &order : orders)
+        else
         {
-            qDebug() << "order:" << std::get<0>(order);
             createOrderWidget(order);
         }
     }

@@ -38,6 +38,9 @@ public:
     // 获取订单
     std::vector<OrderInfo> GetOrders(int merchant_id);
 
+    // 更新订单状态
+    bool UpdateOrderStatus(const std::string& order_id, std::uint32_t status);
+
 private:
     MysqlManager();
 

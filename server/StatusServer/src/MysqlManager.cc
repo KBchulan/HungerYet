@@ -55,3 +55,8 @@ std::vector<OrderInfo> MysqlManager::GetOrders(int merchant_id)
 {
     return _dao.GetOrders(merchant_id);
 }
+
+bool MysqlManager::UpdateOrderStatus(const std::string& order_id, std::uint32_t status)
+{
+    return _dao.UpdateOrderStatus(order_id, status);
+}
