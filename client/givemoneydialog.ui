@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>693</height>
+    <height>745</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,9 +32,8 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
-     <!-- 充值界面 -->
      <widget class="QWidget" name="chargePage">
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <property name="spacing">
@@ -329,7 +328,6 @@
        </item>
       </layout>
      </widget>
-     <!-- 扫码界面 -->
      <widget class="QWidget" name="scanPage">
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <property name="spacing">

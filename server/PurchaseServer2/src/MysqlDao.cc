@@ -478,3 +478,32 @@ std::vector<OrderInfo> MysqlDao::GetOrders(int merchant_id)
         return orders;
     }
 }
+
+bool MysqlDao::UpdateOrderStatus(const std::string& order_id, std::uint32_t status)
+{
+    auto con = _pool->GetConnection();
+
+    Defer defer([this, &con]
+                { _pool->ReturnConnection(std::move(con)); });
+
+    try
+    {
+        if(con == nullptr)
+            return false;
+
+        std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement(
+            "UPDATE `orders` SET status = ? WHERE order_id = ?"));
+
+        pstmt->setInt(1, status);
+        pstmt->setString(2, order_id);
+
+        pstmt->executeUpdate();
+        LOG_SQL->info("Update order status, order_id: {}, status: {}", order_id, status);
+        return true;
+    }
+    catch(sql::SQLException& e)
+    {
+        LOG_SQL->error("SQLException: {} (MySQL error code: {}, SQLState: {})", e.what(), e.getErrorCode(), e.getSQLState());
+        return false;
+    }
+}   

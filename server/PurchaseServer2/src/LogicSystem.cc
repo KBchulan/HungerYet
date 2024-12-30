@@ -101,6 +101,11 @@ void LogicSystem::RegisterCallBacks()
     {
         AdminGetOrdersHandler(session, id, data);
     };
+
+    _fun_callbacks[MSG_UPDATE_ORDER_STATUS] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data)
+    {
+        UpdateOrderStatusHandler(session, id, data);
+    };
 }
 
 void LogicSystem::LoginHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
@@ -283,4 +288,18 @@ void LogicSystem::AdminGetOrdersHandler(std::shared_ptr<CSession> session, const
         root["error"] = ErrorCodes::DBError;
         LOG_SERVER->error("Admin get orders exception: {}", e.what());
     }
+}
+
+void LogicSystem::UpdateOrderStatusHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data)
+{
+    Json::Reader reader;
+    Json::Value root;
+
+    reader.parse(data, root);
+
+    auto order_id = root["order_id"].asString();
+    auto status = root["status"].asString();
+    std::uint32_t status_int = std::stoi(status);
+
+    MysqlManager::GetInstance()->UpdateOrderStatus(order_id, status_int);
 }

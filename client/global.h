@@ -53,6 +53,8 @@ enum ReqId
     ID_GET_ORDERS_RSP = 1010,           // 获取订单回包
     ID_ADMIN_GET_ORDERS = 1011,         // 管理员获取订单
     ID_ADMIN_GET_ORDERS_RSP = 1012,     // 管理员获取订单回包
+    ID_UPDATE_ORDER_STATUS = 1013,      // 更新订单状态
+    ID_UPDATE_ORDER_STATUS_RSP = 1014,  // 更新订单状态回包
 };
 
 enum Modules
