@@ -262,6 +262,14 @@ void OrderDialog::onOrderStatusChanged(const QString &orderId, OrderStatus newSt
     {
         if (std::get<0>(order) == orderId)
         {
+            QJsonObject jsonObj;
+            jsonObj["order_id"] = orderId;
+            jsonObj["status"] = QString::number(static_cast<int>(newStatus));
+
+            QJsonDocument doc(jsonObj);
+            QString jsonString = doc.toJson(QJsonDocument::Indented);
+            TcpManager::GetInstance()->sig_send_data(ReqId::ID_UPDATE_ORDER_STATUS, jsonString);
+            
             std::get<5>(order) = newStatus;
             break;
         }
@@ -278,7 +286,7 @@ void OrderDialog::updateOrderList(const QString &searchText)
                   return std::get<4>(a) > std::get<4>(b);
               });
 
-    /*if (!searchText.isEmpty())
+    if (!searchText.isEmpty())
     {
         for (const auto &order : orders)
         {
@@ -288,9 +296,8 @@ void OrderDialog::updateOrderList(const QString &searchText)
                 createOrderWidget(order);
         }
     }
-    else*/
+    else
     {
-        // 显示排序后的订单
         for (const auto &order : orders)
         {
             qDebug() << "order:" << std::get<0>(order);

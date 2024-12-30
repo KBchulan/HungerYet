@@ -51,6 +51,9 @@ private:
     // 管理员获取订单回调
     void AdminGetOrdersHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data);
 
+    // 更新订单状态回调
+    void UpdateOrderStatusHandler(std::shared_ptr<CSession> session, const short &id, const std::string &data);
+
 private:
     std::mutex _mutex;
     std::atomic<bool> _stop;
