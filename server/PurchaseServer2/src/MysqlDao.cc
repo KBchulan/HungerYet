@@ -450,7 +450,7 @@ std::vector<OrderInfo> MysqlDao::GetOrders(int merchant_id)
             return orders;
 
         std::unique_ptr<sql::PreparedStatement> pstmt(con->_con->prepareStatement(
-            "SELECT * FROM `orders` WHERE merchant_id = ? AND status = 0 ORDER BY time DESC"));
+            "SELECT * FROM `orders` WHERE merchant_id = ? ORDER BY time DESC"));
 
         pstmt->setInt(1, merchant_id);
 

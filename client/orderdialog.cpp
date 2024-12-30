@@ -27,10 +27,11 @@ OrderDialog::OrderDialog(QWidget *parent)
     updateOrderList();
 
     timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, [this]() {
+    connect(timer, &QTimer::timeout, this, [this]() 
+    {
         getOrders(0);
     });
-    timer->start(5000);
+    timer->start(3000);
 
     connect(TcpManager::GetInstance().get(), &TcpManager::sig_get_orders_success, this, &OrderDialog::onGetOrdersSuccess);
 }
