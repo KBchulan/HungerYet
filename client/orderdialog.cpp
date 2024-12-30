@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QLabel>
 #include <QAction>
+#include <QTimer>
 #include <algorithm>
 #include <QVBoxLayout>
 #include <QPushButton>
@@ -24,6 +25,12 @@ OrderDialog::OrderDialog(QWidget *parent)
     setupUI();
     getOrders(0);
     updateOrderList();
+
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, [this]() {
+        getOrders(0);
+    });
+    timer->start(5000);
 
     connect(TcpManager::GetInstance().get(), &TcpManager::sig_get_orders_success, this, &OrderDialog::onGetOrdersSuccess);
 }

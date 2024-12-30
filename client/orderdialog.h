@@ -58,6 +58,7 @@ private:
     void onGetOrdersSuccess();
     
 private:
+    QTimer *timer;
     Ui::OrderDialog *ui;
     QVector<OrderInfo> orders;
     OrderStatus currentFilter;
