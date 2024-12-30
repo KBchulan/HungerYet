@@ -33,6 +33,7 @@ private:
     Ui::GiveMoneyDialog *ui;
     QButtonGroup *amountGroup;
     double currentAmount;
+    double totalBalance;
 };
 
 #endif // GIVEMONEYDIALOG_H
