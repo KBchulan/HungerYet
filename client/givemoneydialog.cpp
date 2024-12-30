@@ -6,10 +6,11 @@
 #include <QRegExpValidator>
 #include <QMessageBox>
 
-GiveMoneyDialog::GiveMoneyDialog(QWidget *parent) : QDialog(parent),
-                                                    ui(new Ui::GiveMoneyDialog),
-                                                    currentAmount(0.0),
-                                                    totalBalance(0.0)
+GiveMoneyDialog::GiveMoneyDialog(QWidget *parent) 
+    : QDialog(parent),
+      ui(new Ui::GiveMoneyDialog),
+      currentAmount(0.0),
+      totalBalance(0.0)
 {
     ui->setupUi(this);
     initUI();
