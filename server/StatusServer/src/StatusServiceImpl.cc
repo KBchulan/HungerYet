@@ -100,12 +100,14 @@ ChatServer StatusServiceImpl::getChatServer()
 
     LOG_RPC->info("Getting chat server with {} servers", _servers.size());
 
-    auto minServer = _servers.begin()->second;
-
-    for (const auto &server: _servers)
+    auto minServerIt = _servers.begin();
+    for (auto it = _servers.begin(); it != _servers.end(); ++it)
     {
-        if(server.second.con_count < minServer.con_count)
-            minServer = server.second;
+        if (it->second.con_count < minServerIt->second.con_count)
+            minServerIt = it;
     }
-	return minServer;
+
+    minServerIt->second.con_count++;
+    
+    return minServerIt->second;
 }
