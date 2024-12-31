@@ -20,7 +20,7 @@ AdminManagerDialog::AdminManagerDialog(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("管理员系统");
 
-    setMinimumSize(800, 600);
+    setMinimumSize(1600, 1200);
 
     initOrderTable();
     loadLogFile();
@@ -127,7 +127,14 @@ void AdminManagerDialog::initOrderTable()
 
     ui->orderTableWidget->setColumnCount(headers.size());
     ui->orderTableWidget->setHorizontalHeaderLabels(headers);
-    ui->orderTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->orderTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+    ui->orderTableWidget->setColumnWidth(0, 300);  // 订单ID (较长的ID)
+    ui->orderTableWidget->setColumnWidth(1, 120);  // 商家ID
+    ui->orderTableWidget->setColumnWidth(2, 540);  // 订单内容 (最长的列)
+    ui->orderTableWidget->setColumnWidth(3, 200);  // 时间
+    ui->orderTableWidget->setColumnWidth(4, 120);  // 总价
+    ui->orderTableWidget->setColumnWidth(5, 140);  // 用户名
+    ui->orderTableWidget->setColumnWidth(6, 100);  // 状态
     ui->orderTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->orderTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->orderTableWidget->setAlternatingRowColors(true);
@@ -182,12 +189,12 @@ void AdminManagerDialog::updateOrderTable(ReqId id, QString res, ErrorCodes err)
             
             // 设置每列的数据
             ui->orderTableWidget->setItem(row, 0, new QTableWidgetItem(order["order_id"].toString()));
-            ui->orderTableWidget->setItem(row, 1, new QTableWidgetItem(order["merchant_id"].toString()));
+            ui->orderTableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(order["merchant_id"].toInt())));
             ui->orderTableWidget->setItem(row, 2, new QTableWidgetItem(order["order_items"].toString()));
             ui->orderTableWidget->setItem(row, 3, new QTableWidgetItem(order["time"].toString()));
             ui->orderTableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(order["total"].toDouble())));
             ui->orderTableWidget->setItem(row, 5, new QTableWidgetItem(order["user_name"].toString()));
-            ui->orderTableWidget->setItem(row, 6, new QTableWidgetItem(order["status"].toString()));
+            ui->orderTableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(order["status"].toInt())));
         }
     }
 }
