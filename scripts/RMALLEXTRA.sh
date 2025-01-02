@@ -33,5 +33,14 @@ if [ -d "../server/VarifyServer/node_modules" ]; then
     rm -rf ../server/VarifyServer/node_modules
 fi
 
+if [ -d "../nginx/logs" ]; then
+    echo "正在删除 ../nginx/logs ..."
+    rm -rf ../nginx/logs
+fi
+
+docker stop $(docker ps -aq)
+docker system prune -a
+echo "docker 容器和镜像已清理"
+
 echo "所有指定目录清理完成"
 
