@@ -1,0 +1,306 @@
+openapi: 3.0.0
+info:
+  title: HungerYet API
+  description: HungerYet系统的API文档
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: 本地开发服务器
+
+paths:
+  /get_test:
+    get:
+      summary: GET测试接口
+      description: 用于测试GET请求的接口，支持URL参数
+      parameters:
+        - in: query
+          name: param1
+          schema:
+            type: string
+          description: 测试参数1
+          required: false
+        - in: query
+          name: param2
+          schema:
+            type: string
+          description: 测试参数2
+          required: false
+      responses:
+        '200':
+          description: 测试成功
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: 返回测试参数信息
+
+  /get_varifycode:
+    post:
+      summary: 获取验证码
+      description: 获取邮箱验证码
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 邮箱地址
+              required:
+                - email
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: integer
+                    description: 错误码，0表示成功
+                  email:
+                    type: string
+                    description: 邮箱地址
+
+  /user_register:
+    post:
+      summary: 用户注册
+      description: 注册新用户
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                  description: 用户名
+                email:
+                  type: string
+                  description: 邮箱
+                passwd:
+                  type: string
+                  description: 密码
+                confirm:
+                  type: string
+                  description: 确认密码
+                varifycode:
+                  type: string
+                  description: 验证码
+              required:
+                - user
+                - email
+                - passwd
+                - confirm
+                - varifycode
+      responses:
+        '200':
+          description: 注册成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: integer
+                    description: 错误码，0表示成功
+                  uid:
+                    type: integer
+                    description: 用户ID
+                  user:
+                    type: string
+                    description: 用户名
+                  email:
+                    type: string
+                    description: 邮箱
+                  passwd:
+                    type: string
+                    description: 密码
+                  confirm:
+                    type: string
+                    description: 确认密码
+                  varifycode:
+                    type: string
+                    description: 验证码
+
+  /reset_pwd:
+    post:
+      summary: 重置密码
+      description: 重置用户密码
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                  description: 用户名
+                email:
+                  type: string
+                  description: 邮箱
+                passwd:
+                  type: string
+                  description: 新密码
+                varifycode:
+                  type: string
+                  description: 验证码
+              required:
+                - user
+                - email
+                - passwd
+                - varifycode
+      responses:
+        '200':
+          description: 重置成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: integer
+                    description: 错误码，0表示成功
+                  user:
+                    type: string
+                    description: 用户名
+                  email:
+                    type: string
+                    description: 邮箱
+                  passwd:
+                    type: string
+                    description: 新密码
+                  varifycode:
+                    type: string
+                    description: 验证码
+
+  /user_login:
+    post:
+      summary: 用户登录
+      description: 用户登录系统
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 邮箱
+                passwd:
+                  type: string
+                  description: 密码
+              required:
+                - email
+                - passwd
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: integer
+                    description: 错误码，0表示成功
+                  email:
+                    type: string
+                    description: 邮箱
+                  uid:
+                    type: integer
+                    description: 用户ID
+                  token:
+                    type: string
+                    description: 访问令牌
+                  host:
+                    type: string
+                    description: 服务器主机地址
+                  port:
+                    type: integer
+                    description: 服务器端口
+
+  /admin_get_orders:
+    post:
+      summary: 获取所有订单
+      description: 管理员获取系统中的所有订单
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 管理员邮箱
+                passwd:
+                  type: string
+                  description: 管理员密码
+              required:
+                - email
+                - passwd
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: integer
+                    description: 错误码，0表示成功
+                  orders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        order_id:
+                          type: string
+                          description: 订单ID
+                        merchant_id:
+                          type: integer
+                          description: 商家ID
+                        order_items:
+                          type: string
+                          description: 订单内容
+                        time:
+                          type: string
+                          description: 订单时间
+                        total:
+                          type: number
+                          description: 订单总价
+                        user_name:
+                          type: string
+                          description: 用户名
+                        status:
+                          type: integer
+                          description: 订单状态
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: integer
+          description: 错误码
+          enum:
+            - 0    # 成功
+            - 1    # JSON解析错误
+            - 2    # 数据库错误
+            - 1003 # 验证码过期
+            - 1004 # 验证码错误
+            - 1005 # 用户已存在
+            - 1006 # 密码错误
+            - 1007 # 邮箱不匹配
+            - 1008 # 密码更新失败
+            - 1009 # 密码格式无效
+            - 1010 # 数据库错误
