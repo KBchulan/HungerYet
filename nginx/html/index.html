@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HungerYet API Server</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    <style>
+        :root {
+            --primary-color: #ffa5ba;
+            --secondary-color: #ff8fab;
+            --background-color: #fff5f7;
+            --text-color: #4a4a4a;
+            --card-shadow: 0 4px 6px rgba(255, 165, 186, 0.15);
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            background-image: 
+                linear-gradient(120deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.8) 100%),
+                url('https://cdn.jsdelivr.net/gh/K8chulan/HungerYet@main/assets/bg.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(255, 165, 186, 0.95), rgba(255, 143, 171, 0.95));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://cdn.jsdelivr.net/gh/K8chulan/HungerYet@main/assets/header.jpg') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .endpoints {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .endpoint {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-speed);
+            animation: fadeIn 0.5s ease-out;
+            display: flex;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 165, 186, 0.1);
+        }
+
+        .endpoint:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 16px rgba(255, 165, 186, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(255, 165, 186, 0.3);
+        }
+
+        .endpoint-icon {
+            font-size: 2.5rem;
+            margin-right: 1.5rem;
+            color: var(--primary-color);
+            transition: transform var(--transition-speed);
+        }
+
+        .endpoint:hover .endpoint-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .endpoint-content {
+            flex-grow: 1;
+        }
+
+        .endpoint-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .endpoint-path {
+            font-family: 'Fira Code', monospace;
+            background: rgba(255, 245, 247, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: #666;
+            border: 1px solid rgba(255, 165, 186, 0.2);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all var(--transition-speed);
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--transition-speed);
+        }
+
+        a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(255, 165, 186, 0.1);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid rgba(255, 165, 186, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .header p {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+            .endpoints {
+                grid-template-columns: 1fr;
+            }
+            .endpoint {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>HungerYet API Server</h1>
+            <p>现代化的餐饮服务 API 系统 · 为美食而生</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="endpoints">
+            <div class="endpoint">
+                <i class="mdi mdi-api endpoint-icon"></i>
+                <div class="endpoint-content">
+                    <div class="endpoint-title">API 网关</div>
+                    <div class="endpoint-path">/api/</div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <i class="mdi mdi-check-circle endpoint-icon"></i>
+                <div class="endpoint-content">
+                    <div class="endpoint-title">状态服务</div>
+                    <div class="endpoint-path">/status/</div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <i class="mdi mdi-cart endpoint-icon"></i>
+                <div class="endpoint-content">
+                    <div class="endpoint-title">购买服务</div>
+                    <div class="endpoint-path">/purchase/</div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <i class="mdi mdi-shield-check endpoint-icon"></i>
+                <div class="endpoint-content">
+                    <div class="endpoint-title">验证服务</div>
+                    <div class="endpoint-path">/verify/</div>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <i class="mdi mdi-file-document endpoint-icon"></i>
+                <div class="endpoint-content">
+                    <div class="endpoint-title">Swagger 文档</div>
+                    <div class="endpoint-path">
+                        <a href="http://localhost:8081" target="_blank">查看接口文档</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 HungerYet · 让美食触手可及</p>
+    </footer>
+</body>
+</html> 

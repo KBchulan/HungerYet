@@ -370,7 +370,7 @@ void LoginDialog::on_login_btn_clicked()
     QJsonObject json_obj;
     json_obj["email"] = email;
     json_obj["passwd"] = xorString(passwd);
-    HttpManager::GetInstance()->PostHttpReq(QUrl(gate_url_prefix + "/user_login"),
+    HttpManager::GetInstance()->PostHttpReq(QUrl(local + "/api/user_login"),
                                             json_obj, ReqId::ID_LOGIN_USER, Modules::LOGINMOD);
 }
 

@@ -8,7 +8,7 @@ servers:
     description: 本地开发服务器
 
 paths:
-  /get_test:
+  /api/get_test:
     get:
       summary: GET测试接口
       description: 用于测试GET请求的接口，支持URL参数
@@ -34,7 +34,7 @@ paths:
                 type: string
                 description: 返回测试参数信息
 
-  /get_varifycode:
+  /api/get_varifycode:
     post:
       summary: 获取验证码
       description: 获取邮箱验证码
@@ -65,7 +65,7 @@ paths:
                     type: string
                     description: 邮箱地址
 
-  /user_register:
+  /api/user_register:
     post:
       summary: 用户注册
       description: 注册新用户
@@ -127,7 +127,7 @@ paths:
                     type: string
                     description: 验证码
 
-  /reset_pwd:
+  /api/reset_pwd:
     post:
       summary: 重置密码
       description: 重置用户密码
@@ -179,7 +179,7 @@ paths:
                     type: string
                     description: 验证码
 
-  /user_login:
+  /api/user_login:
     post:
       summary: 用户登录
       description: 用户登录系统
@@ -226,7 +226,7 @@ paths:
                     type: integer
                     description: 服务器端口
 
-  /admin_get_orders:
+  /api/admin_get_orders:
     post:
       summary: 获取所有订单
       description: 管理员获取系统中的所有订单

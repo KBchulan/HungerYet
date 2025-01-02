@@ -1,6 +1,6 @@
 #include "global.h"
 
-QString gate_url_prefix = "";
+QString local = "http://localhost:8080";
 
 std::function<void(QWidget *)> repolish = [](QWidget *w)
 {

@@ -30,7 +30,7 @@
 // personal header
 #include "QStyle"
 
-extern QString gate_url_prefix;
+extern QString local;
 
 // functional
 // repolish err_tip(in register_dialog)'s style(in other words, it will repolish qss)

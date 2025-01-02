@@ -1,5 +1,16 @@
 version: '3'
 services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/html:/usr/share/nginx/html
+    networks:
+      - app-network
+
   swagger-ui:
     image: swaggerapi/swagger-ui
     ports:
@@ -7,4 +18,10 @@ services:
     environment:
       - SWAGGER_JSON=/swagger.yaml
     volumes:
-      - ./swagger.yaml:/swagger.yaml 
+      - ./swagger.yaml:/swagger.yaml
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge 

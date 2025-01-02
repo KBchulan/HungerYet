@@ -93,7 +93,7 @@ void AdminManagerDialog::loadOrders()
     QJsonObject json_obj;
     json_obj["email"] = "admin";
     json_obj["passwd"] = "123456";
-    HttpManager::GetInstance()->PostHttpReq(QUrl(gate_url_prefix + "/admin_get_orders"),
+    HttpManager::GetInstance()->PostHttpReq(QUrl(local + "/api/admin_get_orders"),
                                             json_obj, ReqId::ID_ADMIN_GET_ORDERS, Modules::ADMINMOD);
 }
 

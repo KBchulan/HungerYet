@@ -191,7 +191,7 @@ void RegisterDialog::on_get_code_clicked()
         // The Server send http confirm-code
         QJsonObject json_obj;
         json_obj["email"] = email;
-        HttpManager::GetInstance()->PostHttpReq(gate_url_prefix + "/get_varifycode", json_obj,
+        HttpManager::GetInstance()->PostHttpReq(local + "/api/get_varifycode", json_obj,
                                                 ReqId::ID_GET_VARIFY_CODE, Modules::REGISTERMOD);
     }
 }
@@ -395,7 +395,7 @@ void RegisterDialog::on_sure_btn_clicked()
     json_obj["confirm"] = xorString(ui->confirm_edit->text());
     json_obj["varifycode"] = ui->varify_edit->text();
 
-    HttpManager::GetInstance()->PostHttpReq(QUrl(gate_url_prefix + "/user_register"),
+    HttpManager::GetInstance()->PostHttpReq(QUrl(local + "/api/user_register"),
                                             json_obj, ReqId::ID_REG_USER, Modules::REGISTERMOD);
 }
 

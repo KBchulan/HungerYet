@@ -1,17 +1,17 @@
 # Details
 
-Date : 2024-12-31 23:14:18
+Date : 2025-01-02 23:55:39
 
 Directory /home/whx/文档/code/github/HungerYet
 
-Total : 239 files,  37215 codes, 2453 comments, 6071 blanks, all 45739 lines
+Total : 244 files,  38015 codes, 2466 comments, 6151 blanks, all 46632 lines
 
 [Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Files
 | filename | language | code | comment | blank | total |
 | :--- | :--- | ---: | ---: | ---: | ---: |
-| [README.md](/README.md) | Markdown | 74 | 0 | 23 | 97 |
+| [README.md](/README.md) | Markdown | 129 | 0 | 39 | 168 |
 | [client/CMakeLists.txt](/client/CMakeLists.txt) | CMake | 67 | 0 | 14 | 81 |
 | [client/adminmanagerdialog.cpp](/client/adminmanagerdialog.cpp) | C++ | 169 | 1 | 31 | 201 |
 | [client/adminmanagerdialog.h](/client/adminmanagerdialog.h) | C++ | 34 | 0 | 11 | 45 |
@@ -57,7 +57,7 @@ Total : 239 files,  37215 codes, 2453 comments, 6071 blanks, all 45739 lines
 | [client/logindialog.cpp](/client/logindialog.cpp) | C++ | 287 | 21 | 73 | 381 |
 | [client/logindialog.h](/client/logindialog.h) | C++ | 50 | 29 | 28 | 107 |
 | [client/logindialog.ui](/client/logindialog.ui) | XML | 425 | 0 | 1 | 426 |
-| [client/main.cpp](/client/main.cpp) | C++ | 61 | 5 | 6 | 72 |
+| [client/main.cpp](/client/main.cpp) | C++ | 60 | 5 | 7 | 72 |
 | [client/mainwindow.cpp](/client/mainwindow.cpp) | C++ | 171 | 3 | 65 | 239 |
 | [client/mainwindow.h](/client/mainwindow.h) | C++ | 48 | 21 | 20 | 89 |
 | [client/mainwindow.ui](/client/mainwindow.ui) | XML | 32 | 0 | 1 | 33 |
@@ -113,8 +113,12 @@ Total : 239 files,  37215 codes, 2453 comments, 6071 blanks, all 45739 lines
 | [client/timerbtn.h](/client/timerbtn.h) | C++ | 15 | 9 | 6 | 30 |
 | [client/usermanager.cpp](/client/usermanager.cpp) | C++ | 63 | 0 | 18 | 81 |
 | [client/usermanager.h](/client/usermanager.h) | C++ | 50 | 9 | 26 | 85 |
-| [doc/details.md](/doc/details.md) | Markdown | 246 | 0 | 6 | 252 |
-| [doc/results.md](/doc/results.md) | Markdown | 59 | 0 | 7 | 66 |
+| [doc/details.md](/doc/details.md) | Markdown | 248 | 0 | 6 | 254 |
+| [doc/results.md](/doc/results.md) | Markdown | 61 | 0 | 7 | 68 |
+| [docker-compose.yaml](/docker-compose.yaml) | YAML | 25 | 0 | 2 | 27 |
+| [nginx/html/50x.html](/nginx/html/50x.html) | HTML | 18 | 0 | 0 | 18 |
+| [nginx/html/index.html](/nginx/html/index.html) | HTML | 267 | 0 | 31 | 298 |
+| [nginx/nginx.conf](/nginx/nginx.conf) | Properties | 133 | 13 | 23 | 169 |
 | [proto/message.proto](/proto/message.proto) | Protocol Buffers | 35 | 0 | 10 | 45 |
 | [scripts/RMALLEXTRA.sh](/scripts/RMALLEXTRA.sh) | Shell Script | 29 | 0 | 9 | 38 |
 | [scripts/aVarify.sh](/scripts/aVarify.sh) | Shell Script | 17 | 0 | 4 | 21 |
@@ -248,6 +252,7 @@ Total : 239 files,  37215 codes, 2453 comments, 6071 blanks, all 45739 lines
 | [server/VarifyServer/proto.js](/server/VarifyServer/proto.js) | JavaScript | 15 | 0 | 5 | 20 |
 | [server/VarifyServer/redis.js](/server/VarifyServer/redis.js) | JavaScript | 70 | 0 | 7 | 77 |
 | [server/VarifyServer/server.js](/server/VarifyServer/server.js) | JavaScript | 68 | 1 | 10 | 79 |
+| [swagger.yaml](/swagger.yaml) | YAML | 299 | 0 | 7 | 306 |
 | [test/promise.cc](/test/promise.cc) | C++ | 16 | 2 | 4 | 22 |
 | [test/random.cc](/test/random.cc) | C++ | 23 | 8 | 8 | 39 |
 
