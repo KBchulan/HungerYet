@@ -1,4 +1,5 @@
 #include "../include/rabbitmq_manager.h"
+
 #include <stdexcept>
 #include <iostream>
 
