@@ -5,7 +5,6 @@
 #include "../include/HttpConnection.h"
 #include "../include/StatusGrpcClient.h"
 #include "../include/VerifyGrpcClient.h"
-#include "LogicSystem.h"
 
 LogicSystem::~LogicSystem()
 {

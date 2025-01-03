@@ -103,12 +103,14 @@ sudo apt install -y \
     protobuf-compiler-grpc \
     libjsoncpp-dev \
     libspdlog-dev
+
+# 其实还有一个swagger，作者使用go install了，读者可以选用apt
 ```
 
 ### 2. 克隆项目
 
 ```bash
-git clone https://github.com/yourusername/HungerYet.git
+git clone https://github.com/KBchulan/HungerYet.git
 cd HungerYet
 ```
 
@@ -233,8 +235,8 @@ HungerYet/
 
 ## 维护者
 
-- [@](https://github.com/yourusername)KBchulan\
-- [@](https://github.com/yourusername)fgloris
+- [@](https://github.com/KBchulan)KBchulan
+- [@](https://github.com/fgloris)fgloris
 
 ## 许可证
 

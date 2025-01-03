@@ -35,7 +35,7 @@ fi
 
 if [ -d "../nginx/logs" ]; then
     echo "正在删除 ../nginx/logs ..."
-    rm -rf ../nginx/logs
+    sudo rm -rf ../nginx/logs
 fi
 
 docker stop $(docker ps -aq)
