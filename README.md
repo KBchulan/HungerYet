@@ -102,6 +102,7 @@ HungerYet 是一个现代化的餐饮服务系统，采用微服务架构设计�
 - Boost 1.82.0+ (基础库)
 - protobuf 3.13+ (序列化)
 - gRPC 1.50.0+ (RPC框架)
+- RabbitMQ 3.10.0+ (消息队列)
 - Docker & Docker Compose (容器化)
 
 ### Web 前端依赖
@@ -135,6 +136,7 @@ sudo apt install -y \
     libspdlog-dev
 
 # 其实还有一个swagger，作者使用go install了，读者可以选用apt
+sudo apt install -y swagger
 ```
 
 ### 2. 克隆项目
@@ -144,10 +146,9 @@ git clone https://github.com/KBchulan/HungerYet.git
 cd HungerYet
 ```
 
-### 3. 启动服务（按顺序）
+### 3. 启动服务（按顺序）# 1. 启动 VerifyServer（验证服务）
 
 ```bash
-# 1. 启动 VerifyServer（验证服务）
 cd scripts
 ./aVarify.sh
 
@@ -165,6 +166,12 @@ cd scripts
 
 # 6. 启动 Docker 服务（Nginx 和 Swagger UI）
 ./bDocker.sh
+
+# 7. web client
+./aWeb.sh
+
+# 8. qt client
+./bCmakeClientCompile.sh
 ```
 
 ### 4. 验证服务
@@ -172,46 +179,6 @@ cd scripts
 - 访问 http://localhost:8080 查看 API 网关状态页面
 - 访问 http://localhost:8081 查看 Swagger API 文档
 - 访问 http://localhost:5174 使用 Web 前端界面
-
-## API 端点
-
-### 用户认证
-
-- `POST /api/get_varifycode` - 获取邮箱验证码
-
-  - 请求：`{"email": "user@example.com"}`
-  - 响应：`{"error": 0, "email": "user@example.com"}`
-- `POST /api/user_register` - 用户注册
-
-  - 请求：`{"user": "username", "email": "user@example.com", "passwd": "password", "varifycode": "123456"}`
-  - 响应：`{"error": 0, "uid": 12345}`
-- `POST /api/user_login` - 用户登录
-
-  - 请求：`{"email": "user@example.com", "passwd": "password"}`
-  - 响应：`{"error": 0, "uid": 12345, "token": "xxx"}`
-- `POST /api/reset_pwd` - 重置密码
-
-  - 请求：`{"email": "user@example.com", "varifycode": "123456", "passwd": "newpassword"}`
-  - 响应：`{"error": 0}`
-
-### 订单管理
-
-- `POST /api/admin_get_orders` - 获取订单列表
-  - 请求：`{}`
-  - 响应：`{"error": 0, "orders": [...]}`
-
-### 错误码说明
-
-- 0: 成功
-- 1: JSON解析错误
-- 2: 数据库错误
-- 1003: 验证码过期
-- 1004: 验证码错误
-- 1005: 用户已存在
-- 1006: 密码错误
-- 1007: 邮箱不匹配
-- 1008: 密码更新失败
-- 1009: 密码格式无效
 
 ## 项目结构
 
