@@ -1,6 +1,6 @@
 # HungerYet
 
-HungerYet 是一个现代化的餐饮服务系统，采用微服务架构设计，提供完整的用户认证、状态管理、订单处理等功能。系统使用 C++ 开发后端服务，Qt 开发客户端，并集成了 Nginx 反向代理和 Swagger API 文档。
+HungerYet 是一个现代化的餐饮服务系统，采用微服务架构设计，提供完整的用户认证、状态管理、订单处理等功能。系统使用 C++ 开发后端服务，Qt 开发客户端，并集成了 Nginx 反向代理和 Swagger API 文档。现在还提供了基于 Vue.js 的 Web 前端界面，为用户提供更便捷的访问方式。
 
 ## 系统架构
 
@@ -60,6 +60,15 @@ HungerYet 是一个现代化的餐饮服务系统，采用微服务架构设计�
 - 错误码说明
 - 主要端口：8081
 
+### 7. Web 前端 (Vue.js)
+
+- 基于 Vue 3 和 TypeScript 开发
+- 响应式设计，支持多设备访问
+- 实时购物车管理
+- 订单状态追踪
+- 用户认证和授权
+- 主要端口：5174
+
 ## 开发环境要求
 
 ### 基础环境
@@ -83,6 +92,16 @@ HungerYet 是一个现代化的餐饮服务系统，采用微服务架构设计�
 - protobuf 3.13+ (序列化)
 - gRPC 1.50.0+ (RPC框架)
 - Docker & Docker Compose (容器化)
+
+### Web 前端依赖
+
+- Node.js 16+
+- npm 8+
+- Vue 3
+- TypeScript 5+
+- Vite 6+
+- Vue Router 4+
+- Axios
 
 ## 快速开始
 
@@ -130,7 +149,10 @@ cd scripts
 # 4. 启动 PurchaseServer（购买服务）
 ./b2PucharseServerCompile.sh
 
-# 5. 启动 Docker 服务（Nginx 和 Swagger UI）
+# 5. 启动 Web 前端开发服务器
+./aWeb.sh
+
+# 6. 启动 Docker 服务（Nginx 和 Swagger UI）
 cd ..
 docker-compose up -d
 ```
@@ -139,6 +161,7 @@ docker-compose up -d
 
 - 访问 http://localhost:8080 查看 API 网关状态页面
 - 访问 http://localhost:8081 查看 Swagger API 文档
+- 访问 http://localhost:5174 使用 Web 前端界面
 
 ## API 端点
 
@@ -178,15 +201,20 @@ docker-compose up -d
 - 1006: 密码错误
 - 1007: 邮箱不匹配
 - 1008: 密码更新失败
+- 1009: 密码格式无效
 
 ## 项目结构
 
 ```
 HungerYet/
-├── client/           # 客户端代码
+├── client/           # Qt客户端代码
 │   ├── src/         # 源代码
 │   ├── include/     # 头文件
 │   └── ui/          # 界面文件
+├── web/             # Web前端代码
+│   ├── src/         # 源代码
+│   ├── public/      # 静态资源
+│   └── dist/        # 构建输出
 ├── server/          # 服务器代码
 │   ├── GateServer/  # API 网关服务
 │   ├── VerifyServer/# 验证服务
@@ -213,11 +241,20 @@ HungerYet/
 - 使用异常处理机制
 - 添加适当的注释
 
+### Web 前端开发规范
+
+- 使用 TypeScript 进行类型检查
+- 遵循 Vue 3 组合式 API 风格
+- 使用 ESLint 和 Prettier 保持代码风格一致
+- 组件化开发，提高代码复用性
+- 响应式设计，适配多种设备
+
 ### 测试
 
 - 单元测试：GTest
 - 集成测试：自动化测试脚本
 - 性能测试：压力测试工具
+- Web 前端测试：Vitest
 
 ### 日志
 

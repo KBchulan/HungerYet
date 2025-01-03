@@ -5,3 +5,17 @@ logs
 client/*.pro.user
 CMakeLists.txt.user
 tmp
+
+# Web前端相关
+web/node_modules
+web/dist
+web/.vite
+web/.env.local
+web/.env.*.local
+web/npm-debug.log*
+web/yarn-debug.log*
+web/yarn-error.log*
+web/.DS_Store
+web/.idea
+web/.vscode
+web/coverage
