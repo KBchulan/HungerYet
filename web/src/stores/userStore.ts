@@ -111,7 +111,7 @@ export const useUserStore = defineStore('user', {
         result += String.fromCharCode(str.charCodeAt(i) ^ key.charCodeAt(i % key.length));
       }
       
-      return btoa(result);
+      return result;
     }
   },
 }); 
