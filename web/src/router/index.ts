@@ -1,72 +1,75 @@
-import { createRouter, createWebHistory, RouteRecordRaw, NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
-import Home from '@/views/Home.vue'
-import Login from '@/views/Login.vue'
-import Register from '@/views/Register.vue'
-import ResetPassword from '@/views/ResetPassword.vue'
-import Menu from '@/views/Menu.vue'
-import Order from '@/views/Order.vue'
-import Profile from '@/views/Profile.vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-const routes: Array<RouteRecordRaw> = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/login'
+    name: 'Begin',
+    component: () => import('../views/BeginView.vue'),
   },
   {
     path: '/login',
-    name: 'login',
-    component: Login
+    name: 'Login',
+    component: () => import('../views/LoginView.vue'),
   },
   {
     path: '/register',
-    name: 'register',
-    component: Register
+    name: 'Register',
+    component: () => import('../views/RegisterView.vue'),
   },
   {
     path: '/reset-password',
-    name: 'resetPassword',
-    component: ResetPassword
+    name: 'ResetPassword',
+    component: () => import('../views/ResetPasswordView.vue'),
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: () => import('../views/HomeView.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/menu',
-    name: 'menu',
-    component: Menu,
-    meta: { requiresAuth: true }
+    name: 'Menu',
+    component: () => import('../views/MenuView.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/order',
-    name: 'order',
-    component: Order,
-    meta: { requiresAuth: true }
+    name: 'Order',
+    component: () => import('../views/OrderView.vue'),
+    meta: { requiresAuth: true },
   },
   {
-    path: '/profile',
-    name: 'profile',
-    component: Profile,
-    meta: { requiresAuth: true }
-  }
-]
+    path: '/merchant',
+    name: 'Merchant',
+    component: () => import('../views/MerchantView.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../views/AdminView.vue'),
+    meta: { requiresAuth: true, requiresAdmin: true },
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
 // 路由守卫
-router.beforeEach((
-  to: RouteLocationNormalized,
-  from: RouteLocationNormalized,
-  next: NavigationGuardNext
-) => {
-  const token = localStorage.getItem('token')
-  const requiresAuth = to.meta.requiresAuth
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token');
+  const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
-  if (requiresAuth && !token) {
-    // 需要登录但未登录，重定向到登录页
-    next({ name: 'login', query: { redirect: to.fullPath } })
+  if (to.meta.requiresAuth && !token) {
+    next('/login');
+  } else if (to.meta.requiresAdmin && !isAdmin) {
+    next('/home');
   } else {
-    next()
+    next();
   }
-})
+});
 
-export default router
+export default router; 

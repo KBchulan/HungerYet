@@ -79,6 +79,7 @@
         "qstandardpaths": "cpp",
         "qvector": "cpp",
         "qparallelanimationgroup": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "regex": "cpp"
     }
 }
