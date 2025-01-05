@@ -1,17 +1,17 @@
 # Details
 
-Date : 2025-01-02 23:55:39
+Date : 2025-01-05 12:23:14
 
 Directory /home/whx/文档/code/github/HungerYet
 
-Total : 244 files,  38015 codes, 2466 comments, 6151 blanks, all 46632 lines
+Total : 278 files,  43957 codes, 2554 comments, 6680 blanks, all 53191 lines
 
 [Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Files
 | filename | language | code | comment | blank | total |
 | :--- | :--- | ---: | ---: | ---: | ---: |
-| [README.md](/README.md) | Markdown | 129 | 0 | 39 | 168 |
+| [README.md](/README.md) | Markdown | 196 | 0 | 62 | 258 |
 | [client/CMakeLists.txt](/client/CMakeLists.txt) | CMake | 67 | 0 | 14 | 81 |
 | [client/adminmanagerdialog.cpp](/client/adminmanagerdialog.cpp) | C++ | 169 | 1 | 31 | 201 |
 | [client/adminmanagerdialog.h](/client/adminmanagerdialog.h) | C++ | 34 | 0 | 11 | 45 |
@@ -113,21 +113,24 @@ Total : 244 files,  38015 codes, 2466 comments, 6151 blanks, all 46632 lines
 | [client/timerbtn.h](/client/timerbtn.h) | C++ | 15 | 9 | 6 | 30 |
 | [client/usermanager.cpp](/client/usermanager.cpp) | C++ | 63 | 0 | 18 | 81 |
 | [client/usermanager.h](/client/usermanager.h) | C++ | 50 | 9 | 26 | 85 |
-| [doc/details.md](/doc/details.md) | Markdown | 248 | 0 | 6 | 254 |
-| [doc/results.md](/doc/results.md) | Markdown | 61 | 0 | 7 | 68 |
-| [docker-compose.yaml](/docker-compose.yaml) | YAML | 25 | 0 | 2 | 27 |
+| [doc/details.md](/doc/details.md) | Markdown | 253 | 0 | 6 | 259 |
+| [doc/results.md](/doc/results.md) | Markdown | 67 | 0 | 7 | 74 |
+| [docker-compose.yaml](/docker-compose.yaml) | YAML | 29 | 0 | 2 | 31 |
 | [nginx/html/50x.html](/nginx/html/50x.html) | HTML | 18 | 0 | 0 | 18 |
-| [nginx/html/index.html](/nginx/html/index.html) | HTML | 267 | 0 | 31 | 298 |
+| [nginx/html/index.html](/nginx/html/index.html) | HTML | 277 | 0 | 32 | 309 |
 | [nginx/nginx.conf](/nginx/nginx.conf) | Properties | 133 | 13 | 23 | 169 |
 | [proto/message.proto](/proto/message.proto) | Protocol Buffers | 35 | 0 | 10 | 45 |
-| [scripts/RMALLEXTRA.sh](/scripts/RMALLEXTRA.sh) | Shell Script | 29 | 0 | 9 | 38 |
+| [scripts/RMALLEXTRA.sh](/scripts/RMALLEXTRA.sh) | Shell Script | 72 | 3 | 19 | 94 |
 | [scripts/aVarify.sh](/scripts/aVarify.sh) | Shell Script | 17 | 0 | 4 | 21 |
+| [scripts/aWeb.sh](/scripts/aWeb.sh) | Shell Script | 5 | 4 | 4 | 13 |
 | [scripts/b1PucharseServerCompile.sh](/scripts/b1PucharseServerCompile.sh) | Shell Script | 16 | 0 | 5 | 21 |
 | [scripts/b2PucharseServerCompile.sh](/scripts/b2PucharseServerCompile.sh) | Shell Script | 16 | 0 | 5 | 21 |
 | [scripts/bCmakeClientCompile.sh](/scripts/bCmakeClientCompile.sh) | Shell Script | 16 | 0 | 5 | 21 |
+| [scripts/bDocker.sh](/scripts/bDocker.sh) | Shell Script | 3 | 0 | 0 | 3 |
 | [scripts/bGateServerCompile.sh](/scripts/bGateServerCompile.sh) | Shell Script | 16 | 0 | 5 | 21 |
 | [scripts/bQmakeClientCompile.sh](/scripts/bQmakeClientCompile.sh) | Shell Script | 16 | 0 | 5 | 21 |
 | [scripts/bStatusCompile.sh](/scripts/bStatusCompile.sh) | Shell Script | 16 | 0 | 5 | 21 |
+| [scripts/install_rabbitmq.sh](/scripts/install_rabbitmq.sh) | Shell Script | 26 | 14 | 13 | 53 |
 | [server/GateServer/CMakeLists.txt](/server/GateServer/CMakeLists.txt) | CMake | 58 | 0 | 17 | 75 |
 | [server/GateServer/config/config.ini](/server/GateServer/config/config.ini) | Ini | 18 | 0 | 5 | 23 |
 | [server/GateServer/include/AsioIOServicePool.h](/server/GateServer/include/AsioIOServicePool.h) | C++ | 22 | 0 | 9 | 31 |
@@ -151,7 +154,7 @@ Total : 244 files,  38015 codes, 2466 comments, 6151 blanks, all 46632 lines
 | [server/GateServer/src/GateServer.cc](/server/GateServer/src/GateServer.cc) | C++ | 46 | 0 | 8 | 54 |
 | [server/GateServer/src/HttpConnection.cc](/server/GateServer/src/HttpConnection.cc) | C++ | 187 | 6 | 26 | 219 |
 | [server/GateServer/src/LogManager.cc](/server/GateServer/src/LogManager.cc) | C++ | 80 | 9 | 16 | 105 |
-| [server/GateServer/src/LogicSystem.cc](/server/GateServer/src/LogicSystem.cc) | C++ | 315 | 11 | 51 | 377 |
+| [server/GateServer/src/LogicSystem.cc](/server/GateServer/src/LogicSystem.cc) | C++ | 314 | 11 | 51 | 376 |
 | [server/GateServer/src/MysqlDao.cc](/server/GateServer/src/MysqlDao.cc) | C++ | 419 | 5 | 85 | 509 |
 | [server/GateServer/src/MysqlManager.cc](/server/GateServer/src/MysqlManager.cc) | C++ | 48 | 0 | 14 | 62 |
 | [server/GateServer/src/RedisManafer.cc](/server/GateServer/src/RedisManafer.cc) | C++ | 371 | 2 | 90 | 463 |
@@ -219,6 +222,10 @@ Total : 244 files,  38015 codes, 2466 comments, 6151 blanks, all 46632 lines
 | [server/PurchaseServer2/src/StatusGrpcClient.cc](/server/PurchaseServer2/src/StatusGrpcClient.cc) | C++ | 102 | 0 | 27 | 129 |
 | [server/PurchaseServer2/src/message.grpc.pb.cc](/server/PurchaseServer2/src/message.grpc.pb.cc) | C++ | 152 | 3 | 35 | 190 |
 | [server/PurchaseServer2/src/message.pb.cc](/server/PurchaseServer2/src/message.pb.cc) | C++ | 1,406 | 144 | 206 | 1,756 |
+| [server/RabbitMq/CMakeLists.txt](/server/RabbitMq/CMakeLists.txt) | CMake | 31 | 0 | 7 | 38 |
+| [server/RabbitMq/include/rabbitmq_config.h](/server/RabbitMq/include/rabbitmq_config.h) | C++ | 45 | 3 | 8 | 56 |
+| [server/RabbitMq/include/rabbitmq_manager.h](/server/RabbitMq/include/rabbitmq_manager.h) | C++ | 47 | 9 | 18 | 74 |
+| [server/RabbitMq/src/rabbitmq_manager.cpp](/server/RabbitMq/src/rabbitmq_manager.cpp) | C++ | 206 | 0 | 41 | 247 |
 | [server/StatusServer/CMakeLists.txt](/server/StatusServer/CMakeLists.txt) | CMake | 58 | 0 | 17 | 75 |
 | [server/StatusServer/config/config.ini](/server/StatusServer/config/config.ini) | Ini | 23 | 0 | 6 | 29 |
 | [server/StatusServer/include/AsioIOServicePool.h](/server/StatusServer/include/AsioIOServicePool.h) | C++ | 21 | 0 | 8 | 29 |
@@ -253,7 +260,34 @@ Total : 244 files,  38015 codes, 2466 comments, 6151 blanks, all 46632 lines
 | [server/VarifyServer/redis.js](/server/VarifyServer/redis.js) | JavaScript | 70 | 0 | 7 | 77 |
 | [server/VarifyServer/server.js](/server/VarifyServer/server.js) | JavaScript | 68 | 1 | 10 | 79 |
 | [swagger.yaml](/swagger.yaml) | YAML | 299 | 0 | 7 | 306 |
-| [test/promise.cc](/test/promise.cc) | C++ | 16 | 2 | 4 | 22 |
-| [test/random.cc](/test/random.cc) | C++ | 23 | 8 | 8 | 39 |
+| [web/index.html](/web/index.html) | HTML | 13 | 0 | 1 | 14 |
+| [web/package-lock.json](/web/package-lock.json) | JSON | 2,320 | 0 | 1 | 2,321 |
+| [web/package.json](/web/package.json) | JSON | 28 | 0 | 1 | 29 |
+| [web/public/vite.svg](/web/public/vite.svg) | SVG | 1 | 0 | 0 | 1 |
+| [web/src/App.vue](/web/src/App.vue) | Vue.js | 27 | 0 | 5 | 32 |
+| [web/src/assets/main.css](/web/src/assets/main.css) | CSS | 44 | 4 | 7 | 55 |
+| [web/src/assets/vue.svg](/web/src/assets/vue.svg) | SVG | 1 | 0 | 0 | 1 |
+| [web/src/components/HelloWorld.vue](/web/src/components/HelloWorld.vue) | Vue.js | 35 | 0 | 7 | 42 |
+| [web/src/env.d.ts](/web/src/env.d.ts) | TypeScript | 31 | 4 | 8 | 43 |
+| [web/src/main.ts](/web/src/main.ts) | TypeScript | 12 | 0 | 5 | 17 |
+| [web/src/router/index.ts](/web/src/router/index.ts) | TypeScript | 69 | 1 | 5 | 75 |
+| [web/src/services/HttpManager.ts](/web/src/services/HttpManager.ts) | TypeScript | 99 | 6 | 12 | 117 |
+| [web/src/stores/userStore.ts](/web/src/stores/userStore.ts) | TypeScript | 102 | 0 | 15 | 117 |
+| [web/src/style.css](/web/src/style.css) | CSS | 70 | 0 | 10 | 80 |
+| [web/src/types/api.ts](/web/src/types/api.ts) | TypeScript | 59 | 5 | 6 | 70 |
+| [web/src/views/AdminView.vue](/web/src/views/AdminView.vue) | Vue.js | 372 | 18 | 46 | 436 |
+| [web/src/views/BeginView.vue](/web/src/views/BeginView.vue) | Vue.js | 123 | 0 | 19 | 142 |
+| [web/src/views/HomeView.vue](/web/src/views/HomeView.vue) | Vue.js | 219 | 2 | 28 | 249 |
+| [web/src/views/LoginView.vue](/web/src/views/LoginView.vue) | Vue.js | 129 | 0 | 18 | 147 |
+| [web/src/views/MenuView.vue](/web/src/views/MenuView.vue) | Vue.js | 406 | 6 | 52 | 464 |
+| [web/src/views/MerchantView.vue](/web/src/views/MerchantView.vue) | Vue.js | 392 | 4 | 57 | 453 |
+| [web/src/views/OrderView.vue](/web/src/views/OrderView.vue) | Vue.js | 421 | 9 | 52 | 482 |
+| [web/src/views/RegisterView.vue](/web/src/views/RegisterView.vue) | Vue.js | 224 | 0 | 26 | 250 |
+| [web/src/views/ResetPasswordView.vue](/web/src/views/ResetPasswordView.vue) | Vue.js | 212 | 0 | 25 | 237 |
+| [web/src/vite-env.d.ts](/web/src/vite-env.d.ts) | TypeScript | 0 | 1 | 1 | 2 |
+| [web/tsconfig.app.json](/web/tsconfig.app.json) | JSON | 12 | 1 | 2 | 15 |
+| [web/tsconfig.json](/web/tsconfig.json) | JSON with Comments | 32 | 3 | 4 | 39 |
+| [web/tsconfig.node.json](/web/tsconfig.node.json) | JSON | 10 | 0 | 1 | 11 |
+| [web/vite.config.ts](/web/vite.config.ts) | TypeScript | 21 | 1 | 2 | 24 |
 
 [Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
