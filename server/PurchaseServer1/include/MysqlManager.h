@@ -15,16 +15,16 @@ public:
 
     // 注册新用户
     int RegUser(const std::string &name, const std::string &email, const std::string &pwd);
-    
+
     // 检查邮箱是否已被注册
     bool CheckEmail(const std::string &name, const std::string &email);
-    
+
     // 更新用户密码
     bool UpdatePwd(const std::string &name, const std::string &newpassword);
-    
+
     // 验证用户密码是否正确,并返回用户信息
     bool CheckPwd(const std::string &email, const std::string &pwd, UserInfo &userInfo);
-    
+
     // 查询用户
     std::shared_ptr<UserInfo> GetUser(int uid);
     std::shared_ptr<UserInfo> GetUser(std::string name);
