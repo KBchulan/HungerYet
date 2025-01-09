@@ -2,11 +2,12 @@
 #define ASIOIOSERVICEPOOL_H
 
 #include "const.h"
+#include <boost/asio/ip/tcp.hpp>
 
 class AsioIOServicePool final : public Singleton<AsioIOServicePool>
 {
     friend class Singleton<AsioIOServicePool>;
-    
+
 public:
     ~AsioIOServicePool();
 

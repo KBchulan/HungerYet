@@ -62,7 +62,7 @@ target_link_libraries(
     gRPC::grpc++
     gRPC::grpc++_reflection
     protobuf::libprotobuf
-    
+
     # third party
     mysqlcppconn
     ${SPDLOG_LIBRARIES}
