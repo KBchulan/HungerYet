@@ -81,5 +81,6 @@
         "qparallelanimationgroup": "cpp",
         "*.ipp": "cpp",
         "regex": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/whx/文档/code/github/HungerYet/server/PurchaseServer1"
 }
