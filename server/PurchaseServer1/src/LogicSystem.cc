@@ -4,7 +4,7 @@
 #include "../include/MysqlManager.h"
 #include "../include/StatusGrpcClient.h"
 
-LogicSystem::LogicSystem() 
+LogicSystem::LogicSystem()
     : _stop(false)
 {
     RegisterCallBacks();
@@ -74,7 +74,7 @@ void LogicSystem::DealMsg()
             _msg_que.pop();
             continue;
         }
-        
+
         _fun_callbacks.find(msg_node->_recvnode->GetMsgId())->second(msg_node->_session, msg_node->_recvnode->GetMsgId(), std::string(msg_node->_recvnode->_data, msg_node->_recvnode->_total_len));
         _msg_que.pop();
     }
@@ -82,7 +82,7 @@ void LogicSystem::DealMsg()
 
 void LogicSystem::RegisterCallBacks()
 {
-    _fun_callbacks[MSG_CHAT_LOGIN] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data) 
+    _fun_callbacks[MSG_CHAT_LOGIN] = [this](std::shared_ptr<CSession> session, const short &id, const std::string &data)
     {
         LoginHandler(session, id, data);
     };
@@ -133,7 +133,7 @@ void LogicSystem::LoginHandler(std::shared_ptr<CSession> session, const short &i
 
     if(rsp.error() != ErrorCodes::Success)
         return;
-    
+
     auto find_iter = _users.find(uid);
     std::shared_ptr<UserInfo> user_info = nullptr;
     if(find_iter == _users.end())
