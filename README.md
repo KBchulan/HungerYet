@@ -1,7 +1,5 @@
 # HungerYet
 
-<div align="center">
-
 ![HungerYet Logo](./doc/logo.ico)
 
 **现代化的餐饮服务系统**
